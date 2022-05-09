@@ -111,3 +111,40 @@ Repetiremos el mismo procedimiento para obtener la base de datos de la ENOE para
 Una vez que tenemos completa nuestra base de datos con la que vamos a trabajar pordemos eliminar utilizando rm () las bases que utilizamos para realizar la unión.
 
 
+Selección de variables
+
+Crearemos una tabla para cada año en la cual seleccionaremos variables que nos sirvan para realizar nuestro análisis:
+
+Variable    Descripción 
+•	sex:   Sexo (1)Hombre , (2)Mujer
+•	eda:   Edad
+•	cd_a:  Ciudad autorepresentada
+•	ent:   Edad
+•	niv_ins: Nivel de instrucción 
+•	anios_esc:Años de escolaridad
+•	clase1: Clasificación (1) PEA y (2) PENA 
+•	clase2: Clasificación (1) Ocipada y (2)Desocupada
+•	clase3: Clasificación de la población ocupada
+•	n_hij:  Número de hijas e hijos que nacierón con vida
+•	hij5c:  Clasificación de las mujeres por número de hijos e hijas
+•	e_con:  Estado conyugal 
+•	domestico: Clasificación por condición de actividad e inactividad  
+•	rama: Clasificación de la población ocupada por sector de actividad económica
+•	c_ocu11c:Clasificación de la población ocupada por condición de ocupaciób
+•	scian: Clasificación de actividades economicas con base en el SCIAN
+•	hrsocup: Horas laboradas a la semana
+•	ing7c: Clasificación de la población ocupada por nivel de ingreso
+•	ingocup: Ingreso mensual
+•	ing_x_hrsIngreso promedio por hora trabajada.
+•	fac: Factor de expansión
+•	est_d: Estrado de diseño
+•	upm: Unidad primaria de muestreo 
+
+
+#Analisis de tablas
+```{r}
+tabla13<-ENOET113	%>% select(c(sex,eda,cd_a,ent,niv_ins,anios_esc, clase1,clase2,clase3,n_hij,hij5c,e_con,domestico,rama,c_ocu11c,scian,hrsocup, ing7c,ingocup,ing_x_hrs,fac,est_d,upm))
+
+tabla18<-ENOET118	%>% select(c(sex,eda,cd_a,ent,niv_ins,anios_esc, clase1,clase2,clase3,n_hij,hij5c,e_con,domestico,rama,c_ocu11c,scian,hrsocup, ing7c,ingocup,ing_x_hrs,fac,est_d,upm))
+
+```
