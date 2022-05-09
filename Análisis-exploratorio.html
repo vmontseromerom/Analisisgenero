@@ -179,8 +179,95 @@ pre code {
 <p>Antes de comenzar a trabajar es importante cargar nuestras paqueterias para ello haremos uso de la herramienta “pacman” la cual nos permite instalar simultaneamente paquetes.</p>
 <pre class="r"><code>if (!require(&quot;pacman&quot;)) install.packages(&quot;pacman&quot;) </code></pre>
 <pre><code>## Loading required package: pacman</code></pre>
-<pre class="r"><code>pacman::p_load(tidyverse,ggplot2, haven, janitor, srvyr, RColorBrewer, wesanderson, sjlabelled)</code></pre>
-<p>En la página de la ENOE es posible encontrar microdatos para descargar y trabajar en diferentes formatos ()</p>
+<pre class="r"><code>pacman::p_load(tidyverse, haven, janitor, srvyr, RColorBrewer, wesanderson, sjlabelled)</code></pre>
+<p>En la página de la ENOE es posible encontrar microdatos para descargar y trabajar en diferentes formatos (.csv,.dta,.dbf y .sav) Trabajaremos en este ejercicio con la información en formato .dta</p>
+<p>#Cargar la información para el primer trimestre del año 2013</p>
+<pre class="r"><code>sdemt113    &lt;- read_dta(&quot;C:/repos/Analisisgenero/2013trim1_dta/SDEMT113.dta&quot;)
+coe1t113    &lt;- read_dta(&quot;C:/repos/Analisisgenero/2013trim1_dta/COE1T113.dta&quot;)
+coe2t113    &lt;- read_dta(&quot;C:/repos/Analisisgenero/2013trim1_dta/COE2T113.dta&quot;)
+hogt113     &lt;- read_dta(&quot;C:/repos/Analisisgenero/2013trim1_dta/HOGT113.dta&quot;)
+vivt113     &lt;- read_dta(&quot;C:/repos/Analisisgenero/2013trim1_dta/VIVT113.dta&quot;)</code></pre>
+<p>#Cargar la información para el primer trimestre del año 2018</p>
+<pre class="r"><code>sdemt118    &lt;- read_dta(&quot;C:/repos/Analisisgenero/2018trim1_dta/SDEMT118.dta&quot;)
+coe1t118    &lt;- read_dta(&quot;C:/repos/Analisisgenero/2018trim1_dta/COE1T118.dta&quot;)
+coe2t118    &lt;- read_dta(&quot;C:/repos/Analisisgenero/2018trim1_dta/COE2T118.dta&quot;)
+hogt118     &lt;- read_dta(&quot;C:/repos/Analisisgenero/2018trim1_dta/HOGT118.dta&quot;)
+vivt118     &lt;- read_dta(&quot;C:/repos/Analisisgenero/2018trim1_dta/VIVT118.dta&quot;)</code></pre>
+<p>#Unificar las bases de la ENOE</p>
+<p>Como podemos observar la ENOE se compone de 5 baterias de información la cual incluye datos referentes a :vivienda, hogares, sociodemografico, ocupación y empleo 1 y 2. Podemos realizar la unión utilizando diferentes procedimientos, en este trabajo moestramos una opción:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Campo</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>CD_A</td>
+<td>Ciudad auto representada</td>
+</tr>
+<tr class="even">
+<td>ENT</td>
+<td>Entidad</td>
+</tr>
+<tr class="odd">
+<td>CON</td>
+<td>Control</td>
+</tr>
+<tr class="even">
+<td>V_SEL</td>
+<td>Vivienda seleccionada</td>
+</tr>
+<tr class="odd">
+<td>N_HOG</td>
+<td>Número de hogar</td>
+</tr>
+<tr class="even">
+<td>H_MUD</td>
+<td>Hogar mudado</td>
+</tr>
+<tr class="odd">
+<td>N_REN</td>
+<td>Número de renglón</td>
+</tr>
+</tbody>
+</table>
+<p>#Creamos nuestros identificadores los cuales funcionara como llave para unir nuestras bases.</p>
+<pre class="r"><code>idvivienda&lt;-c(&quot;cd_a&quot;,   &quot;ent&quot;,  &quot;con&quot;,  &quot;v_sel&quot;)
+idhogar&lt;-c(&quot;cd_a&quot;,  &quot;ent&quot;,  &quot;con&quot;,  &quot;v_sel&quot;,&quot;n_hog&quot;,    &quot;h_mud&quot;)
+idpersona&lt;-c(&quot;cd_a&quot;,    &quot;ent&quot;,  &quot;con&quot;,  &quot;v_sel&quot;,&quot;n_hog&quot;,    &quot;h_mud&quot;,    &quot;n_ren&quot;)</code></pre>
+<p>La primer unión de bases que realizaremos seran “coe1t113” y “coe2t113” a partir del “idpersona”</p>
+<pre class="r"><code>coet13 &lt;-merge(coe1t113,coe2t113, by= idpersona)</code></pre>
+<p>Algunas variables se repetiran, sin embargo incluran la misma información por lo cual terminaran en .x o .y, podemos eliminar las variables duplicadas.</p>
+<pre class="r"><code>coet13&lt;-coet13  %&gt;%select(-ends_with(&quot;.y&quot;))%&gt;% rename_at(.vars  = vars(ends_with(&quot;.x&quot;)),.funs   = funs(sub(&quot;[.]x$&quot;, &quot;&quot;, .)))    </code></pre>
+<pre><code>## Warning: `funs()` was deprecated in dplyr 0.8.0.
+## Please use a list of either functions or lambdas: 
+## 
+##   # Simple named list: 
+##   list(mean = mean, median = median)
+## 
+##   # Auto named with `tibble::lst()`: 
+##   tibble::lst(mean, median)
+## 
+##   # Using lambdas
+##   list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
+<p>Seguiremos con nuestra unión incluyendo la información “sdemt113”, es importante considerar que uniremos toda la información de las bases y posteriormente limpiaremos las variables duplicadas.</p>
+<pre class="r"><code>sdemcoe13&lt;-merge(sdemt113,coet13,   by=idpersona, all = TRUE)
+
+sdemcoe13&lt;-sdemcoe13    %&gt;% select(-ends_with(&quot;.y&quot;))    %&gt;%  rename_at(.vars    = vars(ends_with(&quot;.x&quot;)),.funs   = funs(sub(&quot;[.]x$&quot;, &quot;&quot;, .)))</code></pre>
+<p>Procederemos a unir las bases de “vivt113” y “hogt113”.</p>
+<pre class="r"><code>vivhog13&lt;-merge(vivt113,    hogt113,    by=idvivienda)
+vivhog13&lt;-vivhog13  %&gt;% select(-ends_with(&quot;.y&quot;))    %&gt;% rename_at(.vars = vars(ends_with(&quot;.x&quot;)),.funs   = funs(sub(&quot;[.]x$&quot;, &quot;&quot;, .)))</code></pre>
+<p>Concluimos uniendo todas las bases para tenercompleta nuestra información de la ENOE para el primer trimestre del año 2013.</p>
+<pre class="r"><code>ENOET113&lt;-merge(vivhog13,   sdemcoe13,  by=idhogar)
+ENOET113&lt;-ENOET113  %&gt;% select(-ends_with(&quot;.y&quot;))    %&gt;%  rename_at(.vars    = vars(ends_with(&quot;.x&quot;)),.funs   = funs(sub(&quot;[.]x$&quot;, &quot;&quot;, .)))</code></pre>
+<p>La metodología del INEGI para trabajar con la ENOE indica que la informción con la que se podra trabajar sera aquella que cumpla con el criterio de ser entrevistas validas “r_def=00” y no considerar la residencia “ausente” “c_res=2”.</p>
+<pre class="r"><code>ENOET113&lt;-ENOET113%&gt;% filter(r_def==0)  %&gt;% filter(c_res!=2)</code></pre>
+<p>Repetiremos el mismo procedimiento para obtener la base de datos de la ENOE para el primer trimestre del 2018 Una vez que tenemos completa nuestra base de datos con la que vamos a trabajar pordemos eliminar utilizando rm () las bases que utilizamos para realizar la unión.</p>
+<p>Seleccionaremos</p>
 
 
 
