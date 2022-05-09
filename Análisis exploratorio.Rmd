@@ -1,0 +1,21 @@
+---
+title: "Análisis Exploratorio ENOE"
+author: "Montserrat Romero"
+date: "8/5/2022"
+output: html_document
+---
+El objetivo del presente trabajo es realizar un análisis exploratorio con perspectiva de género utilizando información de la Encuesta Nacional de Ocupación y Empleo (ENOE), elaborada y publicada por el INEGI, para los años 2013 y 2018. Se considerara trabajar también con datos para el año 2021 para lograr observar sí existio alguna modificación en el comportamiento en las variables a analizar derivado del confinamiento por el virus Covid-19. 
+El docuemnto que se tomará como base principal para explorar la ENOE en el presente software R sera: Escoto Ana R. (2021),¿cómo empezar a estudiar el mercado de trabajo en México?,UNAM,CDMX.
+
+Antes de comenzar a trabajar es importante cargar nuestras paqueterias para ello haremos uso de la herramienta "pacman" la cual nos permite instalar simultaneamente paquetes.
+
+```{r}
+if (!require("pacman")) install.packages("pacman") 
+
+
+pacman::p_load(tidyverse,ggplot2, haven, janitor, srvyr, RColorBrewer, wesanderson, sjlabelled)
+
+```
+
+
+En la página de la ENOE es posible encontrar microdatos para descargar y trabajar en diferentes formatos ()
