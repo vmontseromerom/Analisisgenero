@@ -1,7 +1,7 @@
 ---
-title: "Análisis Exploratorio ENOE"
+title: "Analisis exploratorio ENOE"
 author: "Montserrat Romero"
-date: "8/5/2022"
+date: "9/5/2022"
 output: html_document
 ---
 El objetivo del presente trabajo es realizar un análisis exploratorio con perspectiva de género utilizando información de la Encuesta Nacional de Ocupación y Empleo (ENOE), elaborada y publicada por el INEGI, para los años 2013 y 2018. Se considerara trabajar también con datos para el año 2021 para lograr observar sí existio alguna modificación en el comportamiento en las variables a analizar derivado del confinamiento por el virus Covid-19. 
@@ -108,7 +108,52 @@ ENOET113<-ENOET113%>% filter(r_def==0)	%>% filter(c_res!=2)
 ```
 
 Repetiremos el mismo procedimiento para obtener la base de datos de la ENOE para el primer trimestre del 2018
+
+
+```{r}
+coet18 <-merge(coe1t118,coe2t118, by= idpersona)
+
+```
+
+```{r}
+coet18<-coet18	%>%select(-ends_with(".y"))%>% rename_at(.vars	= vars(ends_with(".x")),.funs	= funs(sub("[.]x$",	"",	.)))	
+
+```
+
+
+```{r}
+sdemcoe18<-merge(sdemt118,coet18,	by=idpersona, all = TRUE)
+
+sdemcoe18<-sdemcoe18	%>% select(-ends_with(".y"))	%>%  rename_at(.vars	= vars(ends_with(".x")),.funs	= funs(sub("[.]x$",	"",	.)))
+
+```
+
+```{r}
+vivhog18<-merge(vivt118,	hogt118,	by=idvivienda)
+vivhog18<-vivhog18	%>% select(-ends_with(".y"))	%>% rename_at(.vars	= vars(ends_with(".x")),.funs	= funs(sub("[.]x$",	"",	.)))
+
+```
+
+```{r}
+
+ENOET118<-merge(vivhog18,	sdemcoe18,	by=idhogar)
+ENOET118<-ENOET118	%>% select(-ends_with(".y"))	%>%  rename_at(.vars	= vars(ends_with(".x")),.funs	= funs(sub("[.]x$",	"",	.)))
+
+```
+
+```{r}
+ENOET118<-ENOET118%>% filter(r_def==0)	%>% filter(c_res!=2)
+
+```
+
+
+
+
 Una vez que tenemos completa nuestra base de datos con la que vamos a trabajar pordemos eliminar utilizando rm () las bases que utilizamos para realizar la unión.
+
+```{r}
+rm(sdemt113,sdemt118,sdemcoe18,sdemcoe13,coe1t113,coe1t118,coe2t113,coe2t118,coet18,coet13,vivhog18,vivhog13,vivt113,vivt118,hogt113,hogt118)
+```
 
 
 Selección de variables
@@ -148,3 +193,5 @@ tabla13<-ENOET113	%>% select(c(sex,eda,cd_a,ent,niv_ins,anios_esc, clase1,clase2
 tabla18<-ENOET118	%>% select(c(sex,eda,cd_a,ent,niv_ins,anios_esc, clase1,clase2,clase3,n_hij,hij5c,e_con,domestico,rama,c_ocu11c,scian,hrsocup, ing7c,ingocup,ing_x_hrs,fac,est_d,upm))
 
 ```
+
+Comenzaremos por observar la proporción de mujeres y hombres 
