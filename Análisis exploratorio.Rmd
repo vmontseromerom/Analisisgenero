@@ -22,21 +22,21 @@ Trabajaremos en este ejercicio con la información en formato .dta
 
 #Cargar la información para el primer trimestre del año 2013
 ```{r}
-sdemt113	<- read_dta("C:/repos/Analisisgenero/2013trim1_dta/SDEMT113.dta")
-coe1t113	<- read_dta("C:/repos/Analisisgenero/2013trim1_dta/COE1T113.dta")
-coe2t113	<- read_dta("C:/repos/Analisisgenero/2013trim1_dta/COE2T113.dta")
-hogt113 	<- read_dta("C:/repos/Analisisgenero/2013trim1_dta/HOGT113.dta")
-vivt113		<- read_dta("C:/repos/Analisisgenero/2013trim1_dta/VIVT113.dta")
+sdemt113	<- read_dta("C:/Repositorios/Analisisgenero/Datos ENOE.dta 2013/SDEMT113.dta")
+coe1t113	<- read_dta("C:/Repositorios/Analisisgenero/Datos ENOE.dta 2013/COE1T113.dta")
+coe2t113	<- read_dta("C:/Repositorios/Analisisgenero/Datos ENOE.dta 2013/COE2T113.dta")
+hogt113 	<- read_dta("C:/Repositorios/Analisisgenero/Datos ENOE.dta 2013/HOGT113.dta")
+vivt113		<- read_dta("C:/Repositorios/Analisisgenero/Datos ENOE.dta 2013/VIVT113.dta")
 
 ```
 
 #Cargar la información para el primer trimestre del año 2018
 ```{r}
-sdemt118	<- read_dta("C:/repos/Analisisgenero/2018trim1_dta/SDEMT118.dta")
-coe1t118	<- read_dta("C:/repos/Analisisgenero/2018trim1_dta/COE1T118.dta")
-coe2t118	<- read_dta("C:/repos/Analisisgenero/2018trim1_dta/COE2T118.dta")
-hogt118 	<- read_dta("C:/repos/Analisisgenero/2018trim1_dta/HOGT118.dta")
-vivt118		<- read_dta("C:/repos/Analisisgenero/2018trim1_dta/VIVT118.dta")
+sdemt118	<- read_dta("C:/Repositorios/Analisisgenero/Datos ENOE.dta 2018/SDEMT118.dta")
+coe1t118	<- read_dta("C:/Repositorios/Analisisgenero/Datos ENOE.dta 2018/COE1T118.dta")
+coe2t118	<- read_dta("C:/Repositorios/Analisisgenero/Datos ENOE.dta 2018/COE2T118.dta")
+hogt118 	<- read_dta("C:/Repositorios/Analisisgenero/Datos ENOE.dta 2018/HOGT118.dta")
+vivt118		<- read_dta("C:/Repositorios/Analisisgenero/Datos ENOE.dta 2018/VIVT118.dta")
 
 ```
 
@@ -195,3 +195,28 @@ tabla18<-ENOET118	%>% select(c(sex,eda,cd_a,ent,niv_ins,anios_esc, clase1,clase2
 ```
 
 Comenzaremos por observar la proporción de mujeres y hombres 
+
+```{r}
+tabla13%>% mutate(sex=(as_label(sex))) %>% tabyl(sex) %>% adorn_totals %>% adorn_pct_formatting()
+tabla18 %>% mutate(sex=(as_label(sex))) %>% tabyl(sex) %>% adorn_totals() %>% adorn_pct_formatting()
+```
+
+Es posible identificar que para ambos años la proporción de mujeres y hombres que fueron encuestados es similar, encontrando en ambos años que el número de mujeres es mayor que el de hombres.
+
+Podemos revisar esta misma proporción entre hombres y mujeres con las variables "clase1","clase2" y "clase3" , las cuales nos arrojaran información acerca de las caracteristicas de ocupación de la población .
+Observemos la proporción de Población Economicamente Activa (PEA) y la Población Economicamente No Activa (PENA).
+
+```{r}
+tabla13%>% filter(eda>15 & clase1!=0) %>% mutate_at(vars(clase1, sex), as_label) %>% tabyl(clase1, sex, show_missing_levels=F )
+
+tabla18%>% filter(eda>15 & clase1!=0) %>% mutate_at(vars(clase1, sex), as_label) %>% tabyl(clase1, sex, show_missing_levels=F )
+```
+
+  La proporción de hombres encuestados que pertenecen a la PEA es casi el doble del total de mujeres , situación contraria a la PENA en la cual la cantidad de mujeres encuestadas que pertenecen a la ponlación no economicamente no activa es casi tres veces mayor a la de los hombres.No hay un cambio significativo al comparar los resultados de ambos años.
+Es interesante adentrarnos en cada una de las clasificaciones para lograr comprender mejor la información que nos ofrece la encuesta, para ello realizaremos la misma operación pero con la variables "clase2"
+
+```{r}
+tabla13%>% filter(eda>15 & clase2!=0) %>% mutate_at(vars(clase2, sex), as_label) %>% tabyl(clase2, sex, show_missing_levels=F )
+ 
+tabla18%>% filter(eda>15 & clase2!=0) %>% mutate_at(vars(clase2, sex), as_label) %>% tabyl(clase2, sex, show_missing_levels=F )
+ ```
