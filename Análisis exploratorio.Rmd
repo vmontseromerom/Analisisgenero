@@ -4,23 +4,19 @@ author: "Montserrat Romero"
 date: "9/5/2022"
 output: html_document
 ---
-El objetivo del presente trabajo es realizar un análisis exploratorio con perspectiva de género utilizando información de la Encuesta Nacional de Ocupación y Empleo (ENOE), elaborada y publicada por el INEGI, para los años 2013 y 2018. Se considerara trabajar también con datos para el año 2021 para lograr observar sí existio alguna modificación en el comportamiento en las variables a analizar derivado del confinamiento por el virus Covid-19. 
-El docuemnto que se tomará como base principal para explorar la ENOE en el presente software R sera: Escoto Ana R. (2021),¿cómo empezar a estudiar el mercado de trabajo en México?,UNAM,CDMX.
+El objetivo del presente trabajo es realizar un análisis exploratorio de datos sobre el empleo con perspectiva de género a través de información de la Encuesta Nacional de Ocupación y Empleo (ENOE), elaborada y publicada por el INEGI, para los años 2013 y 2018. Se considerará trabajar también con datos para el año 2021 para lograr observar sí existió alguna modificación en el comportamiento en las variables a analizar derivado del confinamiento por el virus Covid-19.  
 
-Antes de comenzar a trabajar es importante cargar nuestras paqueterias para ello haremos uso de la herramienta "pacman" la cual nos permite instalar simultaneamente paquetes.
+La exploración hecha tomará como base el trabajo de Escoto (2021). Para cargar simultáneamente  nuestros paquetes, haremos uso del paquete  `pacman`:
 
 ```{r}
-
 if (!require("pacman")) install.packages("pacman") 
-
 pacman::p_load(tidyverse, haven, janitor, srvyr, RColorBrewer, wesanderson, sjlabelled)
 ```
 
-
 En la página de la ENOE es posible encontrar microdatos para descargar y trabajar en diferentes formatos (.csv,.dta,.dbf y .sav) 
-Trabajaremos en este ejercicio con la información en formato .dta
+Trabajaremos en este ejercicio con la información en formato .dta. 
 
-#Cargar la información para el primer trimestre del año 2013
+Cargar la información para el primer trimestre del año 2013: 
 ```{r}
 sdemt113	<- read_dta("C:/Repositorios/Analisisgenero/Datos ENOE.dta 2013/SDEMT113.dta")
 coe1t113	<- read_dta("C:/Repositorios/Analisisgenero/Datos ENOE.dta 2013/COE1T113.dta")
@@ -30,7 +26,7 @@ vivt113		<- read_dta("C:/Repositorios/Analisisgenero/Datos ENOE.dta 2013/VIVT113
 
 ```
 
-#Cargar la información para el primer trimestre del año 2018
+Cargar la información para el primer trimestre del año 2018: 
 ```{r}
 sdemt118	<- read_dta("C:/Repositorios/Analisisgenero/Datos ENOE.dta 2018/SDEMT118.dta")
 coe1t118	<- read_dta("C:/Repositorios/Analisisgenero/Datos ENOE.dta 2018/COE1T118.dta")
@@ -40,9 +36,9 @@ vivt118		<- read_dta("C:/Repositorios/Analisisgenero/Datos ENOE.dta 2018/VIVT118
 
 ```
 
-#Unificar las bases de la ENOE
+Unificar las bases de la ENOE
 
-Como podemos observar la ENOE se compone de 5 baterias de información la cual incluye datos referentes a :vivienda, hogares, sociodemografico, ocupación y empleo 1 y 2. Podemos realizar la unión utilizando diferentes procedimientos, en este trabajo moestramos una opción:
+Como podemos observar la ENOE se compone de 5 baterias de información, que incluyen datos referentes a :vivienda, hogares, sociodemografico, ocupación y empleo 1 y 2. Podemos realizar la unión utilizando diferentes procedimientos, en este trabajo mostramos una opción:
 
 | Campo  | Descripción              |
 |--------|--------------------------|
@@ -55,7 +51,7 @@ Como podemos observar la ENOE se compone de 5 baterias de información la cual i
 | N_REN  | Número de renglón        |
 
 
-#Creamos nuestros identificadores los cuales funcionara como llave para unir nuestras bases.
+Creamos nuestros identificadores, que funcionarán como llave para unir nuestras bases.
 
 ```{r}
 idvivienda<-c("cd_a",	"ent",	"con",	"v_sel")
@@ -64,14 +60,14 @@ idpersona<-c("cd_a",	"ent",	"con",	"v_sel","n_hog",	"h_mud",	"n_ren")
 
 ```
 
-La primer unión de bases que realizaremos seran "coe1t113" y "coe2t113" a partir del "idpersona"
+La primer unión de bases que realizaremos serán "coe1t113" y "coe2t113" a partir del "idpersona"
 
 ```{r}
 coet13 <-merge(coe1t113,coe2t113, by= idpersona)
 
 ```
 
-Algunas variables se repetiran, sin embargo incluran la misma información por lo cual terminaran en .x o .y, podemos eliminar las variables duplicadas.
+Algunas variables se repetirán, sin embargo inclurán la misma información por lo cual terminaran en .x o .y, podemos eliminar las variables duplicadas.
 
 ```{r}
 coet13<-coet13	%>%select(-ends_with(".y"))%>% rename_at(.vars	= vars(ends_with(".x")),.funs	= funs(sub("[.]x$",	"",	.)))	
