@@ -175,27 +175,26 @@ pre code {
 </div>
 
 
-<p>El objetivo del presente trabajo es realizar un análisis exploratorio con perspectiva de género utilizando información de la Encuesta Nacional de Ocupación y Empleo (ENOE), elaborada y publicada por el INEGI, para los años 2013 y 2018. Se considerara trabajar también con datos para el año 2021 para lograr observar sí existio alguna modificación en el comportamiento en las variables a analizar derivado del confinamiento por el virus Covid-19. El docuemnto que se tomará como base principal para explorar la ENOE en el presente software R sera: Escoto Ana R. (2021),¿cómo empezar a estudiar el mercado de trabajo en México?,UNAM,CDMX.</p>
-<p>Antes de comenzar a trabajar es importante cargar nuestras paqueterias para ello haremos uso de la herramienta “pacman” la cual nos permite instalar simultaneamente paquetes.</p>
+<p>El objetivo del presente trabajo es realizar un análisis exploratorio de datos sobre el empleo con perspectiva de género a través de información de la Encuesta Nacional de Ocupación y Empleo (ENOE), elaborada y publicada por el INEGI, para los años 2013 y 2018. Se considerará trabajar también con datos para el año 2021 para lograr observar sí existió alguna modificación en el comportamiento en las variables a analizar derivado del confinamiento por el virus Covid-19.</p>
+<p>La exploración hecha tomará como base el trabajo de Escoto (2021). Para cargar simultáneamente nuestros paquetes, haremos uso del paquete <code>pacman</code>:</p>
 <pre class="r"><code>if (!require(&quot;pacman&quot;)) install.packages(&quot;pacman&quot;) </code></pre>
 <pre><code>## Loading required package: pacman</code></pre>
-<pre><code>## Warning: package &#39;pacman&#39; was built under R version 4.1.3</code></pre>
 <pre class="r"><code>pacman::p_load(tidyverse, haven, janitor, srvyr, RColorBrewer, wesanderson, sjlabelled)</code></pre>
-<p>En la página de la ENOE es posible encontrar microdatos para descargar y trabajar en diferentes formatos (.csv,.dta,.dbf y .sav) Trabajaremos en este ejercicio con la información en formato .dta</p>
-<p>#Cargar la información para el primer trimestre del año 2013</p>
-<pre class="r"><code>sdemt113    &lt;- read_dta(&quot;C:/Repositorios/Analisisgenero/Datos ENOE.dta 2013/SDEMT113.dta&quot;)
-coe1t113    &lt;- read_dta(&quot;C:/Repositorios/Analisisgenero/Datos ENOE.dta 2013/COE1T113.dta&quot;)
-coe2t113    &lt;- read_dta(&quot;C:/Repositorios/Analisisgenero/Datos ENOE.dta 2013/COE2T113.dta&quot;)
-hogt113     &lt;- read_dta(&quot;C:/Repositorios/Analisisgenero/Datos ENOE.dta 2013/HOGT113.dta&quot;)
-vivt113     &lt;- read_dta(&quot;C:/Repositorios/Analisisgenero/Datos ENOE.dta 2013/VIVT113.dta&quot;)</code></pre>
-<p>#Cargar la información para el primer trimestre del año 2018</p>
-<pre class="r"><code>sdemt118    &lt;- read_dta(&quot;C:/Repositorios/Analisisgenero/Datos ENOE.dta 2018/SDEMT118.dta&quot;)
-coe1t118    &lt;- read_dta(&quot;C:/Repositorios/Analisisgenero/Datos ENOE.dta 2018/COE1T118.dta&quot;)
-coe2t118    &lt;- read_dta(&quot;C:/Repositorios/Analisisgenero/Datos ENOE.dta 2018/COE2T118.dta&quot;)
-hogt118     &lt;- read_dta(&quot;C:/Repositorios/Analisisgenero/Datos ENOE.dta 2018/HOGT118.dta&quot;)
-vivt118     &lt;- read_dta(&quot;C:/Repositorios/Analisisgenero/Datos ENOE.dta 2018/VIVT118.dta&quot;)</code></pre>
-<p>#Unificar las bases de la ENOE</p>
-<p>Como podemos observar la ENOE se compone de 5 baterias de información la cual incluye datos referentes a :vivienda, hogares, sociodemografico, ocupación y empleo 1 y 2. Podemos realizar la unión utilizando diferentes procedimientos, en este trabajo moestramos una opción:</p>
+<p>En la página de la ENOE es posible encontrar microdatos para descargar y trabajar en diferentes formatos (.csv,.dta,.dbf y .sav) Trabajaremos en este ejercicio con la información en formato .dta.</p>
+<p>Cargar la información para el primer trimestre del año 2013:</p>
+<pre class="r"><code>sdemt113    &lt;- read_dta(&quot;C:/repos/Analisisgenero/Datos ENOE.dta 2013/SDEMT113.dta&quot;)
+coe1t113    &lt;- read_dta(&quot;C:/repos/Analisisgenero/Datos ENOE.dta 2013/COE1T113.dta&quot;)
+coe2t113    &lt;- read_dta(&quot;C:/repos/Analisisgenero/Datos ENOE.dta 2013/COE2T113.dta&quot;)
+hogt113     &lt;- read_dta(&quot;C:/repos/Analisisgenero/Datos ENOE.dta 2013/HOGT113.dta&quot;)
+vivt113     &lt;- read_dta(&quot;C:/repos/Analisisgenero/Datos ENOE.dta 2013/VIVT113.dta&quot;)</code></pre>
+<p>Cargar la información para el primer trimestre del año 2018:</p>
+<pre class="r"><code>sdemt118    &lt;- read_dta(&quot;C:/repos/Analisisgenero/Datos ENOE.dta 2018/SDEMT118.dta&quot;)
+coe1t118    &lt;- read_dta(&quot;C:/repos/Analisisgenero/Datos ENOE.dta 2018/COE1T118.dta&quot;)
+coe2t118    &lt;- read_dta(&quot;C:/repos/Analisisgenero/Datos ENOE.dta 2018/COE2T118.dta&quot;)
+hogt118     &lt;- read_dta(&quot;C:/repos/Analisisgenero/Datos ENOE.dta 2018/HOGT118.dta&quot;)
+vivt118     &lt;- read_dta(&quot;C:/repos/Analisisgenero/Datos ENOE.dta 2018/VIVT118.dta&quot;)</code></pre>
+<p>Unificar las bases de la ENOE</p>
+<p>Como podemos observar la ENOE se compone de 5 baterias de información, que incluyen datos referentes a :vivienda, hogares, sociodemografico, ocupación y empleo 1 y 2. Podemos realizar la unión utilizando diferentes procedimientos, en este trabajo mostramos una opción:</p>
 <table>
 <thead>
 <tr class="header">
@@ -234,13 +233,13 @@ vivt118     &lt;- read_dta(&quot;C:/Repositorios/Analisisgenero/Datos ENOE.dta 2
 </tr>
 </tbody>
 </table>
-<p>#Creamos nuestros identificadores los cuales funcionara como llave para unir nuestras bases.</p>
+<p>Creamos nuestros identificadores, que funcionarán como llave para unir nuestras bases.</p>
 <pre class="r"><code>idvivienda&lt;-c(&quot;cd_a&quot;,   &quot;ent&quot;,  &quot;con&quot;,  &quot;v_sel&quot;)
 idhogar&lt;-c(&quot;cd_a&quot;,  &quot;ent&quot;,  &quot;con&quot;,  &quot;v_sel&quot;,&quot;n_hog&quot;,    &quot;h_mud&quot;)
 idpersona&lt;-c(&quot;cd_a&quot;,    &quot;ent&quot;,  &quot;con&quot;,  &quot;v_sel&quot;,&quot;n_hog&quot;,    &quot;h_mud&quot;,    &quot;n_ren&quot;)</code></pre>
-<p>La primer unión de bases que realizaremos seran “coe1t113” y “coe2t113” a partir del “idpersona”</p>
+<p>La primer unión de bases que realizaremos serán “coe1t113” y “coe2t113” a partir del “idpersona”</p>
 <pre class="r"><code>coet13 &lt;-merge(coe1t113,coe2t113, by= idpersona)</code></pre>
-<p>Algunas variables se repetiran, sin embargo incluran la misma información por lo cual terminaran en .x o .y, podemos eliminar las variables duplicadas.</p>
+<p>Algunas variables se repetirán, sin embargo inclurán la misma información por lo cual terminaran en .x o .y, podemos eliminar las variables duplicadas.</p>
 <pre class="r"><code>coet13&lt;-coet13  %&gt;%select(-ends_with(&quot;.y&quot;))%&gt;% rename_at(.vars  = vars(ends_with(&quot;.x&quot;)),.funs   = funs(sub(&quot;[.]x$&quot;, &quot;&quot;, .)))    </code></pre>
 <pre><code>## Warning: `funs()` was deprecated in dplyr 0.8.0.
 ## Please use a list of either functions or lambdas: 
@@ -322,6 +321,128 @@ tabla18&lt;-ENOET118   %&gt;% select(c(sex,eda,cd_a,ent,niv_ins,anios_esc, clase
 ##  Población desocupada   3441  2285
 ##           Disponibles   5208 10736
 ##        No disponibles  23302 68752</code></pre>
+<p>Del año 2013 al año 2018 existe un incremento de la población ocupada, disminuyendo la desocupación. En esta variable si bien es posible identificar que los hombres tienen mayores valores de desocuapción, su proporción con respecto a las mujeres no difiere en grandes cantidades. Situación contraria entre la población ocupada, en donde el número de mujeres ocupadas es menor considerablemente con respecto de la población masculina.</p>
+<p>Ahora utilizaremos las variables ‘rama’ y ‘scian’ para lograr identificar los sectores en los que se emplean en mayor proporción las mujeres y en cuales los hombres.</p>
+<p>Primero lo haremos con ‘rama’</p>
+<pre class="r"><code>ramas13&lt;-ENOET113   %&gt;% filter(clase2==1 &amp; eda&gt;14)  %&gt;% mutate_at(vars(rama,    sex),   as_label)   %&gt;% tabyl(rama, sex,    show_missing_levels=F   )   %&gt;% adorn_totals(c(&quot;col&quot;,   &quot;row&quot;)) %&gt;% adorn_percentages(&quot;col&quot;)    %&gt;% adorn_pct_formatting()
+ramas13</code></pre>
+<pre><code>##                     rama Hombre  Mujer  Total
+##             Construcción  12.2%   0.7%   7.7%
+##  Industria manufacturera  15.8%  13.5%  14.9%
+##                 Comercio  16.0%  26.1%  19.9%
+##                Servicios  39.4%  56.1%  46.0%
+##                    Otros   1.5%   0.5%   1.1%
+##             Agropecuario  14.5%   2.6%   9.8%
+##          No especificado   0.5%   0.5%   0.5%
+##                    Total 100.0% 100.0% 100.0%</code></pre>
+<pre class="r"><code>ramas18&lt;-ENOET118   %&gt;% filter(clase2==1 &amp; eda&gt;14)  %&gt;% mutate_at(vars(rama,    sex),   as_label)   %&gt;% tabyl(rama, sex,    show_missing_levels=F   )   %&gt;% adorn_totals(c(&quot;col&quot;,   &quot;row&quot;)) %&gt;% adorn_percentages(&quot;col&quot;)    %&gt;% adorn_pct_formatting()
+ramas18</code></pre>
+<pre><code>##                     rama Hombre  Mujer  Total
+##             Construcción  13.3%   0.8%   8.4%
+##  Industria manufacturera  17.2%  15.2%  16.4%
+##                 Comercio  15.5%  24.6%  19.1%
+##                Servicios  39.3%  56.4%  46.0%
+##                    Otros   1.3%   0.3%   0.9%
+##             Agropecuario  12.9%   2.2%   8.7%
+##          No especificado   0.5%   0.4%   0.5%
+##                    Total 100.0% 100.0% 100.0%</code></pre>
+<p>Posteriormente con ‘scian’</p>
+<pre class="r"><code>scian13&lt;-ENOET113   %&gt;% filter(clase2==1 &amp; eda&gt;14)  %&gt;% mutate_at(vars(scian,   sex),   as_label)   %&gt;% tabyl(scian,    sex,    show_missing_levels=F   )   %&gt;% adorn_totals(c(&quot;col&quot;,   &quot;row&quot;)) %&gt;% adorn_percentages(&quot;col&quot;)    %&gt;% adorn_pct_formatting()
+scian13</code></pre>
+<pre><code>##                                                                scian Hombre
+##       Agricultura, ganadería, aprovechamiento forestal, pesca y caza  14.5%
+##                                                              Minería   0.9%
+##  Generación y distribución de electricidad, suministro de agua y gas   0.6%
+##                                                         Construcción  12.2%
+##                                            Industrias manufactureras  15.8%
+##                                                Comercio al por mayor   3.1%
+##                                                Comercio al por menor  12.8%
+##                                Transportes, correos y almacenamiento   6.1%
+##                                        Información en medios masivos   1.0%
+##                                   Servicios financieros y de seguros   0.8%
+##                      Servicios inmobiliarios y de alquiler de bienes   0.7%
+##                      Servicios profesionales, científicos y técnicos   2.5%
+##                                                         Corporativos   0.1%
+##              Servicios de apoyo a los negocios y manejo de deseechos   3.0%
+##                                                 Servicios educativos   4.0%
+##                            Servicios de salud y de asistencia social   1.9%
+##                  Servicios de esparcimiento, culturales y deportivos   1.2%
+##       Servicios de hospedaje y de preparación de alimentos y bebidas   5.3%
+##                 Otros servicios, excepto actividades gubernamentales   7.1%
+##          Actividades gubernamentales y de organismos internacionales   5.9%
+##                                                      No especificado   0.5%
+##                                                                Total 100.0%
+##   Mujer  Total
+##    2.6%   9.8%
+##    0.2%   0.6%
+##    0.3%   0.5%
+##    0.7%   7.7%
+##   13.5%  14.9%
+##    1.6%   2.5%
+##   24.5%  17.4%
+##    0.8%   4.1%
+##    0.8%   0.9%
+##    1.3%   1.0%
+##    0.5%   0.6%
+##    2.3%   2.4%
+##    0.1%   0.1%
+##    2.4%   2.8%
+##    9.6%   6.2%
+##    5.9%   3.5%
+##    0.6%   0.9%
+##   11.1%   7.6%
+##   14.6%  10.0%
+##    6.1%   6.0%
+##    0.5%   0.5%
+##  100.0% 100.0%</code></pre>
+<pre class="r"><code>scian18&lt;-ENOET118   %&gt;% filter(clase2==1 &amp; eda&gt;14)  %&gt;% mutate_at(vars(scian,   sex),   as_label)   %&gt;% tabyl(scian,    sex,    show_missing_levels=F   )   %&gt;% adorn_totals(c(&quot;col&quot;,   &quot;row&quot;)) %&gt;% adorn_percentages(&quot;col&quot;)    %&gt;% adorn_pct_formatting()
+scian18</code></pre>
+<pre><code>##                                                                scian Hombre
+##       Agricultura, ganadería, aprovechamiento forestal, pesca y caza  12.9%
+##                                                              Minería   0.7%
+##  Generación y distribución de electricidad, suministro de agua y gas   0.6%
+##                                                         Construcción  13.3%
+##                                            Industrias manufactureras  17.2%
+##                                                Comercio al por mayor   3.6%
+##                                                Comercio al por menor  11.9%
+##                                Transportes, correos y almacenamiento   6.7%
+##                                        Información en medios masivos   0.9%
+##                                   Servicios financieros y de seguros   0.8%
+##                      Servicios inmobiliarios y de alquiler de bienes   0.7%
+##                      Servicios profesionales, científicos y técnicos   2.6%
+##                                                         Corporativos   0.1%
+##              Servicios de apoyo a los negocios y manejo de deseechos   3.2%
+##                                                 Servicios educativos   3.6%
+##                            Servicios de salud y de asistencia social   1.9%
+##                  Servicios de esparcimiento, culturales y deportivos   1.1%
+##       Servicios de hospedaje y de preparación de alimentos y bebidas   5.8%
+##                 Otros servicios, excepto actividades gubernamentales   6.9%
+##          Actividades gubernamentales y de organismos internacionales   5.2%
+##                                                      No especificado   0.5%
+##                                                                Total 100.0%
+##   Mujer  Total
+##    2.2%   8.7%
+##    0.1%   0.5%
+##    0.2%   0.4%
+##    0.8%   8.4%
+##   15.2%  16.4%
+##    2.0%   3.0%
+##   22.7%  16.1%
+##    0.9%   4.4%
+##    0.8%   0.8%
+##    1.2%   0.9%
+##    0.6%   0.6%
+##    2.7%   2.6%
+##    0.1%   0.1%
+##    2.6%   3.0%
+##    8.8%   5.7%
+##    6.1%   3.6%
+##    0.6%   0.9%
+##   12.2%   8.3%
+##   14.2%   9.8%
+##    5.4%   5.3%
+##    0.4%   0.5%
+##  100.0% 100.0%</code></pre>
 
 
 
