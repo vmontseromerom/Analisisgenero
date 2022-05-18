@@ -182,7 +182,7 @@ Variable    Descripción
 •	upm: Unidad primaria de muestreo 
 
 
-#Analisis de tablas
+Analisis de tablas
 ```{r}
 tabla13<-ENOET113	%>% select(c(sex,eda,cd_a,ent,niv_ins,anios_esc, clase1,clase2,clase3,n_hij,hij5c,e_con,domestico,rama,c_ocu11c,scian,hrsocup, ing7c,ingocup,ing_x_hrs,fac,est_d,upm))
 
