@@ -1,0 +1,348 @@
+---
+title: "Unión ENOE"
+author: "Montserrat Romero"
+date: "9/5/2022"
+output: html_document
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+El objetivo del presente trabajo es realizar un análisis exploratorio
+con perspectiva de género utilizando información de la Encuesta Nacional
+de Ocupación y Empleo (ENOE), elaborada y publicada por el INEGI, para
+los años 2013 y 2018. Se considerara trabajar también con datos para el
+año 2021 para lograr observar sí existio alguna modificación en el
+comportamiento en las variables a analizar derivado del confinamiento
+por el virus Covid-19. El docuemnto que se tomará como base principal
+para explorar la ENOE en el presente software R sera: Escoto Ana R.
+(2021),¿cómo empezar a estudiar el mercado de trabajo en
+México?,UNAM,CDMX.
+
+Antes de comenzar a trabajar es importante cargar nuestras paqueterias
+para ello haremos uso de la herramienta "pacman" la cual nos permite
+instalar simultaneamente paquetes.
+
+```{r}
+
+if (!require("pacman")) install.packages("pacman") 
+
+pacman::p_load(tidyverse, haven, janitor, srvyr, RColorBrewer, wesanderson, sjlabelled)
+```
+
+En la página de la ENOE es posible encontrar microdatos para descargar y
+trabajar en diferentes formatos (.csv,.dta,.dbf y .sav) Trabajaremos en
+este ejercicio con la información en formato .dta
+
+#Cargar la información para el primer trimestre del año 2013
+
+```{r}
+sdemt113	<- read_dta("C:/Repositorios/Analisisgenero/Datos ENOE.dta 2013/SDEMT113.dta")
+coe1t113	<- read_dta("C:/Repositorios/Analisisgenero/Datos ENOE.dta 2013/COE1T113.dta")
+coe2t113	<- read_dta("C:/Repositorios/Analisisgenero/Datos ENOE.dta 2013/COE2T113.dta")
+hogt113 	<- read_dta("C:/Repositorios/Analisisgenero/Datos ENOE.dta 2013/HOGT113.dta")
+vivt113		<- read_dta("C:/Repositorios/Analisisgenero/Datos ENOE.dta 2013/VIVT113.dta")
+
+```
+
+#Cargar la información para el primer trimestre del año 2018
+
+```{r}
+sdemt118	<- read_dta("C:/Repositorios/Analisisgenero/Datos ENOE.dta 2018/SDEMT118.dta")
+coe1t118	<- read_dta("C:/Repositorios/Analisisgenero/Datos ENOE.dta 2018/COE1T118.dta")
+coe2t118	<- read_dta("C:/Repositorios/Analisisgenero/Datos ENOE.dta 2018/COE2T118.dta")
+hogt118 	<- read_dta("C:/Repositorios/Analisisgenero/Datos ENOE.dta 2018/HOGT118.dta")
+vivt118		<- read_dta("C:/Repositorios/Analisisgenero/Datos ENOE.dta 2018/VIVT118.dta")
+
+```
+
+#Unificar las bases de la ENOE
+
+Como podemos observar la ENOE se compone de 5 baterias de información la
+cual incluye datos referentes a :vivienda, hogares, sociodemografico,
+ocupación y empleo 1 y 2. Podemos realizar la unión utilizando
+diferentes procedimientos, en este trabajo moestramos una opción:
+
+| Campo | Descripción              |
+|-------|--------------------------|
+| CD_A  | Ciudad auto representada |
+| ENT   | Entidad                  |
+| CON   | Control                  |
+| V_SEL | Vivienda seleccionada    |
+| N_HOG | Número de hogar          |
+| H_MUD | Hogar mudado             |
+| N_REN | Número de renglón        |
+
+#Creamos nuestros identificadores los cuales funcionara como llave para
+unir nuestras bases.
+
+```{r}
+idvivienda<-c("cd_a",	"ent",	"con",	"v_sel")
+idhogar<-c("cd_a",	"ent",	"con",	"v_sel","n_hog",	"h_mud")
+idpersona<-c("cd_a",	"ent",	"con",	"v_sel","n_hog",	"h_mud",	"n_ren")
+
+```
+
+La primer unión de bases que realizaremos seran "coe1t113" y "coe2t113"
+a partir del "idpersona"
+
+```{r}
+coet13 <-merge(coe1t113,coe2t113, by= idpersona)
+
+```
+
+Algunas variables se repetiran, sin embargo incluran la misma
+información por lo cual terminaran en .x o .y, podemos eliminar las
+variables duplicadas.
+
+```{r}
+coet13<-coet13	%>%select(-ends_with(".y"))%>% rename_at(.vars	= vars(ends_with(".x")),.funs	= funs(sub("[.]x$",	"",	.)))	
+
+```
+
+Seguiremos con nuestra unión incluyendo la información "sdemt113", es
+importante considerar que uniremos toda la información de las bases y
+posteriormente limpiaremos las variables duplicadas.
+
+```{r}
+sdemcoe13<-merge(sdemt113,coet13,	by=idpersona, all = TRUE)
+
+sdemcoe13<-sdemcoe13	%>% select(-ends_with(".y"))	%>%  rename_at(.vars	= vars(ends_with(".x")),.funs	= funs(sub("[.]x$",	"",	.)))
+
+```
+
+Procederemos a unir las bases de "vivt113" y "hogt113".
+
+```{r}
+vivhog13<-merge(vivt113,	hogt113,	by=idvivienda)
+vivhog13<-vivhog13	%>% select(-ends_with(".y"))	%>% rename_at(.vars	= vars(ends_with(".x")),.funs	= funs(sub("[.]x$",	"",	.)))
+
+```
+
+Concluimos uniendo todas las bases para tenercompleta nuestra
+información de la ENOE para el primer trimestre del año 2013.
+
+```{r}
+
+ENOET113<-merge(vivhog13,	sdemcoe13,	by=idhogar)
+ENOET113<-ENOET113	%>% select(-ends_with(".y"))	%>%  rename_at(.vars	= vars(ends_with(".x")),.funs	= funs(sub("[.]x$",	"",	.)))
+
+```
+
+La metodología del INEGI para trabajar con la ENOE indica que la
+informción con la que se podra trabajar sera aquella que cumpla con el
+criterio de ser entrevistas validas "r_def=00" y no considerar la
+residencia "ausente" "c_res=2".
+
+```{r}
+ENOET113<-ENOET113%>% filter(r_def==0)	%>% filter(c_res!=2)
+
+```
+
+Repetiremos el mismo procedimiento para obtener la base de datos de la
+ENOE para el primer trimestre del 2018
+
+```{r}
+coet18 <-merge(coe1t118,coe2t118, by= idpersona)
+
+```
+
+```{r}
+coet18<-coet18	%>%select(-ends_with(".y"))%>% rename_at(.vars	= vars(ends_with(".x")),.funs	= funs(sub("[.]x$",	"",	.)))	
+
+```
+
+```{r}
+sdemcoe18<-merge(sdemt118,coet18,	by=idpersona, all = TRUE)
+
+sdemcoe18<-sdemcoe18	%>% select(-ends_with(".y"))	%>%  rename_at(.vars	= vars(ends_with(".x")),.funs	= funs(sub("[.]x$",	"",	.)))
+
+```
+
+```{r}
+vivhog18<-merge(vivt118,	hogt118,	by=idvivienda)
+vivhog18<-vivhog18	%>% select(-ends_with(".y"))	%>% rename_at(.vars	= vars(ends_with(".x")),.funs	= funs(sub("[.]x$",	"",	.)))
+
+```
+
+```{r}
+
+ENOET118<-merge(vivhog18,	sdemcoe18,	by=idhogar)
+ENOET118<-ENOET118	%>% select(-ends_with(".y"))	%>%  rename_at(.vars	= vars(ends_with(".x")),.funs	= funs(sub("[.]x$",	"",	.)))
+
+```
+
+```{r}
+ENOET113<-ENOET113%>% filter(r_def==0)	%>% filter(c_res!=2)
+ENOET118<-ENOET118%>% filter(r_def==0)	%>% filter(c_res!=2)
+
+```
+
+Una vez que tenemos completa nuestra base de datos con la que vamos a
+trabajar pordemos eliminar utilizando rm () las bases que utilizamos
+para realizar la unión.
+
+```{r}
+rm(sdemt113,sdemt118,sdemcoe18,sdemcoe13,coe1t113,coe1t118,coe2t113,coe2t118,coet18,coet13,vivhog18,vivhog13,vivt113,vivt118,hogt113,hogt118)
+```
+
+Selección de variables
+
+Crearemos una tabla para cada año en la cual seleccionaremos variables
+que nos sirvan para realizar nuestro análisis:
+
+Variable Descripción
+
+\- sex: Sexo (1)Hombre , (2)Mujer
+
+\- eda: Edad
+
+\- cd_a: Ciudad autorepresentada - ent: Edad - niv_ins: Nivel de
+instrucción - anios_esc:Años de escolaridad - clase1: Clasificación (1)
+PEA y (2) PENA - clase2: Clasificación (1) Ocipada y (2)Desocupada -
+clase3: Clasificación de la población ocupada - n_hij: Número de hijas e
+hijos que nacierón con vida - hij5c: Clasificación de las mujeres por
+número de hijos e hijas - e_con: Estado conyugal - domestico:
+Clasificación por condición de actividad e inactividad\
+- rama: Clasificación de la población ocupada por sector de actividad
+económica - c_ocu11c:Clasificación de la población ocupada por condición
+de ocupaciób - scian: Clasificación de actividades economicas con base
+en el SCIAN - hrsocup: Horas laboradas a la semana - ing7c:
+Clasificación de la población ocupada por nivel de ingreso - ingocup:
+Ingreso mensual - ing_x\_hrsIngreso promedio por hora trabajada. - fac:
+Factor de expansión - est_d: Estrado de diseño - upm: Unidad primaria de
+muestreo
+
+#Analisis de tablas
+
+```{r}
+seleccion_ENOE_13<-ENOET113	%>% select(c(sex,eda,cd_a,ent,niv_ins,anios_esc, clase1,clase2,clase3,n_hij,hij5c,e_con,domestico,rama,c_ocu11c,scian,hrsocup, ing7c,ingocup,ing_x_hrs,fac,est_d,upm))
+
+seleccion_ENOE_18<-ENOET118	%>% select(c(sex,eda,cd_a,ent,niv_ins,anios_esc, clase1,clase2,clase3,n_hij,hij5c,e_con,domestico,rama,c_ocu11c,scian,hrsocup, ing7c,ingocup,ing_x_hrs,fac,est_d,upm))
+
+```
+
+Comenzaremos por observar la proporción de mujeres y hombres
+
+```{r}
+seleccion_ENOE_13%>% mutate(sex=(as_label(sex))) %>% tabyl(sex) %>% adorn_totals %>% adorn_pct_formatting()
+seleccion_ENOE_18 %>% mutate(sex=(as_label(sex))) %>% tabyl(sex) %>% adorn_totals() %>% adorn_pct_formatting()
+```
+
+Es posible identificar que para ambos años la proporción de mujeres y
+hombres que fueron encuestados es similar, encontrando en ambos años que
+el número de mujeres es mayor que el de hombres.
+
+Podemos revisar esta misma proporción entre hombres y mujeres con las
+variables "clase1","clase2" y "clase3" , las cuales nos arrojaran
+información acerca de las caracteristicas de ocupación de la población .
+Observemos la proporción de Población Economicamente Activa (PEA) y la
+Población Economicamente No Activa (PENA).
+
+```{r}
+seleccion_ENOE_13%>% filter(eda>14 & clase1!=0) %>% mutate_at(vars(clase1, sex), as_label) %>% tabyl(clase1, sex, show_missing_levels=F )
+
+seleccion_ENOE_18%>% filter(eda>14 & clase1!=0) %>% mutate_at(vars(clase1, sex), as_label) %>% tabyl(clase1, sex, show_missing_levels=F )
+```
+
+La proporción de hombres encuestados que pertenecen a la PEA es casi el
+doble del total de mujeres , situación contraria a la PENA en la cual la
+cantidad de mujeres encuestadas que pertenecen a la ponlación no
+economicamente no activa es casi tres veces mayor a la de los hombres.No
+hay un cambio significativo al comparar los resultados de ambos años. Es
+interesante adentrarnos en cada una de las clasificaciones para lograr
+comprender mejor la información que nos ofrece la encuesta, para ello
+realizaremos la misma operación pero con la variables "clase2"
+
+```{r}
+seleccion_ENOE_13%>% filter(eda>14 & clase2!=0) %>% mutate_at(vars(clase2, sex), as_label) %>% tabyl(clase2, sex, show_missing_levels=F )
+ 
+seleccion_ENOE_18%>% filter(eda>14 & clase2!=0) %>% mutate_at(vars(clase2, sex), as_label) %>% tabyl(clase2, sex, show_missing_levels=F )
+```
+
+Es posible identificar que la proporción de mujeres encuestadas que se
+encuentran laborando es menor al de los hombres en una proporción muy
+alta. Situación que de misma manera que con "clase1" ocurre tanto para
+el año 2013 como 2018.
+
+Del año 2013 al año 2018 existe un incremento de la población ocupada,
+disminuyendo la desocupación. En esta variable si bien es posible
+identificar que los hombres tienen mayores valores de desocuapción, su
+proporción con respecto a las mujeres no difiere en grandes cantidades.
+Situación contraria entre la población ocupada, en donde el número de
+mujeres ocupadas es menor considerablemente con respecto de la población
+masculina.
+
+Ahora utilizaremos las variables 'rama' y 'scian' para lograr
+identificar los sectores en los que se emplean en mayor proporción las
+mujeres y en cuales los hombres.
+
+Primero lo haremos con 'rama'
+
+```{r}
+ramas13<-ENOET113	%>% filter(clase2==1 & eda>14)	%>%	mutate_at(vars(rama,	sex),	as_label)	%>%	tabyl(rama,	sex,	show_missing_levels=F	)	%>% adorn_totals(c("col",	"row"))	%>% adorn_percentages("col")	%>% adorn_pct_formatting()
+ramas13
+ramas18<-ENOET118	%>% filter(clase2==1 & eda>14)	%>%	mutate_at(vars(rama,	sex),	as_label)	%>%	tabyl(rama,	sex,	show_missing_levels=F	)	%>% adorn_totals(c("col",	"row"))	%>% adorn_percentages("col")	%>% adorn_pct_formatting()
+ramas18
+```
+
+Posteriormente con 'scian'
+
+```{r}
+scian13<-ENOET113	%>% filter(clase2==1 & eda>14)	%>%	mutate_at(vars(scian,	sex),	as_label)	%>%	tabyl(scian,	sex,	show_missing_levels=F	)	%>% adorn_totals(c("col",	"row"))	%>% adorn_percentages("col")	%>% adorn_pct_formatting()
+scian13
+scian18<-ENOET118	%>% filter(clase2==1 & eda>14)	%>%	mutate_at(vars(scian,	sex),	as_label)	%>%	tabyl(scian,	sex,	show_missing_levels=F	)	%>% adorn_totals(c("col",	"row"))	%>% adorn_percentages("col")	%>% adorn_pct_formatting()
+scian18
+```
+
+Para lograr apreciar mejor esta información podemos analizarlo a traves
+de graficos.
+
+```{r}
+seleccion_ENOE_13 %>% mutate(sex=(as_label(sex))) %>% dplyr::filter(clase1==1& eda>14) %>% dplyr::group_by(ent,sex) %>%  dplyr::summarise(oc_ent_sex=sum(fac)) %>% dplyr::group_by(sex) %>% dplyr::summarise(emp_sex=sum(oc_ent_sex)) %>% dplyr::mutate(caso=1) %>%  ggplot2::ggplot()+geom_col(aes(x=as_factor(caso),y=emp_sex,fill=as_factor(sex)),position="fill")+labs(x="Total nacional", y="Participación")
+
+```
+
+Del año 2013 al año 2018 existe un incremento de la población ocupada,
+disminuyendo la desocupación. En esta variable si bien es posible
+identificar que los hombres tienen mayores valores de desocuapción, su
+proporción con respecto a las mujeres no difiere en grandes cantidades.
+Situación contraria entre la población ocupada, en donde el número de
+mujeres ocupadas es menor considerablemente con respecto de la población
+masculina.
+
+Ahora utilizaremos las variables 'rama' y 'scian' para lograr
+identificar los sectores en los que se emplean en mayor proporción las
+mujeres y en cuales los hombres.
+
+Primero lo haremos con 'rama'
+
+```{r}
+ramas13<-ENOET113	%>% filter(clase2==1 & eda>14)	%>%	mutate_at(vars(rama,	sex),	as_label)	%>%	tabyl(rama,	sex,	show_missing_levels=F	)	%>% adorn_totals(c("col",	"row"))	%>% adorn_percentages("col")	%>% adorn_pct_formatting()
+ramas13
+ramas18<-ENOET118	%>% filter(clase2==1 & eda>14)	%>%	mutate_at(vars(rama,	sex),	as_label)	%>%	tabyl(rama,	sex,	show_missing_levels=F	)	%>% adorn_totals(c("col",	"row"))	%>% adorn_percentages("col")	%>% adorn_pct_formatting()
+ramas18
+```
+
+Al observar los resultados es posible es notable que las actividades del
+sector primaro son realizadas mayoritariamente por los hombres, mientras
+que en el sector servicios se logra identificar que no solamente tienen
+un porcentaje elevado de poblaciín trabajadora, tanto hombres como
+mujeres, sin embargo es notable que hay una mayor presencia de mujeres.
+Como primer idea al realizar estas proporciones se puede plantear de
+idea que las mujeres estan integradas a actividades que representan
+menor trabajo fisico en comparación a las actividades en las cuales hay
+mas hombres empleados.
+
+Desagregaremos un nivel mas y observaremos esta misma clasificación pero
+con la variable SCIAN , esta representa la clasificación de actividades
+segun el sistema de clasificación de
+
+Posteriormente con 'scian'
+
+```{r}
+scian13<-ENOET113	%>% filter(clase2==1 & eda>14)	%>%	mutate_at(vars(scian,	sex),	as_label)	%>%	tabyl(scian,	sex,	show_missing_levels=F	)	%>% adorn_totals(c("col",	"row"))	%>% adorn_percentages("col")	%>% adorn_pct_formatting()
+scian13
+scian18<-ENOET118	%>% filter(clase2==1 & eda>14)	%>%	mutate_at(vars(scian,	sex),	as_label)	%>%	tabyl(scian,	sex,	show_missing_levels=F	)	%>% adorn_totals(c("col",	"row"))	%>% adorn_percentages("col")	%>% adorn_pct_formatting()
+scian18
+```
