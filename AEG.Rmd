@@ -6,22 +6,22 @@ output:
   html_document:
     code_folding: hide 
 ---
+--
 
-El objetivo del presente trabajo es realizar un análisis exploratorio con perspectiva de género utilizando información de la Encuesta Nacional de Ocupación y Empleo (ENOE), elaborada y publicada por el INEGI, para los años 2013 y 2018. El documento que se tomará como base principal para explorar la ENOE en el presente software R sera [@Escoto2021]
+### Introducción
 
-### Brecha Salarial
-Analizar el mercado laboral desde una perspectiva de genero nos ofrece una serie de fenómenos los cuales presentan problemáticas en donde es diferenciado como viven el trabajo las mujeres en comparación de los hombres. 
-En el presente trabajo seleccionaremos el fenómeno de la brecha salarial de genero, la cual es importante definir :
+El Mercado de trabajo en México es uno de los temas más importantes e interesantes para analizar desde la economía y en general por las Ciencias Sociales, el estudiar cada tema que lo compone permite la elaboración de propuestas que pueden consolidares en Políticas que mejoren las condiciones laborales de la población. Sin embargo, es diferente analizar el mercado laboral considerando a todas las personas trabajadoras como factores de la producción que son homogéneos a estudiar desde la consideración que cada grupo de personas trabajadoras es diferente y obedecen a particularidades. Una de estas perspectivas que considera las diferencias entre personas en el empleo son los Estudios de Genero, en donde es importante analizar cómo se lleva la vida laboral siendo mujer u hombre.
+El presente trabajo tendrá como objetivo realizar un análisis exploratorio de datos con perceptiva de genero de variables relacionadas con el mercado laboral, se utilizara la Encuesta Nacional de Ocupación y Empleo  (ENOE) que elabora el INEGI, para el primer trimestre del año 2013 y 2018.Empleando la metodología propuesta por [@Escoto2021]se identificará la existencia de la brecha salarial de género y su comportamiento a nivel sectorial y por entidad, esto con la finalidad de confinar la hipótesis con la que se trabajara y la cual es: El sector y espacio territorial son factores importantes en los salarios de mujeres y hombres, siendo el de las mujeres menor que el de los hombres cuanto más relevante es un sector o una entidad para la economía.
+
+
+### Papel de la mujer y el hombre en el mercado laboral: Revisión de trabajos.
+
+Analizar el mercado laboral desde una perspectiva de género nos ofrece una serie de fenómenos los cuales presentan problemáticas en donde es diferenciado como viven el trabajo las mujeres en comparación de los hombres. 
+En el presente trabajo seleccionaremos el fenómeno de la brecha salarial de género, la cual es importante definir:
 
 >> "La brecha salarial de género se define como la diferencia entre la mediana de los ingresos de los hombres y de las mujeres en relación con la mediana de los ingresos de los hombres. Los datos se refieren a los empleados a tiempo completo, por un lado, y a los autónomos, por otro" [@OCDE2021]
 
-Para el caso de México, es importante tener en consideración que la brecha salarial presenta patrones espaciales diferenciados porque la estructura productiva del país es heterogénea, juega un papel fundamental las características geográficas , sociales y culturales del territorio.En este sentido, la distinción de los factores sectoriales y territoriales que inciden en la brecha salarial de género se vuelven un elemento clave para comprender la dinámica de este problema y avanzar hacia medidas de política y organización social tendientes a su eliminación.
-
-Así, la investigación propuesta busca responder a la pregunta ¿Cuál es la magnitud de la brecha salarial entre mujeres y hombres a nivel sector de actividad y en las diferentes regiones económicas de México?. Así mismo, nos preguntamos¿cuáles son los principales determinantes económicos y sociodemográficos que explican dicho diferencial salarial?. 
-
-La respuesta a esta pregunta se delinea en la siguiente hipótesis de trabajo:
-Entre 2013 y 2018  la brecha salarial de género en el mercado de trabajo mexicano entre las regiones de México ha persistido, esta brecha es mayor en las regiones y actividades en los cuales la participación económica de las mujeres en las actividades fundamentales es menor. De modo que, en este trabajo buscamos llevar a cabo un análisis de los factores sociales, económicos y territoriales que determinan el  nivel de salario, así como su variación en los sectores de actividad de las diferentes regiones económicas que conforman a México, permitirá tener un panorama más completo acerca del cómo se comporta la brecha salarial en el país y los avances que se han logrado para reducirla.
-
+Para el caso de México, es importante tener en consideración que la brecha salarial presenta patrones espaciales diferenciados porque la estructura productiva del país es heterogénea, juega un papel fundamental las características geográficas, sociales y culturales del territorio. En este sentido, la distinción de los factores sectoriales y territoriales que inciden en la brecha salarial de género se vuelven un elemento clave para comprender la dinámica de este problema y avanzar hacia medidas de política y organización social tendientes a su eliminación.
 
 
 
