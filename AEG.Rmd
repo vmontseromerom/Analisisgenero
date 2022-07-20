@@ -14,6 +14,7 @@ editor_options:
 
 ### Introducción
 
+
 Cuando se analiza el mercado de trabajo, usualmente no se hace distinción en términos de la participación de hombres y mujeres, lo que puede ocultar fenómenos asociados con la particularidad de la condición femenina. Son justamente los estudios desde la perspectiva de genero donde se busca analizar las particularidades que inciden en la participación de la mujer en el mercado de trabajo, así como las diferencias específicas de dicha participación en comparación con los varones. 
 
 El presente avance de investigación se lleva a cabo un análisis exploratorio de datos con perceptiva de genero de variables relacionadas con el mercado laboral.Se utiliza la Encuesta Nacional de Ocupación y Empleo (ENOE) que elabora el Instituto Nacional de Estadística y Geografía (INEGI) del primer trimestre de 2013 y 2018.
