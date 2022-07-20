@@ -1,0 +1,156 @@
+---
+title: "Unión bases ENOE"
+author: "Montserrat Romero"
+date: "2022-07-19"
+output: html_document
+---
+
+
+### Primeros pasos trabajando con la ENOE
+
+Antes de comenzar a trabajar es importante cargar nuestras paqueterias: 'tidyverse', 'haven', 'janitor', 'srvyr', 'RColorBrewer', 'wesanderson' y 'sjlabelled' para ello haremos uso de la herramienta 'pacman' la cual nos permite instalar simultáneamente paquetes.
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+
+if (!require("pacman")) install.packages("pacman") 
+
+pacman::p_load(tidyverse, haven, janitor, srvyr, RColorBrewer, wesanderson, sjlabelled,kableExtra)
+```
+
+En la página de la ENOE es posible encontrar microdatos para descargar y trabajar en diferentes formatos (.csv,.dta,.dbf y .sav) Trabajaremos en este ejercicio con la información en formato .dta
+
+Cargar la información para el primer trimestre del año 2013
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+sdemt113	<- read_dta("C:/Repositorios/Analisisgenero/Datos ENOE.dta 2013/SDEMT113.dta")
+coe1t113	<- read_dta("C:/Repositorios/Analisisgenero/Datos ENOE.dta 2013/COE1T113.dta")
+coe2t113	<- read_dta("C:/Repositorios/Analisisgenero/Datos ENOE.dta 2013/COE2T113.dta")
+hogt113 	<- read_dta("C:/Repositorios/Analisisgenero/Datos ENOE.dta 2013/HOGT113.dta")
+vivt113		<- read_dta("C:/Repositorios/Analisisgenero/Datos ENOE.dta 2013/VIVT113.dta")
+
+```
+
+Cargar la información para el primer trimestre del año 2018
+
+```{r}
+sdemt118	<- read_dta("C:/Repositorios/Analisisgenero/Datos ENOE.dta 2018/SDEMT118.dta")
+coe1t118	<- read_dta("C:/Repositorios/Analisisgenero/Datos ENOE.dta 2018/COE1T118.dta")
+coe2t118	<- read_dta("C:/Repositorios/Analisisgenero/Datos ENOE.dta 2018/COE2T118.dta")
+hogt118 	<- read_dta("C:/Repositorios/Analisisgenero/Datos ENOE.dta 2018/HOGT118.dta")
+vivt118		<- read_dta("C:/Repositorios/Analisisgenero/Datos ENOE.dta 2018/VIVT118.dta")
+
+```
+
+**Unificar las bases de la ENOE**
+
+Como podemos observar la ENOE se compone de 5 baterías de información la cual incluye datos referentes a :vivienda, hogares, sociodemografico, ocupación y empleo 1 y 2. Podemos realizar la unión utilizando diferentes procedimientos, en este trabajo mostramos una opción:
+
+| Campo | Descripción              |
+|-------|--------------------------|
+| CD_A  | Ciudad auto representada |
+| ENT   | Entidad                  |
+| CON   | Control                  |
+| V_SEL | Vivienda seleccionada    |
+| N_HOG | Número de hogar          |
+| H_MUD | Hogar mudado             |
+| N_REN | Número de renglón        |
+
+Creamos nuestros identificadores los cuales funcionara como llave para unir nuestras bases.
+
+```{r}
+idvivienda<-c("cd_a",	"ent",	"con",	"v_sel")
+idhogar<-c("cd_a",	"ent",	"con",	"v_sel","n_hog",	"h_mud")
+idpersona<-c("cd_a",	"ent",	"con",	"v_sel","n_hog",	"h_mud",	"n_ren")
+
+```
+
+La primer unión de bases que realizaremos seran 'coe1t113' y 'coe2t113' a partir del 'idpersona'
+
+```{r}
+coet13 <-merge(coe1t113,coe2t113, by= idpersona)
+
+```
+
+Algunas variables se repetirán, sin embargo incluían la misma información por lo cual terminaran en .x o .y, podemos eliminar las variables duplicadas.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+coet13<-coet13	%>%select(-ends_with(".y"))%>% rename_at(.vars	= vars(ends_with(".x")),.funs	= funs(sub("[.]x$",	"",	.)))	
+
+```
+
+Seguiremos con nuestra unión incluyendo la información 'sdemt113', es importante considerar que uniremos toda la información de las bases y posteriormente limpiaremos las variables duplicadas.
+
+```{r}
+sdemcoe13<-merge(sdemt113,coet13,	by=idpersona, all = TRUE)
+
+sdemcoe13<-sdemcoe13	%>% select(-ends_with(".y"))	%>%  rename_at(.vars	= vars(ends_with(".x")),.funs	= funs(sub("[.]x$",	"",	.)))
+
+```
+
+Procederemos a unir las bases de 'vivt113' y 'hogt113'.
+
+```{r}
+vivhog13<-merge(vivt113,	hogt113,	by=idvivienda)
+vivhog13<-vivhog13	%>% select(-ends_with(".y"))	%>% rename_at(.vars	= vars(ends_with(".x")),.funs	= funs(sub("[.]x$",	"",	.)))
+
+```
+
+Concluimos uniendo todas las bases para tener completa nuestra información de la ENOE para el primer trimestre del año 2013.
+
+```{r}
+
+ENOET113<-merge(vivhog13,	sdemcoe13,	by=idhogar)
+ENOET113<-ENOET113	%>% select(-ends_with(".y"))	%>%  rename_at(.vars	= vars(ends_with(".x")),.funs	= funs(sub("[.]x$",	"",	.)))
+
+```
+
+La metodología del INEGI para trabajar con la ENOE indica que la información con la que se podrá trabajar sera aquella que cumpla con el criterio de ser entrevistas validas "r_def=00" y no considerar la residencia "ausente" "c_res=2".
+
+```{r}
+ENOET113<-ENOET113%>% filter(r_def==0)	%>% filter(c_res!=2)
+
+```
+
+Repetiremos el mismo procedimiento para obtener la base de datos de la ENOE para el primer trimestre del 2018
+
+```{r include=FALSE}
+coet18 <-merge(coe1t118,coe2t118, by= idpersona)
+
+```
+
+```{r include=FALSE}
+coet18<-coet18	%>%select(-ends_with(".y"))%>% rename_at(.vars	= vars(ends_with(".x")),.funs	= funs(sub("[.]x$",	"",	.)))	
+
+```
+
+```{r include=FALSE}
+sdemcoe18<-merge(sdemt118,coet18,	by=idpersona, all = TRUE)
+
+sdemcoe18<-sdemcoe18	%>% select(-ends_with(".y"))	%>%  rename_at(.vars	= vars(ends_with(".x")),.funs	= funs(sub("[.]x$",	"",	.)))
+
+```
+
+```{r include=FALSE}
+vivhog18<-merge(vivt118,	hogt118,	by=idvivienda)
+vivhog18<-vivhog18	%>% select(-ends_with(".y"))	%>% rename_at(.vars	= vars(ends_with(".x")),.funs	= funs(sub("[.]x$",	"",	.)))
+
+```
+
+```{r include=FALSE}
+
+ENOET118<-merge(vivhog18,	sdemcoe18,	by=idhogar)
+ENOET118<-ENOET118	%>% select(-ends_with(".y"))	%>%  rename_at(.vars	= vars(ends_with(".x")),.funs	= funs(sub("[.]x$",	"",	.)))
+
+```
+
+```{r include=FALSE}
+ENOET113<-ENOET113%>% filter(r_def==0)	%>% filter(c_res!=2)
+ENOET118<-ENOET118%>% filter(r_def==0)	%>% filter(c_res!=2)
+
+```
+
+Una vez que tenemos completa nuestra base de datos con la que vamos a trabajar podremos eliminar utilizando rm () las bases que utilizamos para realizar la unión.
+
+```{r echo=TRUE}
+rm(sdemt113,sdemt118,sdemcoe18,sdemcoe13,coe1t113,coe1t118,coe2t113,coe2t118,coet18,coet13,vivhog18,vivhog13,vivt113,vivt118,hogt113,hogt118)
+```
