@@ -1,0 +1,37 @@
+---
+title: "Notas Lecturas"
+author: "Montserrat Romero"
+date: "2022-07-21"
+output: html_document
+---
+###Notas Artículos Género
+
+
+**Reyna Elizabeth Rodríguez Pérez y Myrna Limas Hernández (2017)**
+**El análisis de las diferencias salariales y discriminación por género por áreas profesionales en México, abordado desde un enfoque regional, 2015**
+
+El objetivo de este trabajo es analizar la diferenciación salarial entre hombres y mujeres en los diferentes campos profesionales, es decir, se toma como muestra a la población con estudios superiores. , se utiliza la ENOE para el año 2015. Esta investigación también considera la influencia de la región en el salario de las personas profesionistas, utilizando el grado de apertura comercial como criterio para clasificar las regiones. La metodología empleada es la técnica Oaxaca-Blinder con corrección por sesgo de selección Heckman y el método DiNardo ,Fortin , Lemieux para realizar el análisis. 
+Como principales resultados obtenidos se encontró que las mujeres han incrementado su participación en el mercado laboral y han tenido mayor acceso a estudios superiores, sin embargo, el salario que perciben es menor al de los hombres. Se identifica también la influencia de la región y patrones relacionados con el género determinan el nivel salarial de mujeres y hombres.
+
+**Miguel Ángel Mendoza González,María Elena Cardero García y Alejandra Sarahí Ortiz García (2017)**
+**Algunos hechos estilizados y explicativos sobre el diferencial y la discriminación salarial por sexo en México, 1987-2015**
+
+En este trabajo se realiza un análisis a largo plazo (periodo de 1987 a 2015) de los diferenciales salariales del ingreso para hombres y mujeres, se utiliza el método Oaxaca-Blinder para analizar los factores del capital humano, se trabaja con información de la ENEU y la ENOE. Como resultados se encuentra que el patrón de comportamiento de los diferenciales del ingreso laboral por hora y sexo no presentan una tendencia regular, son variantes en cada etapa. En los resultados obtenidos por esta investigación se demuestra que la brecha salarial de genero ha estado presente siempre, al menos en el periodo de tiempo en el que se concentra el estudio que son 28 años. Los determinantes del capital humano empleados como factores del diferencial salarial tuvieron también comportamientos diferentes, mostrando de igual manera, relevancia por épocas concretas y no presentando una tendencia en su efecto al ingreso por hora entre hombres y mujeres.
+
+
+
+**Jorge E. Horbath y Amalia Gracia (2014)**
+**Discriminación laboral y vulnerabilidad de las mujeres frente a la crisis mundial en México** 
+
+En este trabajo se analiza las diferentes manifestaciones de discriminación laboral hacia las mujeres en México, prestando mayor atención a los efectos relacionados con la crisis económica que surgió a partir del año 2008. Se presenta gran información documental y teórica, limitándose metodológicamente al modelo Oaxaca-Blinder para obtener los indicadores de discriminación salarial y educativa a partir de la información de Censos Económicos para los años 2000 y 2010.
+Como principales resultados se identifica que los cambios en la estructura productiva del sistema capitalista afectan en mayor proporción en las mujeres que en los hombres, muestra de ello están los estragos económicos que se presentaron durante la crisis del 2008 siendo las mujeres aquellas que experimentaron mayores consecuencias negativas en el acceso al un empleo digno y en la precarización de sus ingresos. También fue posible identificar diferentes prácticas de segregación ocupacional, presentándose estas prácticas a lo largo del periodo de estudio que es desde finales de los 90’s .
+
+**Diana Alarcón & Terry McKinley (2017)**
+**Gender Differences in Wages and HumanCapital: Case Study of Female and Male UrbanWorkers in Mexico from 1984 to 1992**
+
+La investigación está centrada en el análisis del diferencial salarial entre hombres y mujeres, el periodo de estudio es de 1984 a 1992, se trabaja con la ENIGH y como metodología utiliza un modelo minceriano, en donde de manera similar al método de Oaxaca-Blinder emplea los determinantes del capital humano como factores explicativos de la brecha de género.
+Este es uno de los trabajos que comenzó a realizar un análisis de los diferenciales salariales en México, se limita a la zona urbana para lograr identificar mejor los fenómenos a estudiar, como resultados obtienen que en  el periodo observado ,que es de casi 10 años , existe discriminación hacía las mujeres entes y después de conseguir un empleo y los salarios son menores aun en igualdad de condiciones con respecto a los hombres.
+
+
+
+
