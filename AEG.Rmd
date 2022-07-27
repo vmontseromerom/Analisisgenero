@@ -12,21 +12,21 @@ editor_options:
     wrap: 72
 ---
 
-### Introducción
+# Introducción
 
+Sobre el mercado laboral mexicano existen estudios con diversos enfoques. Algunos se centran en la informalidad, en uno de los rasgos característicos de las economías en desarrollo (**Bargain y Kwenda, 2010**). Otros, han indagado las condiciones laborales en el sector servicios y el proceso de terciarización que ha conducido a que en este sector se ocupe la mayor parte de la fuerza laboral en nuestro país (**Ariza y De Oliveira, 2013**). Incluso hay algunos que han indagado sobre los efectos que ha tenido el crimen organizado y la violencia sobre las horas trabajadas (**BenYishay y Pearlman, 2013**). 
 
 Hasta hace un par de décadas, en los análisis sobre el mercado de trabajo usualmente no se hacía distinción en términos de la participación de hombres y mujeres. Esta situación puede ocultar fenómenos asociados con la particularidad de la condición femenina. Son justamente los estudios desde la perspectiva de genero donde se busca analizar las particularidades que inciden en la participación de la mujer en el mercado de trabajo, así como las diferencias específicas de dicha participación en comparación con los varones. 
 
-Un elemento de particular interés es el relacionado con la denominada brecha salarial de género. Para nuestro país, múltiples estudios se han hecho en torno a este tópico. Algunos sostienen que si bien ha existido un diferencial salarial entre hombres y mujeres, esta diferencia se explica más bien por los logros laborales que por cuestiones directamente vinculadas al género (Brown1999). Otros estudios hacen explícito incluso la existencia de discriminación salarial por genero, misma que existe con idependencia del grado de estudios, si bien es menor entre la población con estudios superiores (Cacciamali y Tatei, 2012). Desde una perspectiva más amplia, 
-Gámez-Arroyo y Rosas-Rojas (2015) refieren la existencia de múltiples determinantes de los diferenciales salariales, entre los que, además del sexo y la educación formal, se cuenta la edad, el tamaño de la empresa, el sector de ocupación y la pertenencia a sindicados; ellos no encuentran que el sexo sea un elemento determinante en los diferenciales, pero sí hallan cierto componente regional dado por la ciudad.
+Un elemento de particular interés es el relacionado con la denominada brecha salarial de género. Para nuestro país, múltiples estudios se han hecho en torno a este tópico. Algunos sostienen que si bien ha existido un diferencial salarial entre hombres y mujeres, esta diferencia se explica más bien por los logros laborales que por cuestiones directamente vinculadas al género (Brown1999). Otros estudios hacen explícito incluso la existencia de discriminación salarial por genero, misma que existe con independencia del grado de estudios, si bien es menor entre la población con estudios superiores (Cacciamali y Tatei, 2012). Desde una perspectiva más amplia, 
+Gámez-Arroyo y Rosas-Rojas (2015) refieren la existencia de múltiples determinantes de los diferenciales salariales, entre los que, además del sexo y la educación formal, se cuenta la edad, el tamaño de la empresa, el sector de ocupación y la pertenencia a sindicados; ellos no encuentran que el sexo sea un elemento determinante en los diferenciales, pero sí hallan cierto componente regional dado por la ciudad. Estos elementos ponen de manifiesto no sólo que aún hay elementos qué indagar pues las investigaciones no son plenamente concluyentes; además, revelan que es imprescindible incorporar los componentes de distinción por regiones, debido a que las características espaciales de nuestro país son diversas.
+
+En el presente avance de investigación se lleva a cabo un análisis exploratorio de datos con perspectiva de genero de variables relacionadas con el mercado laboral, haciendo énfasis en sus elementos espaciales. El objetivo de esta exploración es identificar la existencia de la brecha salarial de género y su comportamiento distinguiendo entre sectores económicos y entidad federativa, a través de la metodología propuesta por [@Escoto2021]. Se utiliza la Encuesta Nacional de Ocupación y Empleo (ENOE) que elabora el Instituto Nacional de Estadística y Geografía (INEGI) del primer trimestre de 2013 y 2018. De manera provisional, se postula como hipótesis de este trabajo que la brecha salarial entre hombres y mujeres no sólo existe y se ha incrementado, sino que ésta será mayor en los sectores que exhiban mayor especialización relativa; además, dicha brecha se habría incrementado entre 2013 y 2018. Así, este avance de investigación es de carácter esencialmente descriptivo y permitirá plantear las características básicas de la ocupación a nivel entidad federativa desde una perspectiva de género.
+
+Por otro lado, uno de los aspectos innovadores de este proyecto es que busca que ser completamente reproducible, lo que significa que cualquier persona que consulte nuestro documento, pueda por su propia cuenta obtener exactamente los mismos resultados utilizando la base de datos proporcionada y el código que acompaña este reporte. Lo que resta de este documento se divide en 3 secciones; en la primera, se lleva a cabo una revisión documental sobre los mercados de trabajo desde la perspectiva de género tratando de identificar la posición del debate en torno a la brecha salarial; en la siguiente, se lleva a cabo la exploración de la información de la ENOE a través de sus datos muestrales donde se indagará la presencia de la brecha salarial de género y se comentarán los resultados de las herramientas de exploración, finalmente, en la última sección, llevamos a cabo un recuento de los principales hallazgos, lo que permitirá delimitar con mayor precisión la hipótesis de investigación para los pasos futuros.
 
 
-En el presente avance de investigación se lleva a cabo un análisis exploratorio de datos con perspectiva de genero de variables relacionadas con el mercado laboral. El objetivo de esta exploración es identificar la existencia de la brecha salarial de género y su comportamiento distinguiendo entre sectores económicos y entidad federativa, a través de la metodología propuesta por [@Escoto2021]. Se utiliza la Encuesta Nacional de Ocupación y Empleo (ENOE) que elabora el Instituto Nacional de Estadística y Geografía (INEGI) del primer trimestre de 2013 y 2018. De manera provisional, se postula como hipótesis de este trabajo que la brecha salarial entre hombres y mujeres no sólo existe y se ha incrementado, sino que ésta será mayor en los sectores que exhiban mayor especialización relativa; además, dicha brecha se habría incrementado entre 2013 y 2018. Así, este avance de investigación es de carácter esencialmente descriptivo y permitirá plantear las características básicas de la ocupación a nivel entidad federativa desde una perspectiva de género.
-
-Por otro lado, uno de los aspectos innovadores de este proyecto es que busca que ser completamente reproducible, lo que significa que cualquier persona que consulte nuestros documento, pueda por su propia cuenta obtener exactamente los mismos resultados utilizando la base de datos proporcionada y el código que acompaña este reporte. Así, lo que resta de este documento se divide en XXX secciones, en la primera, se lleva a cabo una revisión documental sobre los mercados de trabajo desde la perspectiva de género tratando de identificar la posición del debate en torno a la brecha salarial, en la siguiente sección, se lleva a cabo la exploración de la información de la ENOE a través de sus datos muestrales donde se indagará la presencia de la brecha salarial de género y se comentarán los resultados de las herramientas de exploración, finalmente, en la última sección, llevamos a cabo un recuento de los principales hallazgos, lo que permitirá delimitar con mayor precisión la hipótesis de investigación para los pasos futuros.
-
-
-### Diferencial salarial de género: algunos elementos teóricos
+# 1. Diferencial salarial de género: algunos elementos teóricos
 
 Analizar el mercado laboral desde una perspectiva de género nos permite evidenciar una serie de fenómenos que de otro modo pasarían inadvertidos y revela la problemática específica que viven las mujeres. En nuestro estudio, buscamos centrar la atención en la brecha salarial de género que, según la [@OCDE2021] "se define como la diferencia entre la mediana de los ingresos de los hombres y de las mujeres en relación con la mediana de los ingresos de los hombres".
 
@@ -47,28 +47,31 @@ si bien es cierto que entre mayor sea el grado de estudios, menor es la brecha s
 Respecto a la actividad económica , la brecha es mayor en las actividades primarias llegando casi a 70%, es decir, las mujeres perciben un ingreso menor que los hombres hasta de casi tres cuartas
 partes en actividades relacionadas con la ganadería, agricultura, caza y pesca. En contraste, las actividades administrativas son las que presentan una menor brecha (10.5%), es decir, los hombres ganan $700.00 más que las mujeres [@INMUJERES2016].
 
-### La brecha salarial de género en México: estudios recientes
+# 2. La brecha salarial de género en México: estudios recientes
 
-Sin duda, México es un país desigual en múltiples dimensiones pues cuenta con el índice de Gini más alto entre los países de la OCDE, más aún, esta desigualdad se evidencia también en lo tocante a la brecha salarial de género que en 2014 alcanzó un nivel de 26% **(Ayala-Gaytán y Capa Cantú, 2019)**
+Sin duda, México es un país desigual en múltiples dimensiones, de lo que da cuenta el índice de Gini cuyo nivel es el más alto para nuestro país entre aquellos que integran la OCDE. El fenómeno de la desigualdad se exacerba cuando las crisis económicas irrumpen y pone de manifiesto la mayor vulnerabilidad de algunos grupos sociales, como las mujeres (**Horbath y Gracia, 2014**). Más aún, esta desigualdad se evidencia también en lo tocante a la brecha salarial de género que en 2014 alcanzó un nivel de 26% **(Ayala-Gaytán y Capa Cantú, 2019)**. 
 
+Si bien entre la última década del siglo XX y la primera del siglo XXI, la participación de las mujeres casadas  en la generación del ingreso doméstico aumentó de 13% a 23% y "el aumento del empleo femenino ha contribuido a una disminución de la desigualdad de ingresos familiares a través de una mayor participación laboral de mujeres casadas en familias pobres" (**Campos-Vázquez, Hincapié, Rojas-Valdés, 2012**, p. 66) esto podría ser un signo de un deterioro de las condiciones de vida generales de las familias de menores ingresos en la medida en que más miembros de la unidad familiar deben sumarse al mercado laboral para mantener su nivel de ingresos.
 
 Dentro de los trabajos que han tratado los diferenciales salariales entre hombres y mujeres en México se encuentra el **Alarcón y McKinley (1994)** quienes apuntan que, en efecto, la brecha salarial existe y que ésta se ha incrementado como resultado del proceso de cambio estructural asociado a la apertura económica, durante los últimos años de la década de los ochenta del siglo pasado y los primeros de la de los noventa, en el contexto del proceso de apertura que antecedió la firma del tratato de libre comercio de América del Norte. En sintonía con el estudio anterior, **Brown 1999** reconoce la existencia de esta brecha salarial, pero dicha diferencia es más bien atribuida a los denominados logros laborales y no al género, al menos durante el citado periodo. 
+
+**Mendoza-González, Cardero-García y Ortiz-García (2017)** realizan un análisis a largo plazo, entre 1987 y 2015, de los diferenciales salariales del ingreso para hombres y mujeres a través del método Oaxaca-Blinder. Ellos analizan factores asociados al capital humano a través de datos d la ENEU y la ENOE. Como resultados se encuentra que el patrón de comportamiento de los diferenciales del ingreso laboral por hora y sexo no presentan una tendencia regular, sino que  varían a lo largo del periodo de estudio. Destaca que, si bien dicha brecha es irregular, ha estado presente durante los años considerados. Los determinantes del capital humano empleados como factores del diferencial salarial tuvieron también comportamientos diferentes, mostrando de igual manera, relevancia por épocas concretas y no presentando una tendencia en su efecto al ingreso por hora entre hombres y mujeres.
 
 Otros estudios hacen explícito incluso la existencia de discriminación salarial por genero, misma que existe con idependencia del grado de estudios, si bien es menor entre la población con estudios superiores (Cacciamali y Tatei, 2012). Desde una perspectiva más amplia, 
 Gámez-Arroyo y Rosas-Rojas (2015) refieren la existencia de múltiples determinantes de los diferenciales salariales, entre los que, además del sexo y la educación formal, se cuenta la edad, el tamaño de la empresa, el sector de ocupación y la pertenencia a sindicados; ellos no encuentran que el sexo sea un elemento determinante en los diferenciales, pero sí hallan cierto componente regional dado por la ciudad.
 
-
 Para el caso de México, es importante tener en consideración que la brecha salarial presenta patrones espaciales diferenciados porque la estructura productiva del país es heterogénea, por lo que las características geográficas, sociales y culturales del territorio juegan un papel relevante y condicionan dichas diferencias. En este sentido, la distinción de los factores sectoriales y territoriales que inciden en la brecha salarial de género se vuelven un
 elemento clave para comprender la dinámica de este problema y avanzar hacia medidas de política y organización social tendientes a su eliminación.
 
-**Andrés-Rosales, Czarnecki y Mendoza-González (2019)** llevan a cabo un estudio entre las zonas metropolitanas de México entre 2005 y 2018 en busca de la brecha salarial de género, haciendo énfasis en en el sector servicios. En su estudio, evidencian relevantes aspectos espaciales en la medida en que las regiones menos favorecidas son también aquellas en las que el diferencial salarial no sólo es mayor, sino que también ha crecido.
+Entre los trabajos que asumen un enfoque espacial en la búsqueda de los determinantes de la brecha salarial de género se encuentra el de **Rodríguez-Pérez y Limas-Hernández (2017)**. En su investigación analizan la diferenciación salarial entre hombres y mujeres dividiendolos n los diferentes campos profesionales, es decir, se toma como muestra a la población con estudios superiores en 2015. Esta investigación también considera la influencia de la región en el salario de las personas profesionistas, utilizando el grado de apertura comercial como criterio para clasificar las regiones. La metodología empleada es de nueva cuenta la técnica Oaxaca-Blinder con corrección por sesgo de selección Heckman y el método DiNardo ,Fortin , Lemieux para realizar el análisis. Como principales resultados obtenidos se encontró que las mujeres han incrementado su participación en el mercado laboral y han tenido mayor acceso a estudios superiores, sin embargo, el salario que perciben es menor al de los hombres. Se identifica también la influencia de la región y patrones relacionados con el género determinan el nivel salarial de mujeres y hombres.
+
+Por su parte, **Andrés-Rosales, Czarnecki y Mendoza-González (2019)** llevan a cabo un estudio entre las zonas metropolitanas de México entre 2005 y 2018 en busca de la brecha salarial de género, haciendo énfasis en en el sector servicios. En su estudio, evidencian relevantes aspectos espaciales en la medida en que las regiones menos favorecidas son también aquellas en las que el diferencial salarial no sólo es mayor, sino que también ha crecido.
 
 Otros trabajos han explorado los efectos del crecimiento de los componentes del PIB por el lado de la demanda en la brecha salarial de género **(Ayala-Gaytán y Capa Cantú, 2019)** y se encuentra que el consumo privado incide positivamente en los ingresos laborales, afecta sólo marginalmente el ingreso laboral de las mujeres, por lo que tiene poco efecto en la disminución de la brecha salarial, en tanto "La creación de ingresos laborales que produce el incremento de la inversión, aunque importante, aumenta notoriamente las brechas de ingresos a favor de los
 hombres" (p. 419)
 
 
-
-### Metodología
+# 3. Metodología
 
 Se realizara un análisis exploratorio de datos, un enfoque  basado en el uso de herramientas gráficas y el cálculo de estadísticos descriptivos que tiene por objeto conocer la estructura subyacente del conjunto de información utilizado, así como plantear y resolver preguntas con el objeto de delimitar con precisión un modelo explicativo parsimonioso [@Croarkin2014]. La exploración es lelvada a cabo mediante el software libre R [@RSoftware] y las populares paqueterías para el análisis de información y ciencia de datos `Tidyverse` [@tidyverse2019], y un paquete especializado en herramientas para el análsis regional, *Regional economic analysis toolbox*, `REAT` [@REAT2019].
 
@@ -113,12 +116,12 @@ Variable Descripción
 -   **upm**: Unidad primaria de muestreo
 
 
-### Análisis Exploratorio: Resultados
+# 4. Análisis Exploratorio: Resultados
 
 El conjunto de información utilizado en este documento es puesto a disposición del lector para que, siguiendo su propia estructura, pueda repicar por su propia cuenta cada uno de los cuadros y gráficas aquí presentados. La base de datos puede ser descargada de [este enlace](https://drive.google.com/file/d/1zrhl56VIlLGQKXgar08qDMghUAHl7gxC/view?usp=sharing) y guardarla en la carpeta del proyecto.
 
 
-#### Elementos preliminares: paquetes usados y carga de la base
+## Elementos preliminares: paquetes usados y carga de la base
 
 El conjunto de paquetes utilizados en esta exploración está compuesto por `tidyverse`, `haven`, `janitor`, `srvyr`, `RColorBrewer`, `wesanderson` y `sjlabelled`, todos ellos son cargados a través de `pacman:
 
@@ -338,7 +341,7 @@ poco amigable, sin embargo las retomaremos mas adelante cuando se
 realicen gráficos y análisis de localización. Por el momento solamente
 serán presentadas sin mayor profundización en su contenido.
 
-### Analizando la población
+## Analizando la población
 
 Hasta este punto del trabajo se han revisado los datos para la población
 encuestada, sin embargo es importante recordar que la ENOE cuenta con un
@@ -499,5 +502,6 @@ seleccion_ENOE_18 %>% filter(clase2==1,scian!=0 & scian!=21) %>% group_by(scian,
 
 ```
 
+# Consideraciones finales
 
-## Referencias
+# Referencias
