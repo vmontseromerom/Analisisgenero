@@ -10,7 +10,9 @@ output: html_document
 **Reyna Elizabeth Rodríguez Pérez y Myrna Limas Hernández (2017)**
 **El análisis de las diferencias salariales y discriminación por género por áreas profesionales en México, abordado desde un enfoque regional, 2015**
 
+[@Rodríguez2017]
 El objetivo de este trabajo es analizar la diferenciación salarial entre hombres y mujeres en los diferentes campos profesionales, es decir, se toma como muestra a la población con estudios superiores. , se utiliza la ENOE para el año 2015. Esta investigación también considera la influencia de la región en el salario de las personas profesionistas, utilizando el grado de apertura comercial como criterio para clasificar las regiones. La metodología empleada es la técnica Oaxaca-Blinder con corrección por sesgo de selección Heckman y el método DiNardo ,Fortin , Lemieux para realizar el análisis. 
+
 Como principales resultados obtenidos se encontró que las mujeres han incrementado su participación en el mercado laboral y han tenido mayor acceso a estudios superiores, sin embargo, el salario que perciben es menor al de los hombres. Se identifica también la influencia de la región y patrones relacionados con el género determinan el nivel salarial de mujeres y hombres.
 
 **Miguel Ángel Mendoza González,María Elena Cardero García y Alejandra Sarahí Ortiz García (2017)**
