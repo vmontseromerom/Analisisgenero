@@ -127,7 +127,7 @@ El conjunto de paquetes utilizados en esta exploración está compuesto por `tid
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 if (!require("pacman")) install.packages("pacman") 
-pacman::p_load(tidyverse, haven, janitor, srvyr, RColorBrewer, wesanderson, sjlabelled,kableExtra)
+pacman::p_load(tidyverse, haven, janitor, srvyr, RColorBrewer, wesanderson, sjlabelled,plotly,kableExtra)
 ```
 
 En tanto, la base de datos se carga con:
@@ -331,7 +331,7 @@ kbl(rama_ent13) %>% kable_styling()
 **Actividades por entidad mujeres 2013**
 
 ```{r echo=FALSE, message=TRUE, warning=TRUE}
-rama_ent13<- seleccion_ENOE_13%>% filter(eda>14, sex==2 & clase2==1 ) %>% mutate_at(vars(ent,rama,sex),as_label) %>% tabyl(ent,rama,sex,show_missing_levels=F)%>% adorn_totals(c("col",	"row"))	%>% adorn_percentages("col")	%>% adorn_pct_formatting()
+rama_ent13<- seleccion_ENOE_13%>% filter(eda>14, sex==2 & clase2==1 ) %>% mutate_at(vars(ent,rama,sex),as_label) %>% tabyl(ent,rama,sex,show_missing_levels=F)%>% adorn_totals(c("col",	"row"))	%>% adorn_percentages("col")	%>% adorn_pct_formatting() 
 
 kbl(rama_ent13) %>% kable_styling()
 ```
@@ -340,6 +340,82 @@ A simple vista podemos identificar que estas tablas son de una lectura
 poco amigable, sin embargo las retomaremos mas adelante cuando se
 realicen gráficos y análisis de localización. Por el momento solamente
 serán presentadas sin mayor profundización en su contenido.
+
+Como es posible identificar en las tablas anteriores, la presencia de mujeres en el mercado laboral es menor que la de los hombres, lo cual da evidencia de una primer discriminación la cual toca con temas de accesibilidad. Como refuerzo a lo planteado anteriormente, es evidente que se siguen presentando roles de genero relacionados con las actividades que socialmente están permitidas para las mujeres. El sector servicios , principalmente aquellos relacionados con la atención, el cuidado y preparación de alimentos, en compañía con el comercio al por menor, son las actividades donde se concentra la mayor cantidad de mujeres empleadas. Llama la atención que este patrón se replica en todas las entidades. Resultaría interesante analizar a profundidad cada una de estas actividades.
+
+
+Esta sección sera interesante cerrarla analizando las tasas de participación económica para hombre y mujeres, como nos indica su nombre, mide el grado de participación de la población en la economía.
+Primeramente podemos observarlas en general.
+
+En el libro de @[Escoto2021]  se realiza de la siguiente forma:
+
+Se agrupan las edades en quinqueles, posteriormente se obtendrán las tasas de participación para la población que se considera dentro de la edad para laborar en México, la cual es de los 15 a los 75 años.
+
+
+```{r}
+seleccion_ENOE_13<-seleccion_ENOE_13%>% mutate(edaq=cut(eda,breaks=seq(0,100,by=5),include.lowest=T,right=F))
+
+seleccion_ENOE_18<-seleccion_ENOE_18%>% mutate(edaq=cut(eda,breaks=seq(0,100,by=5),include.lowest=T,right=F))
+
+```
+ 
+Veamos la tasa de participación en general entre mujeres y hombres, posteriormente por grupo de edad.
+
+```{r}
+
+```
+
+
+
+**Tasas de participación 2013**
+
+```{r}
+kbl(seleccion_ENOE_13 %>% filter(eda>14 & eda<=75) %>% mutate_at(vars(sex, clase1), as_label) %>% tabyl(clase1, sex, show_missing_levels = F) %>% adorn_percentages("row") %>% adorn_pct_formatting()) %>% kable_classic()
+
+
+
+```
+
+```{r}
+kbl(seleccion_ENOE_13 %>% filter(eda>14 & eda<=75) %>% mutate_at(vars(sex, clase1), as_label) %>% tabyl(edaq,clase1, sex, show_missing_levels = F) %>% adorn_percentages("row") %>% adorn_pct_formatting()) %>% kable_classic()
+
+
+```
+
+**Tasas de participación 2018**
+```{r}
+kbl(seleccion_ENOE_18 %>% filter(eda>14 & eda<=75) %>% mutate_at(vars(sex, clase1), as_label) %>% tabyl(clase1, sex, show_missing_levels = F) %>% adorn_percentages("row") %>% adorn_pct_formatting()) %>% kable_classic()
+
+
+
+```
+
+```{r}
+kbl(seleccion_ENOE_18 %>% filter(eda>14 & eda<=75) %>% mutate_at(vars(sex, clase1), as_label) %>% tabyl(edaq,clase1, sex, show_missing_levels = F) %>% adorn_percentages("row") %>% adorn_pct_formatting()) %>% kable_classic()
+
+
+```
+```{r}
+tasas13<- seleccion_ENOE_13 %>% filter(eda>14 & eda<=75) %>% mutate_at(vars(sex, clase1), as_label) %>% tabyl(edaq,clase1, sex, show_missing_levels = F) %>% adorn_percentages("row") %>% adorn_pct_formatting()
+```
+
+
+```{r}
+tasas13$Hombre <- tasas13$Hombre %>% mutate(sex="Hombre")
+tasas13$Mujer <- tasas13$Mujer %>% mutate(sex="Mujer")
+
+```
+
+```{r}
+ggtasas<-rbind(tasas13$Hombre, tasas13$Mujer)
+g_tasa0<-ggtasas %>% ggplot(aes(x=edaq, y=PEA, group = sex))
+```
+
+
+```{r}
+g_tasa0+geom_line(aes(color=sex)) + ggtitle("Tasas de participació econmica por grupo de edad, trimestre I, 2013")+theme(axis.text.x = element_text(angle = 90))
+
+```
 
 ## Analizando la población
 
@@ -501,6 +577,7 @@ seleccion_ENOE_13 %>% filter(clase2==1,scian!=0 & scian!=21) %>% group_by(scian,
 seleccion_ENOE_18 %>% filter(clase2==1,scian!=0 & scian!=21) %>% group_by(scian,sex=as_label(sex)) %>%summarise(oc_rama_sex=sum(fac)) %>% ggplot()+geom_col(aes(x=as_factor(scian),y=oc_rama_sex, fill=as_factor(sex)), position = "fill" )+labs(x="Actividad", y="Participación 2018")
 
 ```
+
 
 # Consideraciones finales
 
