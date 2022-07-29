@@ -873,6 +873,91 @@ seleccion_ENOE_18 %>% filter(clase2==1 & ingocup!=0) %>% 	with(t.test(ingocup~se
 
 Nuestra prueba se encuentra en un intervalo del 95% de confianza, es decir que el p-value tendría que ser mayor a 0.05 para aceptar la hipótesis nula en la cual se plantea la igualdad de ingresos entre hombres y mujeres, sin embargo para el caso de ambas pruebas el p-value < 0.05, rechazamos la Ho. La media de los ingresos mensuales de hombres y mujeres es diferente.La prueba tambien arroja el ingreso medio, las mujeres en promedio presentan un 29.37% menos ingreso con respecto al ingreso medio mensual de los hombres, en el año 2018 incremento a un 29.74%.
 
+Realizando una recapitulación de los resultados que se han obtenido a lo largo del trabajo se tiene que en las muestras trabajadas para el año 2013 y 2018 la presencia de mujeres es mayor, se cumplen características escolares similares, sin embargo hay una diferenciación en la empleabilidad del tiempo, siendo las mujeres quienes aun formando parte de la clase trabajadora destinan mayores horas al trabajo no remunerado en el hogar. Existen discriminantes en el mercado laboral debido a que no es menor la cantidad de mujeres que se encuentra en la PEA y en la población ocupada, una posible explicación puede ser la falta de oportunidades para emplear a las mujeres en sectores de la economía que no tengan que ver con la atención, el cuidado , la educación de grados básicos o la preparación de alimentos. Mismos sectores que no generan un valor agregado en la misma proporción que otros sectores productivos como la construcción, en donde la presencia de mujeres es escasa. Estos patrones se replican en cada una de las entidades, lo cual tiene relación con la poca productividad económica de las mujeres, aunado a las horas que dejan de poder dedicar al empleo formal por destinarlo al trabajo no remunerado del hogar. Entendiendo cada factor e hilandolo se puede entender porque el ingreso de las mujeres es menor, podemos observar a continuación como se comporta el ingreso por entidas y rama, asi como su relación con la diferencia de ingresos.
+
+
+Se probara la dependencia del ingreso con la entidad y rama, respectivamente con la prueba de Pearson´s.
+
+Ho= La condición de hombre o mujer y la entidad son independientes. 
+Ha= La condición de hombre o mujer y la entidad son dependientes. 
+
+Esta prueba no nos dara la magnitud ni dirección de la relación, solamente nos dira sí existe relación de dependencia.
+
+```{r}
+seleccion_ENOE_13	%>%
+		filter(clase1==1,eda>14 & eda<80)	%>% 
+		mutate_at(vars(ent,	sex),	as_label)	%>% #etiqueta	las	variables
+		tabyl(ent,	sex,	show_missing_levels=F	)	%>% #	tabulado
+		chisq.test()
+
+```
+
+```{r}
+seleccion_ENOE_18	%>%
+		filter(clase1==1,eda>14 & eda<80)	%>% 
+		mutate_at(vars(ent,	sex),	as_label)	%>% #etiqueta	las	variables
+		tabyl(ent,	sex,	show_missing_levels=F	)	%>% #	tabulado
+		chisq.test()
+
+```
+
+Al tener la prueba un nivel de confianza del 95% el p-value al ser menor que 0.05 hace que tengamos que rechazar la hipotesis nula, lo cual  os indica que si hay una relación de dependencia para ambos años. Probemos con la variable "rama"
+
+Ho= La condición de hombre o mujer y la rama son independientes. 
+Ha= La condición de hombre o mujer y la rama son dependientes. 
+
+
+```{r}
+seleccion_ENOE_13	%>%
+		filter(clase1==1,eda>14 & eda<80)	%>% 
+		mutate_at(vars(rama,	sex),	as_label)	%>% 
+		tabyl(ent,	sex,	show_missing_levels=F	)	%>% 
+		chisq.test()
+
+```
+
+```{r}
+seleccion_ENOE_18	%>%
+		filter(clase1==1,eda>14 & eda<80)	%>% 
+		mutate_at(vars(rama,	sex),	as_label)	%>% 
+		tabyl(ent,	sex,	show_missing_levels=F	)	%>% 
+		chisq.test()
+
+```
+
+Hay una relacion entre ser mujer u hombre y la rama.
+
+Para dar cierre a esta sección podemos graficar los ingresos para las mujeres y los hombres por entidad y por rama.
+
+```{r}
+
+seleccion_ENOE_13 %>% filter(clase2==1 & ingocup!=0) %>% mutate(ingreso_mensual= median(ingocup)) %>%mutate_at(vars(ent,rama,sex), as_label) %>%group_by(ent,sex) %>% summarise(ingreso_mensual=median(ingocup)) %>% 
+    ggplot()+geom_col(aes(x=sex,y=ingreso_mensual,fill=as_factor(sex), position = "fill"))+facet_wrap(~as_factor(ent))+labs(x="Ingreso promedio mensual",y="Entidad")
+
+```
+
+
+```{r}
+
+seleccion_ENOE_18 %>% filter(clase2==1 & ingocup!=0) %>% mutate(ingreso_mensual= median(ingocup)) %>%mutate_at(vars(ent,rama,sex), as_label) %>%group_by(ent,sex) %>% summarise(ingreso_mensual=median(ingocup)) %>% 
+    ggplot()+geom_col(aes(x=sex,y=ingreso_mensual,fill=as_factor(sex), position = "fill"))+facet_wrap(~as_factor(ent))+labs(x="Ingreso promedio mensual",y="Entidad")
+
+```
+
+
+Por rama
+
+```{r}
+seleccion_ENOE_13 %>% filter(clase2==1,rama!=5,rama!=7 & ingocup!=0) %>% mutate(ingreso_mensual= median(ingocup)) %>%mutate_at(vars(rama,sex), as_label) %>%group_by(rama,sex) %>% summarise(ingreso_mensual=median(ingocup)) %>% ggplot()+geom_col(aes(x=sex,y=ingreso_mensual,fill=as_factor(sex), position = "fill"))+facet_wrap(~as_factor(rama))+labs(x="Ingreso promedio mensual",y="Rama")
+
+```
+
+
+```{r}
+seleccion_ENOE_18 %>% filter(clase2==1,rama!=5,rama!=7 & ingocup!=0) %>% mutate(ingreso_mensual= median(ingocup)) %>%mutate_at(vars(rama,sex), as_label) %>%group_by(rama,sex) %>% summarise(ingreso_mensual=median(ingocup)) %>% ggplot()+geom_col(aes(x=sex,y=ingreso_mensual,fill=as_factor(sex), position = "fill"))+facet_wrap(~as_factor(rama))+labs(x="Ingreso promedio mensual",y="Rama")
+
+```
+
 
 
 # Consideraciones finales
