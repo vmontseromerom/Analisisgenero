@@ -2,9 +2,13 @@
 title: "AEG"
 author: "Montserrat Romero"
 date: "9/5/2022"
+output: 
+ html_document:
+   code_folding: hide
 editor_options: 
   markdown: 
     wrap: 72
+    code_folding: show
 ---
 
 # Introducción
@@ -379,7 +383,7 @@ pacman::p_load(tidyverse, haven, janitor, srvyr, RColorBrewer, wesanderson, sjla
 
 En tanto, la base de datos se carga con:
 
-```{r}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 load("ENOE.RData")
 ```
 
@@ -400,7 +404,7 @@ las variables de interés enlistadas en la sección anterior y que son
 relevantes para llevar a cabo la exploración en los términos propuestos.
 Para ello, se recurre al siguiente segmento de código:
 
-```{r echo=FALSE}
+```{r echo=TRUE}
 
 seleccion_ENOE_13<-ENOET113	%>% select(c(sex,eda,cd_a,ent,niv_ins,anios_esc, clase1,clase2,clase3,n_hij,hij5c,e_con,domestico,rama,c_ocu11c,scian,hrsocup, ing7c,ingocup,ing_x_hrs,pos_ocu,fac,est_d,upm))
 
@@ -417,14 +421,14 @@ proporción de hombres y mujeres encuestados para el primer trimestre del
 
 **T1. Proporción de hombres y mujeres encuestados , 2013**
 
-```{r echo=TRUE}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 
 kbl(seleccion_ENOE_13%>% mutate(sex=(as_label(sex))) %>% tabyl(sex) %>% adorn_totals %>% adorn_pct_formatting()) %>% kable_classic()
 ```
 
 **T2. Proporción de hombres y mujeres encuestados , 2018**
 
-```{r echo=TRUE}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 
 kbl(seleccion_ENOE_18%>% mutate(sex=(as_label(sex))) %>% tabyl(sex) %>% adorn_totals %>% adorn_pct_formatting()) %>%   kable_classic()
 ```
@@ -435,7 +439,7 @@ el número de mujeres es mayor que el de hombres.
 
 Podemos observar la distribución por grupo quinquenal de edad:
 
-```{r}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 seleccion_ENOE_13<-seleccion_ENOE_13%>% mutate(edaq=cut(eda,breaks=seq(0,100,by=5),include.lowest=T,right=F))
 
 seleccion_ENOE_18<-seleccion_ENOE_18%>% mutate(edaq=cut(eda,breaks=seq(0,100,by=5),include.lowest=T,right=F))
@@ -444,7 +448,7 @@ seleccion_ENOE_18<-seleccion_ENOE_18%>% mutate(edaq=cut(eda,breaks=seq(0,100,by=
 
 *G1. Proporción de la muestra por grupo de edad, 2013*
 
-```{r}
+```{r echo=FALSE}
 
 ggplot(seleccion_ENOE_13) +
   aes(x = edaq) +
@@ -486,20 +490,20 @@ seleccion_ENOE_13	%>%
 		mutate_at(vars(niv_ins,	sex),	as_label)	%>%	tabyl(niv_ins,	sex,	show_missing_levels=F	)	%>% adorn_totals(c("col",	"row"))	%>%	adorn_percentages("all")	%>%	adorn_pct_formatting()
 ```
 
-```{r}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 seleccion_ENOE_18	%>%
 		filter(eda>5 & niv_ins!=5)	%>%
 		mutate_at(vars(niv_ins,	sex),	as_label)	%>%	tabyl(niv_ins,	sex,	show_missing_levels=F	)	%>% adorn_totals(c("col",	"row"))	%>%	adorn_percentages("all")	%>%	adorn_pct_formatting()
 ```
 
-```{r}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 g_esc13 <- seleccion_ENOE_13	%>%
 		filter(eda>5 & niv_ins!=5)	%>%
 			mutate(niv_ins=as_label(niv_ins))	 %>% 	ggplot(aes(x=niv_ins))	
 g_esc13 +geom_bar(	aes(fill	= niv_ins)) +	 facet_wrap(~ as_label(sex))
 ```
 
-```{r}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 g_esc18 <- seleccion_ENOE_18	%>%
 		filter(eda>5 & niv_ins!=5)	%>%
 			mutate(niv_ins=as_label(niv_ins))	 %>% 	ggplot(aes(x=niv_ins))	
@@ -525,12 +529,12 @@ en la siguiente gráfica se considera a la población ocupada.
 
 **G5. Horas destinadas al trabajo en el hogar no remunerado**
 
-```{r}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 seleccion_ENOE_13 %>%filter(eda >= 0L & eda <= 75L) %>%ggplot() +aes(x = domestico) + geom_histogram(bins = 30L, fill = "#112446") +labs(x = "Horas", y = "Población", title = "Proporción horas que son dedicadas al trabajo en el hogar, 2013") + theme_minimal() +theme(plot.title = element_text(face = "bold.italic", hjust = 0.5)) + facet_wrap(~as_label(sex))
 
 ```
 
-```{r}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 seleccion_ENOE_18 %>%filter(eda >= 0L & eda <= 75L) %>%ggplot() +aes(x = domestico) + geom_histogram(bins = 30L, fill = "#112446") +labs(x = "Horas", y = "Población", title = "Proporción horas que son dedicadas al trabajo en el hogar, 2018") + theme_minimal() +theme(plot.title = element_text(face = "bold.italic", hjust = 0.5)) + facet_wrap(~as_label(sex))
 ```
 
@@ -547,7 +551,7 @@ acerca de las características de ocupación de la población . Observemos
 la proporción de Población Económicamente Activa (PEA) y la Población
 Económicamente No Activa (PENA).
 
-```{r}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 etiq<-c("NA",	"PEA",	"PNEA")
 seleccion_ENOE_13$clase1 <-set_labels(seleccion_ENOE_13$clase1,labels=etiq)
 seleccion_ENOE_18$clase1 <-set_labels(seleccion_ENOE_18$clase1,labels=etiq)
@@ -556,14 +560,14 @@ seleccion_ENOE_18$clase1 <-set_labels(seleccion_ENOE_18$clase1,labels=etiq)
 
 **T3. Proporción de**
 
-```{r echo=FALSE}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 kbl(seleccion_ENOE_13%>% filter(eda>14 & clase1!=0) %>% mutate_at(vars(clase1, sex), as_label) %>% tabyl(clase1, sex, show_missing_levels=F)) %>% kable_classic()
 
 ```
 
 **Tabla 4: 2018**
 
-```{r echo=FALSE}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 kbl(seleccion_ENOE_18%>% filter(eda>14 & clase1!=0) %>% mutate_at(vars(clase1, sex), as_label) %>% tabyl(clase1, sex, show_missing_levels=F)) %>% kable_classic()
 ```
 
@@ -578,14 +582,14 @@ realizaremos la misma operación pero con la variables 'clase2'
 
 **Tabla 5**
 
-```{r echo=FALSE}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 kbl( seleccion_ENOE_13%>% filter(eda>14 & clase2!=0) %>% mutate_at(vars(clase2, sex), as_label) %>% tabyl(clase2, sex, show_missing_levels=F )) %>% kable_classic()
 
 ```
 
 **Tabla 6**
 
-```{r echo=FALSE}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 kbl( seleccion_ENOE_18%>% filter(eda>14 & clase2!=0) %>% mutate_at(vars(clase2, sex), as_label) %>% tabyl(clase2, sex, show_missing_levels=F )) %>% kable_classic()
 ```
 
@@ -613,7 +617,7 @@ Primero lo haremos con 'rama'
 
 **Tabla 7**
 
-```{r echo=FALSE}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 kbl(seleccion_ENOE_13	%>% filter(clase2==1 & eda>14)	%>%	mutate_at(vars(rama,	sex),	as_label)	%>%	tabyl(rama,	sex,	show_missing_levels=F	)	%>% adorn_totals(c("col",	"row"))	%>% adorn_percentages("col")	%>% adorn_pct_formatting()) %>% kable_classic()
 
 
@@ -622,7 +626,7 @@ kbl(seleccion_ENOE_13	%>% filter(clase2==1 & eda>14)	%>%	mutate_at(vars(rama,	se
 
 **Tabla 8**
 
-```{r echo=FALSE}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 kbl(seleccion_ENOE_18	%>% filter(clase2==1 & eda>14)	%>%	mutate_at(vars(rama,	sex),	as_label)	%>%	tabyl(rama,	sex,	show_missing_levels=F	)	%>% adorn_totals(c("col",	"row"))	%>% adorn_percentages("col")	%>% adorn_pct_formatting()) %>% kable_classic()
 
 
@@ -644,14 +648,14 @@ según el sistema de clasificación de América del Norte.
 
 **Tabla 9**
 
-```{r echo=FALSE}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 kbl(seleccion_ENOE_13	%>% filter(clase2==1 & eda>14)	%>%	mutate_at(vars(scian,	sex),	as_label)	%>%	tabyl(scian,	sex,	show_missing_levels=F	)	%>% adorn_totals(c("col",	"row"))	%>% adorn_percentages("col")	%>% adorn_pct_formatting()) %>% kable_classic()
 
 ```
 
 **Tabla 10**
 
-```{r echo=FALSE}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 kbl(seleccion_ENOE_18	%>% filter(clase2==1 & eda>14)	%>%	mutate_at(vars(scian,	sex),	as_label)	%>%	tabyl(scian,	sex,	show_missing_levels=F	)	%>% adorn_totals(c("col",	"row"))	%>% adorn_percentages("col")	%>% adorn_pct_formatting()) %>% kable_classic()
 
 ```
@@ -673,12 +677,12 @@ incremento o disminución de la brecha salarial?.
 
 Analicemos esta información a nivel entidad.
 
-```{r echo=FALSE, message=TRUE, warning=TRUE}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 kbl(seleccion_ENOE_13%>% filter(eda>14 & clase1!=0) %>% mutate_at(vars(ent,clase1, sex), as_label) %>% tabyl(ent,clase1, sex, show_missing_levels=F)	%>%adorn_totals(c("col",	"row"))	%>% adorn_percentages("row")	%>% adorn_pct_formatting()) %>%  kable_classic() %>% add_header_above(c("Hombre","Mujer"))
 
 ```
 
-```{r echo=FALSE, message=TRUE, warning=TRUE}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 kbl(seleccion_ENOE_18%>% filter(eda>14 & clase1!=0) %>% mutate_at(vars(ent,clase1, sex), as_label) %>% tabyl(ent,clase1, sex, show_missing_levels=F)	%>% adorn_percentages("row")	%>% adorn_percentages("row") %>%  adorn_pct_formatting()) %>%  kable_classic() %>% add_header_above(c("Hombre","Mujer"))
 
 
@@ -689,12 +693,12 @@ poco amigable, sin embargo las retomaremos mas adelante cuando se
 realicen gráficos y análisis de localización. Por el momento solamente
 serán presentadas sin mayor profundización en su contenido.
 
-```{r}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 kbl(seleccion_ENOE_13%>% filter(eda>14 ,rama!=0,rama!=5,rama!=7 & clase1!=0) %>% mutate_at(vars(ent,rama,sex), as_label) %>% tabyl(ent,rama, sex, show_missing_levels=F)	%>%adorn_totals(c("col"))	%>% adorn_percentages("row")	%>% adorn_pct_formatting()) %>%  kable_classic() %>% add_header_above(c("Hombre","Mujer"))
 
 ```
 
-```{r}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 kbl(seleccion_ENOE_18%>% filter(eda>5 & clase1!=0) %>% mutate_at(vars(niv_ins,ent, sex), as_label) %>% tabyl(ent,niv_ins, sex, show_missing_levels=F) 	%>%adorn_totals(c("col"))	%>% adorn_percentages("row")	%>% adorn_pct_formatting()) %>%  kable_classic() %>% add_header_above(c("Hombre","Mujer"))
 
 ```
@@ -728,7 +732,7 @@ Se agrupan las edades en quinqueles, posteriormente se obtendrán las
 tasas de participación para la población que se considera dentro de la
 edad para laborar en México, la cual es de los 15 a los 75 años.
 
-```{r}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 seleccion_ENOE_13<-seleccion_ENOE_13%>% mutate(edaq=cut(eda,breaks=seq(0,100,by=5),include.lowest=T,right=F))
 
 seleccion_ENOE_18<-seleccion_ENOE_18%>% mutate(edaq=cut(eda,breaks=seq(0,100,by=5),include.lowest=T,right=F))
@@ -740,70 +744,70 @@ posteriormente por grupo de edad.
 
 **Tasas de participación 2013**
 
-```{r}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 kbl(seleccion_ENOE_13 %>% filter(eda>14 & eda<=75) %>% mutate_at(vars(sex, clase1), as_label) %>% tabyl(clase1, sex, show_missing_levels = F) %>% adorn_percentages("row") %>% adorn_pct_formatting()) %>% kable_classic()
 
 
 
 ```
 
-```{r}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 kbl(seleccion_ENOE_13 %>% filter(eda>14 & eda<=75) %>% mutate_at(vars(sex, clase1), as_label) %>% tabyl(edaq,clase1, sex, show_missing_levels = F) %>% adorn_percentages("row") %>% adorn_pct_formatting()) %>% kable_classic()%>% add_header_above(c("Hombre","Mujer"))
 
 
 
 ```
 
-```{r}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 tasas13<- seleccion_ENOE_13 %>% filter(eda>14 & eda<=75) %>% mutate_at(vars(sex, clase1), as_label) %>% tabyl(edaq,clase1, sex, show_missing_levels = F) %>% adorn_percentages("row") %>% adorn_pct_formatting()
 ```
 
-```{r}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 tasas13$Hombre <- tasas13$Hombre %>% mutate(sex="Hombre")
 tasas13$Mujer <- tasas13$Mujer %>% mutate(sex="Mujer")
 
 ```
 
-```{r}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 ggtasas<-rbind(tasas13$Hombre, tasas13$Mujer)
 g_tasa0<-ggtasas %>% ggplot(aes(x=edaq, y=PEA, group = sex))
 ```
 
-```{r}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 g_tasa0+geom_line(aes(color=sex)) + ggtitle("Tasas de participació econmica por grupo de edad, trimestre I, 2013")
 
 ```
 
 **Tasas de participación 2018**
 
-```{r}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 kbl(seleccion_ENOE_18 %>% filter(eda>14 & eda<=75) %>% mutate_at(vars(sex, clase1), as_label) %>% tabyl(clase1, sex, show_missing_levels = F) %>% adorn_percentages("row") %>% adorn_pct_formatting()) %>% kable_classic()
 
 
 
 ```
 
-```{r}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 kbl(seleccion_ENOE_18 %>% filter(eda>14 & eda<=75) %>% mutate_at(vars(sex, clase1), as_label) %>% tabyl(edaq,clase1, sex, show_missing_levels = F) %>% adorn_percentages("row") %>% adorn_pct_formatting()) %>% kable_classic()%>% add_header_above(c("Hombre","Mujer"))
 
 ```
 
-```{r}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 tasas18<- seleccion_ENOE_18 %>% filter(eda>14 & eda<=75) %>% mutate_at(vars(sex, clase1), as_label) %>% tabyl(edaq,clase1, sex, show_missing_levels = F) %>% adorn_percentages("row") %>% adorn_pct_formatting()
 ```
 
-```{r}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 tasas18$Hombre <- tasas18$Hombre %>% mutate(sex="Hombre")
 tasas18$Mujer <- tasas18$Mujer %>% mutate(sex="Mujer")
 
 ```
 
-```{r}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 ggtasas<-rbind(tasas13$Hombre, tasas18$Mujer)
 g_tasa0<-ggtasas %>% ggplot(aes(x=edaq, y=PEA, group = sex))
 ```
 
-```{r}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 g_tasa0+geom_line(aes(color=sex)) + ggtitle("Tasas de participació econmica por grupo de edad, trimestre I, 2018")
 
 ```
@@ -823,7 +827,7 @@ ingresos en México se obtienen principalmente del trabajo remunerado.
 
 Observemos la distribución del ingreso mensual
 
-```{r}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 seleccion_ENOE_13 %>%
  filter(ingocup >= 10L & ingocup <= 50039L) %>%
  filter(eda >= 15L & eda <= 76L) %>%
@@ -836,7 +840,7 @@ aes(log(ingocup)) +
 
 ```
 
-```{r}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 seleccion_ENOE_18 %>%
  filter(ingocup >= 10L & ingocup <= 50039L) %>%
  filter(eda >= 15L & eda <= 76L) %>%
@@ -862,12 +866,12 @@ que ambos ingresos son diferentes.
 
 ![](images/paste-2A8DD47B.png)
 
-```{r}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 seleccion_ENOE_13 %>% filter(clase2==1 & ingocup!=0) %>% 	with(t.test(ingocup~sex,	alternative="greater"))
 
 ```
 
-```{r}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 seleccion_ENOE_18 %>% filter(clase2==1 & ingocup!=0) %>% 	with(t.test(ingocup~sex,	alternative="greater"))
 ```
 
@@ -883,7 +887,7 @@ Ha= La condición de hombre o mujer y la entidad son dependientes.
 
 Esta prueba no nos dara la magnitud ni dirección de la relación, solamente nos dira sí existe relación de dependencia.
 
-```{r}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 seleccion_ENOE_13	%>%
 		filter(clase1==1,eda>14 & eda<80)	%>% 
 		mutate_at(vars(ent,	sex),	as_label)	%>% #etiqueta	las	variables
@@ -892,7 +896,7 @@ seleccion_ENOE_13	%>%
 
 ```
 
-```{r}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 seleccion_ENOE_18	%>%
 		filter(clase1==1,eda>14 & eda<80)	%>% 
 		mutate_at(vars(ent,	sex),	as_label)	%>% #etiqueta	las	variables
@@ -907,7 +911,7 @@ Ho= La condición de hombre o mujer y la rama son independientes.
 Ha= La condición de hombre o mujer y la rama son dependientes. 
 
 
-```{r}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 seleccion_ENOE_13	%>%
 		filter(clase1==1,eda>14 & eda<80)	%>% 
 		mutate_at(vars(rama,	sex),	as_label)	%>% 
@@ -916,7 +920,7 @@ seleccion_ENOE_13	%>%
 
 ```
 
-```{r}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 seleccion_ENOE_18	%>%
 		filter(clase1==1,eda>14 & eda<80)	%>% 
 		mutate_at(vars(rama,	sex),	as_label)	%>% 
@@ -929,7 +933,7 @@ Hay una relacion entre ser mujer u hombre y la rama.
 
 Para dar cierre a esta sección podemos graficar los ingresos para las mujeres y los hombres por entidad y por rama.
 
-```{r}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 
 seleccion_ENOE_13 %>% filter(clase2==1 & ingocup!=0) %>% mutate(ingreso_mensual= median(ingocup)) %>%mutate_at(vars(ent,rama,sex), as_label) %>%group_by(ent,sex) %>% summarise(ingreso_mensual=median(ingocup)) %>% 
     ggplot()+geom_col(aes(x=sex,y=ingreso_mensual,fill=as_factor(sex), position = "fill"))+facet_wrap(~as_factor(ent))+labs(x="Ingreso promedio mensual",y="Entidad")
@@ -937,7 +941,7 @@ seleccion_ENOE_13 %>% filter(clase2==1 & ingocup!=0) %>% mutate(ingreso_mensual=
 ```
 
 
-```{r}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 
 seleccion_ENOE_18 %>% filter(clase2==1 & ingocup!=0) %>% mutate(ingreso_mensual= median(ingocup)) %>%mutate_at(vars(ent,rama,sex), as_label) %>%group_by(ent,sex) %>% summarise(ingreso_mensual=median(ingocup)) %>% 
     ggplot()+geom_col(aes(x=sex,y=ingreso_mensual,fill=as_factor(sex), position = "fill"))+facet_wrap(~as_factor(ent))+labs(x="Ingreso promedio mensual",y="Entidad")
@@ -947,13 +951,13 @@ seleccion_ENOE_18 %>% filter(clase2==1 & ingocup!=0) %>% mutate(ingreso_mensual=
 
 Por rama
 
-```{r}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 seleccion_ENOE_13 %>% filter(clase2==1,rama!=5,rama!=7 & ingocup!=0) %>% mutate(ingreso_mensual= median(ingocup)) %>%mutate_at(vars(rama,sex), as_label) %>%group_by(rama,sex) %>% summarise(ingreso_mensual=median(ingocup)) %>% ggplot()+geom_col(aes(x=sex,y=ingreso_mensual,fill=as_factor(sex), position = "fill"))+facet_wrap(~as_factor(rama))+labs(x="Ingreso promedio mensual",y="Rama")
 
 ```
 
 
-```{r}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 seleccion_ENOE_18 %>% filter(clase2==1,rama!=5,rama!=7 & ingocup!=0) %>% mutate(ingreso_mensual= median(ingocup)) %>%mutate_at(vars(rama,sex), as_label) %>%group_by(rama,sex) %>% summarise(ingreso_mensual=median(ingocup)) %>% ggplot()+geom_col(aes(x=sex,y=ingreso_mensual,fill=as_factor(sex), position = "fill"))+facet_wrap(~as_factor(rama))+labs(x="Ingreso promedio mensual",y="Rama")
 
 ```
