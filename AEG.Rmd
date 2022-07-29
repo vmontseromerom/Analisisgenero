@@ -295,10 +295,17 @@ paquete especializado en herramientas para el análsis regional,
 
 Se sigue de cerca en esta sección, el trabajo de [@Escoto2021] , en el
 cual presentan múltiples herramientas para el tratamiento y
-visualización de información sobre el mercado laboral en México con
-base en la ENOE. La estructura de esta sección del trabajo sera la siguiente: se comenzara con el análisis de algunas características demográficas de la muestra , posteriormente con tablas de frecuencias se revisaran variables relacionadas con el mercado laboral, se inclura la taza de participación económica. Por ultimo nos introduciremos en la medición y comparación de los ingresos entre hombres y mujeres. Se utilizaran de tablas de
-frecuencias, medidas centrales y de dispersión, así como gráficos
-para conocer la estructura sociodemografica y laboral. Posteriormente se utilizara la inferencia estadística para elaborar la ultima parte de la sección, relacionada con salarios. 
+visualización de información sobre el mercado laboral en México con base
+en la ENOE. La estructura de esta sección del trabajo sera la siguiente:
+se comenzara con el análisis de algunas características demográficas de
+la muestra , posteriormente con tablas de frecuencias se revisaran
+variables relacionadas con el mercado laboral, se inclura la taza de
+participación económica. Por ultimo nos introduciremos en la medición y
+comparación de los ingresos entre hombres y mujeres. Se utilizaran de
+tablas de frecuencias, medidas centrales y de dispersión, así como
+gráficos para conocer la estructura sociodemografica y laboral.
+Posteriormente se utilizara la inferencia estadística para elaborar la
+ultima parte de la sección, relacionada con salarios.
 
 Los datos corresponden a la la Encuesta Nacional de Ocupación y Empleo
 (ENOE) que elabora trimestralmente el INEGI. Se utiliza la información
@@ -320,33 +327,34 @@ lógica de la denominada *ciencia abierta* [@OpenScience2011;
 *Creo que no será necesario dejar este listado de variables;o bien, lo
 conveniente será consignarlo en una tabla.*
 
-Debido al interes del presente trabajo no se utilizara la ENOE completa, se realizara una selección de variables representativa slas cuales se enlistan a continuación:
+Debido al interes del presente trabajo no se utilizara la ENOE completa,
+se realizara una selección de variables representativa slas cuales se
+enlistan a continuación:
 
-
-|  ^*Variable*^  |                                       ^*Descripción*^                                       |                     ^*Tipo*^                     |
-|:------:|:--------------:|:-----------:|
-|    ^*sex*^     |                              ^*Sexo\ (1)Hombre\ ,\ (2)Mujer,*^                              |                  ^*"numeric"*^                   |
-|    ^*eda*^     |                                          ^*edad*^                                           |                  ^*"numeric"*^                   |
-|    ^*cd_a*^    |                                ^*ciudad\ autorepresentada*^                                 | ^*"haven_labelled",\ "vctrs_vctr"\ ,\ "double"*^ |
-|    ^*ent*^     |                                         ^*entidad*^                                         | ^*"haven_labelled",\ "vctrs_vctr"\ ,\ "double"*^ |
-|  ^*niv_ins*^   |                                 ^*nivel\ de\ instrucción*^                                  | ^*"haven_labelled",\ "vctrs_vctr"\ ,\ "double"*^ |
-| ^*anios_esc*^  |                                  ^*años\ de\ escolaridad*^                                  |                  ^*"numeric"*^                   |
-|   ^*clase1*^   |       ^*clasificación\ de\ la\ población\ en\ PEA\ económicamente\ activa\ y\ PNEA*^        | ^*"haven_labelled",\ "vctrs_vctr"\ ,\ "double"*^ |
-|   ^*clase2*^   | ^*clasificación\ de\ la\ población\ ocupada\ ,desocupada,\ disponible\ y\ no\ disponible.*^ | ^*"haven_labelled",\ "vctrs_vctr"\ ,\ "double"*^ |
-|   ^*n_hij*^    |                  ^*número\ de\ hijas\ e\ hijos\ que\ nacieron\ con\ vida*^                  | ^*"haven_labelled",\ "vctrs_vctr"\ ,\ "double"*^ |
-|   ^*hij5c*^    |            ^*clasificación\ de\ las\ mujeres\ por\ número\ de\ hijos\ e\ hijas*^            | ^*"haven_labelled",\ "vctrs_vctr"\ ,\ "double"*^ |
-|   ^*e_con*^    |                                    ^*estado\ conyugal*^                                     | ^*"haven_labelled",\ "vctrs_vctr"\ ,\ "double"*^ |
-| ^*domestico*^  |              ^*clasificación\ por\ condición\ de\ actividad\ e\ inactividad*^               | ^*"haven_labelled",\ "vctrs_vctr"\ ,\ "double"*^ |
-|    ^*rama*^    |    ^*clasificación\ de\ la\ población\ ocupada\ por\ sector\ de\ actividad\ económica*^     | ^*"haven_labelled",\ "vctrs_vctr"\ ,\ "double"*^ |
-|  ^*c_ocu11c*^  |        ^*clasificación\ de\ la\ población\ ocupada\ por\ condición\ de\ ocupación.*^        | ^*"haven_labelled",\ "vctrs_vctr"\ ,\ "double"*^ |
-|   ^*scian*^    |          ^*clasificación\ de\ actividades\ económicas\ con\ base\ en\ el\ SCIAN*^           | ^*"haven_labelled",\ "vctrs_vctr"\ ,\ "double"*^ |
-|  ^*hrsocup*^   |                             ^*horas\ laboradas\ a\ la\ semana*^                             |                  ^*"numeric"*^                   |
-|   ^*ing7c*^    |           ^*clasificación\ de\ la\ población\ ocupada\ por\ nivel\ de\ ingreso.*^           |                  ^*"numeric"*^                   |
-|  ^*ingocup*^   |                                    ^*Ingreso\ mensual*^                                     |                  ^*"numeric"*^                   |
-| ^*ing_x\_hrs*^ |                        ^*ingreso\ promedio\ por\ hora\ trabajada.*^                         |                  ^*"numeric"*^                   |
-|    ^*fac*^     |                                  ^*factor\ de\ expansión*^                                  |                  ^*"numeric"*^                   |
-|   ^*est_d*^    |                                   ^*estrato\ de\ diseño*^                                   |                  ^*"numeric"*^                   |
-|    ^*upm*^     |                             ^*unidad\ primaria\ de\ muestreo*^                              |                  ^*"numeric"*^                   |
+|  ^*Variable*^  |                                  ^*Descripción*^                                   |                   ^*Tipo*^                    |
+|:----------------:|:----------------------------:|:-----------------------:|
+|    ^*sex*^     |                           ^*Sexo (1)Hombre , (2)Mujer,*^                           |                 ^*"numeric"*^                 |
+|    ^*eda*^     |                                      ^*edad*^                                      |                 ^*"numeric"*^                 |
+|    ^*cd_a*^    |                            ^*ciudad autorepresentada*^                             | ^*"haven_labelled", "vctrs_vctr" , "double"*^ |
+|    ^*ent*^     |                                    ^*entidad*^                                     | ^*"haven_labelled", "vctrs_vctr" , "double"*^ |
+|  ^*niv_ins*^   |                              ^*nivel de instrucción*^                              | ^*"haven_labelled", "vctrs_vctr" , "double"*^ |
+| ^*anios_esc*^  |                              ^*años de escolaridad*^                               |                 ^*"numeric"*^                 |
+|   ^*clase1*^   |       ^*clasificación de la población en PEA económicamente activa y PNEA*^        | ^*"haven_labelled", "vctrs_vctr" , "double"*^ |
+|   ^*clase2*^   | ^*clasificación de la población ocupada ,desocupada, disponible y no disponible.*^ | ^*"haven_labelled", "vctrs_vctr" , "double"*^ |
+|   ^*n_hij*^    |                 ^*número de hijas e hijos que nacieron con vida*^                  | ^*"haven_labelled", "vctrs_vctr" , "double"*^ |
+|   ^*hij5c*^    |            ^*clasificación de las mujeres por número de hijos e hijas*^            | ^*"haven_labelled", "vctrs_vctr" , "double"*^ |
+|   ^*e_con*^    |                                ^*estado conyugal*^                                 | ^*"haven_labelled", "vctrs_vctr" , "double"*^ |
+| ^*domestico*^  |             ^*clasificación por condición de actividad e inactividad*^             | ^*"haven_labelled", "vctrs_vctr" , "double"*^ |
+|    ^*rama*^    |    ^*clasificación de la población ocupada por sector de actividad económica*^     | ^*"haven_labelled", "vctrs_vctr" , "double"*^ |
+|  ^*c_ocu11c*^  |       ^*clasificación de la población ocupada por condición de ocupación.*^        | ^*"haven_labelled", "vctrs_vctr" , "double"*^ |
+|   ^*scian*^    |          ^*clasificación de actividades económicas con base en el SCIAN*^          | ^*"haven_labelled", "vctrs_vctr" , "double"*^ |
+|  ^*hrsocup*^   |                          ^*horas laboradas a la semana*^                           |                 ^*"numeric"*^                 |
+|   ^*ing7c*^    |          ^*clasificación de la población ocupada por nivel de ingreso.*^           |                 ^*"numeric"*^                 |
+|  ^*ingocup*^   |                                ^*Ingreso mensual*^                                 |                 ^*"numeric"*^                 |
+| ^*ing_x\_hrs*^ |                      ^*ingreso promedio por hora trabajada.*^                      |                 ^*"numeric"*^                 |
+|    ^*fac*^     |                              ^*factor de expansión*^                               |                 ^*"numeric"*^                 |
+|   ^*est_d*^    |                               ^*estrato de diseño*^                                |                 ^*"numeric"*^                 |
+|    ^*upm*^     |                          ^*unidad primaria de muestreo*^                           |                 ^*"numeric"*^                 |
 
 # 4. Análisis Exploratorio: Resultados
 
@@ -376,9 +384,15 @@ load("ENOE.RData")
 ```
 
 *Breve descripción de la base de datos: cuántas variables la integran,
-su tamaño, etcétera*
-Las bases de datos con las que trabajaremos sera la Encuesta Nacional de Ocupación y Empleo, para el primer trimestre del 2013 y 2018. La ENOE esta compuesta por 5 encuestas que recogen información relacionada con: Hogar, Vivienda, Sociodemografico, Ocupación y Empleo 1 y 2.
-El tamaño de nuestras bases sera de 385,792 y 383,437 observaciones respectivamente para 2013 y 2018, con 393 variables. Es importante aclarar que cada una de las observaciones representa a un individuo encuestado, lo cual indica que nuestra muestra es del tamaño de las observaciones.
+su tamaño, etcétera* Las bases de datos con las que trabajaremos sera la
+Encuesta Nacional de Ocupación y Empleo, para el primer trimestre del
+2013 y 2018. La ENOE esta compuesta por 5 encuestas que recogen
+información relacionada con: Hogar, Vivienda, Sociodemografico,
+Ocupación y Empleo 1 y 2. El tamaño de nuestras bases sera de 385,792 y
+383,437 observaciones respectivamente para 2013 y 2018, con 393
+variables. Es importante aclarar que cada una de las observaciones
+representa a un individuo encuestado, lo cual indica que nuestra muestra
+es del tamaño de las observaciones.
 
 Para comenzar el análisis, se generarán un par de bases de datos
 auxiliares, a partir de la base original. Estas bases contendrán sólo
@@ -394,11 +408,12 @@ seleccion_ENOE_18<-ENOET118	%>% select(c(sex,eda,cd_a,ent,niv_ins,anios_esc, cla
 
 ```
 
-**4.1 Características sociodemográficas** 
+**4.1 Características sociodemográficas**
 
-A partir de dichas bases se podrá conocer algunas características de nuestra muestra, se construyen las Tablas 1 y 2, donde se
-presenta la proporción de hombres y mujeres encuestados para el primer
-trimestre del 2013 y 2018.
+A partir de dichas bases se podrá conocer algunas características de
+nuestra muestra, se construyen las Tablas 1 y 2, donde se presenta la
+proporción de hombres y mujeres encuestados para el primer trimestre del
+2013 y 2018.
 
 **T1. Proporción de hombres y mujeres encuestados , 2013**
 
@@ -443,7 +458,6 @@ ggplot(seleccion_ENOE_13) +
 
 ```
 
-
 *G2. Proporción de la muestra por grupo de edad, 2018*
 
 ```{r}
@@ -460,10 +474,11 @@ ggplot(seleccion_ENOE_18) +
 
 ```
 
-Para ambos años se puede observar el bono demográfico , el grueso de la población se encuentra en edad productiva.
+Para ambos años se puede observar el bono demográfico , el grueso de la
+población se encuentra en edad productiva.
 
-En este momento identificaremos las caracteristicas academicas de la población muestra para ambos años.
-
+En este momento identificaremos las caracteristicas academicas de la
+población muestra para ambos años.
 
 ```{r}
 seleccion_ENOE_13	%>%
@@ -471,15 +486,11 @@ seleccion_ENOE_13	%>%
 		mutate_at(vars(niv_ins,	sex),	as_label)	%>%	tabyl(niv_ins,	sex,	show_missing_levels=F	)	%>% adorn_totals(c("col",	"row"))	%>%	adorn_percentages("all")	%>%	adorn_pct_formatting()
 ```
 
-
 ```{r}
 seleccion_ENOE_18	%>%
 		filter(eda>5 & niv_ins!=5)	%>%
 		mutate_at(vars(niv_ins,	sex),	as_label)	%>%	tabyl(niv_ins,	sex,	show_missing_levels=F	)	%>% adorn_totals(c("col",	"row"))	%>%	adorn_percentages("all")	%>%	adorn_pct_formatting()
 ```
-
-
-
 
 ```{r}
 g_esc13 <- seleccion_ENOE_13	%>%
@@ -488,7 +499,6 @@ g_esc13 <- seleccion_ENOE_13	%>%
 g_esc13 +geom_bar(	aes(fill	= niv_ins)) +	 facet_wrap(~ as_label(sex))
 ```
 
-
 ```{r}
 g_esc18 <- seleccion_ENOE_18	%>%
 		filter(eda>5 & niv_ins!=5)	%>%
@@ -496,9 +506,22 @@ g_esc18 <- seleccion_ENOE_18	%>%
 g_esc18+geom_bar(	aes(fill	= niv_ins)) +	 facet_wrap(~ as_label(sex))
 ```
 
-Como es posible identificar no existe una variación importante en el porcentaje de hombres y mujeres en cada nivel de instrucción académica, lo cual indica que la preparación a nivel escolar es similar, e incluso el porcentaje de mujeres que han concluido grados académicos es mayor. La capacitación recibida por la educación formal tendría que poner en igualdad de condiciones a las personas, sin importar su sexo, para acceder a un empleo y recibir un salario digno.
+Como es posible identificar no existe una variación importante en el
+porcentaje de hombres y mujeres en cada nivel de instrucción académica,
+lo cual indica que la preparación a nivel escolar es similar, e incluso
+el porcentaje de mujeres que han concluido grados académicos es mayor.
+La capacitación recibida por la educación formal tendría que poner en
+igualdad de condiciones a las personas, sin importar su sexo, para
+acceder a un empleo y recibir un salario digno.
 
-Una característica relevante en el análisis con perspectiva de genero son las horas que son destinadas al trabajo en el hogar no remunerado, la importancia reside en que históricamente se ha relegado estas actividades a la mujer , aun teniendo un empleo fuera del hogar, lo cual se convierte en un discriminante hacía la mujer ya que no se encontraría en una igualdad de condiciones frente a los hombres para lograr acceder al mercado laboral y desarrollarse plenamente.Es importante destacar que en la siguiente gráfica se considera a la población ocupada.
+Una característica relevante en el análisis con perspectiva de genero
+son las horas que son destinadas al trabajo en el hogar no remunerado,
+la importancia reside en que históricamente se ha relegado estas
+actividades a la mujer , aun teniendo un empleo fuera del hogar, lo cual
+se convierte en un discriminante hacía la mujer ya que no se encontraría
+en una igualdad de condiciones frente a los hombres para lograr acceder
+al mercado laboral y desarrollarse plenamente.Es importante destacar que
+en la siguiente gráfica se considera a la población ocupada.
 
 **G5. Horas destinadas al trabajo en el hogar no remunerado**
 
@@ -511,16 +534,18 @@ seleccion_ENOE_13 %>%filter(eda >= 0L & eda <= 75L) %>%ggplot() +aes(x = domesti
 seleccion_ENOE_18 %>%filter(eda >= 0L & eda <= 75L) %>%ggplot() +aes(x = domestico) + geom_histogram(bins = 30L, fill = "#112446") +labs(x = "Horas", y = "Población", title = "Proporción horas que son dedicadas al trabajo en el hogar, 2018") + theme_minimal() +theme(plot.title = element_text(face = "bold.italic", hjust = 0.5)) + facet_wrap(~as_label(sex))
 ```
 
-En ambos años es posible identificar la gran cantidad de horas que dedican las mujeres al trabajo en el hogar, llegando a dedicar incluso mas horas que una jornada laboral de 8 horas, es importante volver a señalar que es trabajo que no recibe ningun tipo de pago ni prestación.
+En ambos años es posible identificar la gran cantidad de horas que
+dedican las mujeres al trabajo en el hogar, llegando a dedicar incluso
+mas horas que una jornada laboral de 8 horas, es importante volver a
+señalar que es trabajo que no recibe ningun tipo de pago ni prestación.
 
-
-**Mercado laboral** 
+**Mercado laboral**
 
 Podemos revisar esta misma proporción entre hombres y mujeres con las
-variables 'clase1'y 'clase2', las cuales nos arrojaran
-información acerca de las características de ocupación de la población .
-Observemos la proporción de Población Económicamente Activa (PEA) y la
-Población Económicamente No Activa (PENA).
+variables 'clase1'y 'clase2', las cuales nos arrojaran información
+acerca de las características de ocupación de la población . Observemos
+la proporción de Población Económicamente Activa (PEA) y la Población
+Económicamente No Activa (PENA).
 
 ```{r}
 etiq<-c("NA",	"PEA",	"PNEA")
@@ -529,9 +554,7 @@ seleccion_ENOE_18$clase1 <-set_labels(seleccion_ENOE_18$clase1,labels=etiq)
 
 ```
 
-
-
-**T3. Proporción de **
+**T3. Proporción de**
 
 ```{r echo=FALSE}
 kbl(seleccion_ENOE_13%>% filter(eda>14 & clase1!=0) %>% mutate_at(vars(clase1, sex), as_label) %>% tabyl(clase1, sex, show_missing_levels=F)) %>% kable_classic()
@@ -579,9 +602,8 @@ Situación contraria entre la población ocupada, en donde el número de
 mujeres ocupadas es menor considerablemente con respecto de la población
 masculina.
 
-con esta información es posible encontrar las las tasas de participación economica.
-
-
+con esta información es posible encontrar las las tasas de participación
+economica.
 
 Ahora utilizaremos las variables 'rama' y 'scian' para lograr
 identificar los sectores en los que se emplean en mayor proporción las
@@ -732,7 +754,6 @@ kbl(seleccion_ENOE_13 %>% filter(eda>14 & eda<=75) %>% mutate_at(vars(sex, clase
 
 ```
 
-
 ```{r}
 tasas13<- seleccion_ENOE_13 %>% filter(eda>14 & eda<=75) %>% mutate_at(vars(sex, clase1), as_label) %>% tabyl(edaq,clase1, sex, show_missing_levels = F) %>% adorn_percentages("row") %>% adorn_pct_formatting()
 ```
@@ -753,11 +774,6 @@ g_tasa0+geom_line(aes(color=sex)) + ggtitle("Tasas de participació econmica por
 
 ```
 
-
-
-
-
-
 **Tasas de participación 2018**
 
 ```{r}
@@ -767,19 +783,14 @@ kbl(seleccion_ENOE_18 %>% filter(eda>14 & eda<=75) %>% mutate_at(vars(sex, clase
 
 ```
 
-
-
 ```{r}
 kbl(seleccion_ENOE_18 %>% filter(eda>14 & eda<=75) %>% mutate_at(vars(sex, clase1), as_label) %>% tabyl(edaq,clase1, sex, show_missing_levels = F) %>% adorn_percentages("row") %>% adorn_pct_formatting()) %>% kable_classic()%>% add_header_above(c("Hombre","Mujer"))
 
 ```
 
-
-
 ```{r}
 tasas18<- seleccion_ENOE_18 %>% filter(eda>14 & eda<=75) %>% mutate_at(vars(sex, clase1), as_label) %>% tabyl(edaq,clase1, sex, show_missing_levels = F) %>% adorn_percentages("row") %>% adorn_pct_formatting()
 ```
-
 
 ```{r}
 tasas18$Hombre <- tasas18$Hombre %>% mutate(sex="Hombre")
@@ -799,37 +810,68 @@ g_tasa0+geom_line(aes(color=sex)) + ggtitle("Tasas de participació econmica por
 
 **Análisis salarial**
 
-En esta ultima sección de resultados se analizara la proporción del ingreso que es obtenido por las mujeres por trabajar en comparación con el de los hombres , intentando identificar sí existen variaciones entre ellos. Hasta el punto en donde nos encontramos retomamos nuestra hipótesis en la cual se comenta que el ingreso que perciben las mujeres si es menor , nuestro trabajo ha logrado identificar varios factores discriminatorios para las mujeres en cuando a la accesibilidad y desarrollo en el espacio laboral , una nota aclaratoria relevante de mencionar es que no se esta trabajando con el sector informal, y los ingresos en México se obtienen principalmente del trabajo remunerado. 
+En esta ultima sección de resultados se analizara la proporción del
+ingreso que es obtenido por las mujeres por trabajar en comparación con
+el de los hombres , intentando identificar sí existen variaciones entre
+ellos. Hasta el punto en donde nos encontramos retomamos nuestra
+hipótesis en la cual se comenta que el ingreso que perciben las mujeres
+si es menor , nuestro trabajo ha logrado identificar varios factores
+discriminatorios para las mujeres en cuando a la accesibilidad y
+desarrollo en el espacio laboral , una nota aclaratoria relevante de
+mencionar es que no se esta trabajando con el sector informal, y los
+ingresos en México se obtienen principalmente del trabajo remunerado.
 
 Observemos la distribución del ingreso mensual
 
-
 ```{r}
-ingresos13 %>%
+seleccion_ENOE_13 %>%
  filter(ingocup >= 10L & ingocup <= 50039L) %>%
  filter(eda >= 15L & eda <= 76L) %>%
  ggplot() +
- aes(x=ingocup) +
+aes(log(ingocup)) +
  geom_histogram(bins = 30L, fill = "#1F4A98") +
  labs(x = "Ingreso mensual", 
- title = "Histograma del ingreso mensual, 2013") +
+ title = "Histograma del ingreso mensual, 2013") +theme(plot.title = element_text(face = "bold.italic", hjust = 0.5))+
  theme_minimal()+ facet_wrap(~as_label(sex))
 
 ```
 
-
 ```{r}
-ingresos18 %>%
+seleccion_ENOE_18 %>%
  filter(ingocup >= 10L & ingocup <= 50039L) %>%
  filter(eda >= 15L & eda <= 76L) %>%
  ggplot() +
- aes(x=ingocup) +
+ aes(log(ingocup)) +
  geom_histogram(bins = 30L, fill = "#1F4A98") +
  labs(x = "Ingreso mensual", 
- title = "Histograma del ingreso mensual, 2018") +
+ title = "Histograma del ingreso mensual (logaritmo) , 2018") +theme(plot.title = element_text(face = "bold.italic", hjust = 0.5))+
  theme_minimal()+facet_wrap(~as_label(sex))
 ```
 
+Comparando la distribución del ingreso es posible identificar que son
+menos las mujeres en percibir ingresos y son en proporción menores en
+comparación con los ingresos de los hombres. Podemos hacer un mayor
+tratamiento de nuestra información para corroborar esta idea, así como
+acercarnos al planteamiento de nuestra hipótesis en la cual se menciona
+que esta desigualdad esta presente y relacionada con el sector de
+actividad y la entidad.
+
+Con inferencia estadística probaremos nuestra hipótesis, tendremos como
+Ho que los ingresos de las mujeres y los hombres son iguales y como Ha
+que ambos ingresos son diferentes.
+
+![](images/paste-2A8DD47B.png)
+
+```{r}
+seleccion_ENOE_13 %>% filter(clase2==1 & ingocup!=0) %>% 	with(t.test(ingocup~sex,	alternative="greater"))
+
+```
+
+```{r}
+seleccion_ENOE_18 %>% filter(clase2==1 & ingocup!=0) %>% 	with(t.test(ingocup~sex,	alternative="greater"))
+```
+
+Nuestra prueba se encuentra en un intervalo del 95% de confianza, es decir que el p-value tendría que ser mayor a 0.05 para aceptar la hipótesis nula en la cual se plantea la igualdad de ingresos entre hombres y mujeres, sin embargo para el caso de ambas pruebas el p-value < 0.05, rechazamos la Ho. La media de los ingresos mensuales de hombres y mujeres es diferente.La prueba tambien arroja el ingreso medio, las mujeres en promedio presentan un 29.37% menos ingreso con respecto al ingreso medio mensual de los hombres, en el año 2018 incremento a un 29.74%.
 
 
 
