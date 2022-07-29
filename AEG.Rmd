@@ -394,9 +394,9 @@ seleccion_ENOE_18<-ENOET118	%>% select(c(sex,eda,cd_a,ent,niv_ins,anios_esc, cla
 
 ```
 
-**4.1 Características demográficas** 
+**4.1 Características sociodemográficas** 
 
-A partir de dichas bases se podrá conocer algunas características de nuestra muestra., se construyen las Tablas 1 y 2, donde se
+A partir de dichas bases se podrá conocer algunas características de nuestra muestra, se construyen las Tablas 1 y 2, donde se
 presenta la proporción de hombres y mujeres encuestados para el primer
 trimestre del 2013 y 2018.
 
@@ -427,11 +427,94 @@ seleccion_ENOE_18<-seleccion_ENOE_18%>% mutate(edaq=cut(eda,breaks=seq(0,100,by=
 
 ```
 
-*T3. Proporción de la muestra por grupo de edad, 2013*
+*G1. Proporción de la muestra por grupo de edad, 2013*
 
 ```{r}
-seleccion_ENOE_13	%>% with(hist(edaq))
+
+ggplot(seleccion_ENOE_13) +
+  aes(x = edaq) +
+  geom_bar(fill = "#112446") +
+  labs(
+    x = "Edad",
+    y = "Población",
+    title = "Distribución de la población por grupo de edad,
+    2013") + theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5))
+
 ```
+
+
+*G2. Proporción de la muestra por grupo de edad, 2018*
+
+```{r}
+
+ggplot(seleccion_ENOE_18) +
+  aes(x = edaq) +
+  geom_bar(fill = "#112446") +
+  labs(
+    x = "Edad",
+    y = "Población",
+    title = "Distribución de la población por grupo de edad,
+    2018") + theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+```
+
+Para ambos años se puede observar el bono demográfico , el grueso de la población se encuentra en edad productiva.
+
+En este momento identificaremos las caracteristicas academicas de la población muestra para ambos años.
+
+
+```{r}
+seleccion_ENOE_13	%>%
+		filter(eda>5 & niv_ins!=5)	%>%
+		mutate_at(vars(niv_ins,	sex),	as_label)	%>%	tabyl(niv_ins,	sex,	show_missing_levels=F	)	%>% adorn_totals(c("col",	"row"))	%>%	adorn_percentages("all")	%>%	adorn_pct_formatting()
+```
+
+
+```{r}
+seleccion_ENOE_18	%>%
+		filter(eda>5 & niv_ins!=5)	%>%
+		mutate_at(vars(niv_ins,	sex),	as_label)	%>%	tabyl(niv_ins,	sex,	show_missing_levels=F	)	%>% adorn_totals(c("col",	"row"))	%>%	adorn_percentages("all")	%>%	adorn_pct_formatting()
+```
+
+
+
+
+```{r}
+g_esc13 <- seleccion_ENOE_13	%>%
+		filter(eda>5 & niv_ins!=5)	%>%
+			mutate(niv_ins=as_label(niv_ins))	 %>% 	ggplot(aes(x=niv_ins))	
+g_esc13 +geom_bar(	aes(fill	= niv_ins)) +	 facet_wrap(~ as_label(sex))
+```
+
+
+```{r}
+g_esc18 <- seleccion_ENOE_18	%>%
+		filter(eda>5 & niv_ins!=5)	%>%
+			mutate(niv_ins=as_label(niv_ins))	 %>% 	ggplot(aes(x=niv_ins))	
+g_esc18+geom_bar(	aes(fill	= niv_ins)) +	 facet_wrap(~ as_label(sex))
+```
+
+Como es posible identificar no existe una variación importante en el porcentaje de hombres y mujeres en cada nivel de instrucción académica, lo cual indica que la preparación a nivel escolar es similar, e incluso el porcentaje de mujeres que han concluido grados académicos es mayor. La capacitación recibida por la educación formal tendría que poner en igualdad de condiciones a las personas, sin importar su sexo, para acceder a un empleo y recibir un salario digno.
+
+Una característica relevante en el análisis con perspectiva de genero son las horas que son destinadas al trabajo en el hogar no remunerado, la importancia reside en que históricamente se ha relegado estas actividades a la mujer , aun teniendo un empleo fuera del hogar, lo cual se convierte en un discriminante hacía la mujer ya que no se encontraría en una igualdad de condiciones frente a los hombres para lograr acceder al mercado laboral y desarrollarse plenamente.Es importante destacar que en la siguiente gráfica se considera a la población ocupada.
+
+**G5. Horas destinadas al trabajo en el hogar no remunerado**
+
+```{r}
+seleccion_ENOE_13 %>%filter(eda >= 0L & eda <= 75L) %>%ggplot() +aes(x = domestico) + geom_histogram(bins = 30L, fill = "#112446") +labs(x = "Horas", y = "Población", title = "Proporción horas que son dedicadas al trabajo en el hogar, 2013") + theme_minimal() +theme(plot.title = element_text(face = "bold.italic", hjust = 0.5)) + facet_wrap(~as_label(sex))
+
+```
+
+```{r}
+seleccion_ENOE_18 %>%filter(eda >= 0L & eda <= 75L) %>%ggplot() +aes(x = domestico) + geom_histogram(bins = 30L, fill = "#112446") +labs(x = "Horas", y = "Población", title = "Proporción horas que son dedicadas al trabajo en el hogar, 2018") + theme_minimal() +theme(plot.title = element_text(face = "bold.italic", hjust = 0.5)) + facet_wrap(~as_label(sex))
+```
+
+En ambos años es posible identificar la gran cantidad de horas que dedican las mujeres al trabajo en el hogar, llegando a dedicar incluso mas horas que una jornada laboral de 8 horas, es importante volver a señalar que es trabajo que no recibe ningun tipo de pago ni prestación.
+
+
+**Mercado laboral** 
 
 Podemos revisar esta misma proporción entre hombres y mujeres con las
 variables 'clase1'y 'clase2', las cuales nos arrojaran
@@ -439,10 +522,14 @@ información acerca de las características de ocupación de la población .
 Observemos la proporción de Población Económicamente Activa (PEA) y la
 Población Económicamente No Activa (PENA).
 
-```{r echo=TRUE, message=TRUE, warning=TRUE}
-etiq <- c("NA","PEA","PNEA")
-seleccion_ENOE_13$clase1<-set_labels(seleccion_ENOE_13$clase1,labels=etiq)
+```{r}
+etiq<-c("NA",	"PEA",	"PNEA")
+seleccion_ENOE_13$clase1 <-set_labels(seleccion_ENOE_13$clase1,labels=etiq)
+seleccion_ENOE_18$clase1 <-set_labels(seleccion_ENOE_18$clase1,labels=etiq)
+
 ```
+
+
 
 **T3. Proporción de **
 
@@ -491,6 +578,10 @@ proporción con respecto a las mujeres no difiere en grandes cantidades.
 Situación contraria entre la población ocupada, en donde el número de
 mujeres ocupadas es menor considerablemente con respecto de la población
 masculina.
+
+con esta información es posible encontrar las las tasas de participación economica.
+
+
 
 Ahora utilizaremos las variables 'rama' y 'scian' para lograr
 identificar los sectores en los que se emplean en mayor proporción las
@@ -641,20 +732,6 @@ kbl(seleccion_ENOE_13 %>% filter(eda>14 & eda<=75) %>% mutate_at(vars(sex, clase
 
 ```
 
-**Tasas de participación 2018**
-
-```{r}
-kbl(seleccion_ENOE_18 %>% filter(eda>14 & eda<=75) %>% mutate_at(vars(sex, clase1), as_label) %>% tabyl(clase1, sex, show_missing_levels = F) %>% adorn_percentages("row") %>% adorn_pct_formatting()) %>% kable_classic()
-
-
-
-```
-
-```{r}
-kbl(seleccion_ENOE_18 %>% filter(eda>14 & eda<=75) %>% mutate_at(vars(sex, clase1), as_label) %>% tabyl(edaq,clase1, sex, show_missing_levels = F) %>% adorn_percentages("row") %>% adorn_pct_formatting()) %>% kable_classic()%>% add_header_above(c("Hombre","Mujer"))
-
-
-```
 
 ```{r}
 tasas13<- seleccion_ENOE_13 %>% filter(eda>14 & eda<=75) %>% mutate_at(vars(sex, clase1), as_label) %>% tabyl(edaq,clase1, sex, show_missing_levels = F) %>% adorn_percentages("row") %>% adorn_pct_formatting()
@@ -675,6 +752,56 @@ g_tasa0<-ggtasas %>% ggplot(aes(x=edaq, y=PEA, group = sex))
 g_tasa0+geom_line(aes(color=sex)) + ggtitle("Tasas de participació econmica por grupo de edad, trimestre I, 2013")
 
 ```
+
+
+
+
+
+
+**Tasas de participación 2018**
+
+```{r}
+kbl(seleccion_ENOE_18 %>% filter(eda>14 & eda<=75) %>% mutate_at(vars(sex, clase1), as_label) %>% tabyl(clase1, sex, show_missing_levels = F) %>% adorn_percentages("row") %>% adorn_pct_formatting()) %>% kable_classic()
+
+
+
+```
+
+
+
+```{r}
+kbl(seleccion_ENOE_18 %>% filter(eda>14 & eda<=75) %>% mutate_at(vars(sex, clase1), as_label) %>% tabyl(edaq,clase1, sex, show_missing_levels = F) %>% adorn_percentages("row") %>% adorn_pct_formatting()) %>% kable_classic()%>% add_header_above(c("Hombre","Mujer"))
+
+```
+
+
+
+```{r}
+tasas18<- seleccion_ENOE_18 %>% filter(eda>14 & eda<=75) %>% mutate_at(vars(sex, clase1), as_label) %>% tabyl(edaq,clase1, sex, show_missing_levels = F) %>% adorn_percentages("row") %>% adorn_pct_formatting()
+```
+
+
+```{r}
+tasas18$Hombre <- tasas18$Hombre %>% mutate(sex="Hombre")
+tasas18$Mujer <- tasas18$Mujer %>% mutate(sex="Mujer")
+
+```
+
+```{r}
+ggtasas<-rbind(tasas13$Hombre, tasas18$Mujer)
+g_tasa0<-ggtasas %>% ggplot(aes(x=edaq, y=PEA, group = sex))
+```
+
+```{r}
+g_tasa0+geom_line(aes(color=sex)) + ggtitle("Tasas de participació econmica por grupo de edad, trimestre I, 2018")
+
+```
+
+**Analisis salarial**
+
+
+
+
 
 # Consideraciones finales
 
