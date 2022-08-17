@@ -1,342 +1,64 @@
 ---
-title: "AEG"
-author: "Montserrat Romero"
+title: “Brecha salarial de género”
+author: "Montserrat Romero y Dr. Prudencio Vázquez Jaime Alberto"
 date: "9/5/2022"
-output: 
- html_document:
-   code_folding: hide
-editor_options: 
-  markdown: 
-    wrap: 72
-    code_folding: show
 ---
+#Resumen
 
-# Introducción
+En el presente avance de investigación se lleva a cabo un análisis exploratorio de datos con perspectiva de género de variables relacionadas con el mercado laboral, haciendo énfasis en sus elementos espaciales. El objetivo de esta exploración es identificar la existencia de la brecha salarial de género y su comportamiento distinguiendo entre sectores económicos y entidad federativa, a través de la metodología propuesta por (Escoto,2021). Se utiliza la Encuesta Nacional de Ocupación y Empleo (ENOE) que elabora el Instituto Nacional de Estadística y Geografía (INEGI) del primer trimestre de 2013 y 2018. De manera provisional, se postula como hipótesis de este trabajo que la brecha salarial entre hombres y mujeres no sólo existe y se ha incrementado, sino que ésta será mayor en los sectores que exhiban mayor especialización relativa; además, dicha brecha se habría incrementado entre 2013 y 2018. Así, este avance de investigación es de carácter esencialmente descriptivo y permitirá plantear las características básicas de la ocupación a nivel entidad federativa desde una perspectiva de género.
+Como resultados preliminares se encontró que, a través de un sencillo ejercicio de inferencia estadística, hay evidencia de que, para los años analizados, la brecha salarial entre hombres y mujeres efectivamente existe y también ha crecido, tal y como hemos planteado preliminarmente en la hipótesis de este trabajo. 
 
-Sobre el mercado laboral mexicano existen estudios con diversos
-enfoques. Algunos se centran en la informalidad, en uno de los rasgos
-característicos de las economías en desarrollo (**Bargain y Kwenda,
-2010**). Otros, han indagado las condiciones laborales en el sector
-servicios y el proceso de terciarización que ha conducido a que en este
-sector se ocupe la mayor parte de la fuerza laboral en nuestro país
-(**Ariza y De Oliveira, 2013**). Incluso hay algunos que han indagado
-sobre los efectos que ha tenido el crimen organizado y la violencia
-sobre las horas trabajadas (**BenYishay y Pearlman, 2013**).
+#Introducción
 
-Hasta hace un par de décadas, en los análisis sobre el mercado de
-trabajo usualmente no se hacía distinción en términos de la
-participación de hombres y mujeres. Esta situación puede ocultar
-fenómenos asociados con la particularidad de la condición femenina. Son
-justamente los estudios desde la perspectiva de genero donde se busca
-analizar las particularidades que inciden en la participación de la
-mujer en el mercado de trabajo, así como las diferencias específicas de
-dicha participación en comparación con los varones.
+Sobre el mercado laboral mexicano existen estudios con diversos enfoques. Algunos se centran en la informalidad, en uno de los rasgos característicos de las economías en desarrollo (Bargain,2021). Otros, han indagado las condiciones laborales en el sector servicios y el proceso de terciarización que ha conducido a que en este sector se ocupe la mayor parte de la fuerza laboral en nuestro país (Ariza,2014) Incluso hay algunos que han indagado sobre los efectos que ha tenido el crimen organizado y la violencia sobre las horas trabajadas (BenYishay y Pearlman, 2013).
+Hasta hace un par de décadas, en los análisis sobre el mercado de trabajo usualmente no se hacía distinción en términos de la participación de hombres y mujeres. Esta situación puede ocultar fenómenos asociados con la particularidad de la condición femenina. Son justamente los estudios desde la perspectiva de género donde se busca analizar las particularidades que inciden en la participación de la mujer en el mercado de trabajo, así como las diferencias específicas de dicha participación en comparación con los varones.
+Un elemento de particular interés es el relacionado con la denominada brecha salarial de género. Para nuestro país, múltiples estudios se han hecho en torno a este tópico. Algunos sostienen que, si bien ha existido un diferencial salarial entre hombres y mujeres, esta diferencia se explica más bien por los logros laborales que por cuestiones directamente vinculadas al género (Brown,1999). Otros estudios hacen explícito incluso la existencia de discriminación salarial por género, misma que existe con independencia del grado de estudios, si bien es menor entre la población con estudios superiores (Cacciamali y Tatei, 2013). Desde una perspectiva más amplia, (Gámez-Arroyo y Rosas-Rojas,2015) refieren la existencia de múltiples determinantes de los diferenciales salariales, entre los que, además del sexo y la educación formal, se cuenta la edad, el tamaño de la empresa, el sector de ocupación y la pertenencia a sindicados; ellos no encuentran que el sexo sea un elemento determinante en los diferenciales, pero sí hallan cierto componente regional dado por la ciudad. Estos elementos ponen de manifiesto no sólo que aún hay elementos qué indagar pues las investigaciones no son plenamente concluyentes; además, revelan que es imprescindible incorporar los componentes de distinción por regiones, debido a que las características espaciales de nuestro país son diversas. Solo los anexos que considere que mejoran el acercamiento del lector a su obra, podrán ser incluidos después de dicha lista de referencias.
+En el presente avance de investigación se lleva a cabo un análisis exploratorio de datos con perspectiva de género de variables relacionadas con el mercado laboral, haciendo énfasis en sus elementos espaciales. El objetivo de esta exploración es identificar la existencia de la brecha salarial de género y su comportamiento distinguiendo entre sectores económicos y entidad federativa, a través de la metodología propuesta por (Escoto,2021). Se utiliza la Encuesta Nacional de Ocupación y Empleo (ENOE) que elabora el Instituto Nacional de Estadística y Geografía (INEGI) del primer trimestre de 2013 y 2018. De manera provisional, se postula como hipótesis de este trabajo que la brecha salarial entre hombres y mujeres no sólo existe y se ha incrementado, sino que ésta será mayor en los sectores que exhiban mayor especialización relativa; además, dicha brecha se habría incrementado entre 2013 y 2018. Así, este avance de investigación es de carácter esencialmente descriptivo y permitirá plantear las características básicas de la ocupación a nivel entidad federativa desde una perspectiva de género.
+Por otro lado, uno de los aspectos innovadores de este proyecto es que busca que ser completamente reproducible, lo que significa que cualquier persona que consulte nuestro documento, pueda por su propia cuenta obtener exactamente los mismos resultados utilizando la base de datos proporcionada y el código que acompaña este reporte, para ello se sugiere ingresar al siguiente repositorio en GitHub en donde se encontraran todos los documentos necesarios para replicar el presente trabajo. Lo que resta de este documento se divide en 3 secciones; en la primera, se lleva a cabo una revisión documental sobre los mercados de trabajo desde la perspectiva de género tratando de identificar la posición del debate en torno a la brecha salarial; en la siguiente, se lleva a cabo la exploración de la información de la ENOE a través de sus datos muestrales donde se indagará la presencia de la brecha salarial de género y se comentarán los resultados de las herramientas de exploración, finalmente, en la última sección, llevamos a cabo un recuento de los principales hallazgos, lo que permitirá delimitar con mayor precisión la hipótesis de investigación para los pasos futuros.
 
-Un elemento de particular interés es el relacionado con la denominada
-brecha salarial de género. Para nuestro país, múltiples estudios se han
-hecho en torno a este tópico. Algunos sostienen que si bien ha existido
-un diferencial salarial entre hombres y mujeres, esta diferencia se
-explica más bien por los logros laborales que por cuestiones
-directamente vinculadas al género (Brown1999). Otros estudios hacen
-explícito incluso la existencia de discriminación salarial por genero,
-misma que existe con independencia del grado de estudios, si bien es
-menor entre la población con estudios superiores (Cacciamali y Tatei,
-2012). Desde una perspectiva más amplia, Gámez-Arroyo y Rosas-Rojas
-(2015) refieren la existencia de múltiples determinantes de los
-diferenciales salariales, entre los que, además del sexo y la educación
-formal, se cuenta la edad, el tamaño de la empresa, el sector de
-ocupación y la pertenencia a sindicados; ellos no encuentran que el sexo
-sea un elemento determinante en los diferenciales, pero sí hallan cierto
-componente regional dado por la ciudad. Estos elementos ponen de
-manifiesto no sólo que aún hay elementos qué indagar pues las
-investigaciones no son plenamente concluyentes; además, revelan que es
-imprescindible incorporar los componentes de distinción por regiones,
-debido a que las características espaciales de nuestro país son
-diversas.
+#1. Diferencial salarial de género: algunos elementos teóricos
 
-En el presente avance de investigación se lleva a cabo un análisis
-exploratorio de datos con perspectiva de genero de variables
-relacionadas con el mercado laboral, haciendo énfasis en sus elementos
-espaciales. El objetivo de esta exploración es identificar la existencia
-de la brecha salarial de género y su comportamiento distinguiendo entre
-sectores económicos y entidad federativa, a través de la metodología
-propuesta por [@Escoto2021]. Se utiliza la Encuesta Nacional de
-Ocupación y Empleo (ENOE) que elabora el Instituto Nacional de
-Estadística y Geografía (INEGI) del primer trimestre de 2013 y 2018. De
-manera provisional, se postula como hipótesis de este trabajo que la
-brecha salarial entre hombres y mujeres no sólo existe y se ha
-incrementado, sino que ésta será mayor en los sectores que exhiban mayor
-especialización relativa; además, dicha brecha se habría incrementado
-entre 2013 y 2018. Así, este avance de investigación es de carácter
-esencialmente descriptivo y permitirá plantear las características
-básicas de la ocupación a nivel entidad federativa desde una perspectiva
-de género.
+Analizar el mercado laboral desde una perspectiva de género nos permite evidenciar una serie de fenómenos que de otro modo pasarían inadvertidos y revela la problemática específica que viven las mujeres. En nuestro estudio, buscamos centrar la atención en la brecha salarial de género que
+"se define como la diferencia entre la mediana de los ingresos de los hombres y de las mujeres en relación con la mediana de los ingresos de los hombres".  (OCDE,2021: s/p)
+Entre los elementos teóricos que pueden contribuir a explicar la brecha salarial de género se cuenta la teoría del capital humano. En ella se plantea la importancia en la inversión en educación, formación y habilidades ya que éstas se relacionan positivamente con el salario a través de la productividad (Schultz,1960; Becker,1964). Diversos estudios han tratado de explicar la brecha salarial desde esta perspectiva, como los trabajos de (Flores,2004) en el cual se encontró que la productividad marginal de las mujeres en comparación con la de los hombres explica solamente el 15% de la diferencia salarial, el 85% restante se debe a otras causas que no están ligadas al nivel de productividad. Mientras que el trabajo de (ANKER,1997) analiza tres enfoques (capital humano, enfoque de parcelación y una aproximación desde una corriente del feminismo) que pueden dar explicación a la segregación y desigualdades entre hombres y mujeres que se dan en el mercado de trabajo. Como se mencionó, el enfoque de capital humano explicaría que las mujeres están en puestos de trabajo menos calificados debido a que tienen menor formación y capacitación académica en comparación de los hombres y, por tanto, reciben salarios menores, en tanto, las teorías feministas explican por qué se presentan menos oportunidades educativas a las mujeres.
+Lo anterior lleva a cuestionar los postulados neoclásicos en los cuales se explica que la productividad de los factores determina su retribución: si no es la productividad, ¿cuáles son las razones por las que el salario de las mujeres es menor al de los hombres?
+En economía, se han ido incorporando en los últimos años enfoques explicativos sobre la dinámica de los procesos económicos que explícitamente discuten la condición femenina en el sistema económico y, particularmente, en el mercado de trabajo. Así, desde la economía feminista se identifican las diferencias sustanciales que existen entre la mujer y el hombre en el ámbito público, es decir la incorporación de la mujer en el espacio laboral trae consigo la búsqueda de la equidad en los espacios de trabajo. Dentro de la economía feminista surge la identificación de las diferencias salariales entre mujeres y hombres, así como el denominado "techo de cristal", el cual se refiere a las limitantes u obstáculos que se presentan dentro de las organizaciones dificultando o impidiendo que las mujeres ocupen puestos de alta dirección y avancen en el escalafón laboral (Mujeres,2020).
+De la misma forma, dentro de este enfoque se identifica la segregación ocupacional por sexo, la cual está ligada a las construcciones sociales en cuanto a lo que implica ser mujer u hombre, pues marca cuáles deben los roles en la sociedad que deberían ocupar hombres y mujeres y, por lo tanto, qué trabajos son más adecuados según el género construido alrededor, ya sea femenino o masculino (Kabeer,1998). Las causas que llevan a la disparidad entre los ingresos que reciben mujeres y hombres están ligadas a estructuras de pensamiento que han definido la forma en la que se reproduce la sociedad, siendo estas patriarcales, jerárquicas y opresivas.
+En México, hay múltiples factores que están relacionados con la desigualdad salarial entre mujeres y hombres; el Instituto Nacional de las Mujeres (INMUJERES) presentó en el año 2016 un informe en el cual analiza las brechas de género y el ingreso según el tamaño de la localidad, la escolaridad, la actividad económica desempeñada y las horas laboradas. Se encontró que para las localidades de 100,000 o más habitantes la brecha se reducía y los ingresos aumentaban, situación muy diferente a aquellas localidades con menos de 2,500 habitantes en donde los ingresos son menores y la brecha salarial es mayor. En cuanto a la escolaridad se presenta un comportamiento contrario a lo que se esperaría desde la perspectiva de la teoría del capital humano, ya que si bien es cierto que entre mayor sea el grado de estudios, menor es la brecha salarial de género, ésta no disminuye de forma notable con la formación profesional: la diferencia salarial entre hombres y mujeres que son profesionistas ascendió a 35.1%, en tanto que la de las personas que no concluyeron la preparatoria fue de 37.8%, en ambos casos, en favor de los hombres. Más aún, la menor brecha salarial se presenta entre las personas que tienen una carrera técnica o normal (25.4%) con un diferencial negativo de $2,200.00 de percepción salarial de las mujeres. Respecto a la actividad económica, la brecha es mayor en las actividades primarias llegando casi a 70%, es decir, las mujeres perciben un ingreso menor que los hombres hasta de casi tres cuartas partes en actividades relacionadas con la ganadería, agricultura, caza y pesca. En contraste, las actividades administrativas son las que presentan una menor brecha (10.5%), es decir, los hombres ganan $700.00 más que las mujeres (INMUJERES,2016).
 
-Por otro lado, uno de los aspectos innovadores de este proyecto es que
-busca que ser completamente reproducible, lo que significa que cualquier
-persona que consulte nuestro documento, pueda por su propia cuenta
-obtener exactamente los mismos resultados utilizando la base de datos
-proporcionada y el código que acompaña este reporte. Lo que resta de
-este documento se divide en 3 secciones; en la primera, se lleva a cabo
-una revisión documental sobre los mercados de trabajo desde la
-perspectiva de género tratando de identificar la posición del debate en
-torno a la brecha salarial; en la siguiente, se lleva a cabo la
-exploración de la información de la ENOE a través de sus datos
-muestrales donde se indagará la presencia de la brecha salarial de
-género y se comentarán los resultados de las herramientas de
-exploración, finalmente, en la última sección, llevamos a cabo un
-recuento de los principales hallazgos, lo que permitirá delimitar con
-mayor precisión la hipótesis de investigación para los pasos futuros.
+#2. La brecha salarial de género en México: estudios recientes
 
-# 1. Diferencial salarial de género: algunos elementos teóricos
+Sin duda, México es un país desigual en múltiples dimensiones, de lo que da cuenta el índice de Gini cuyo nivel es el más alto para nuestro país entre aquellos que integran la OCDE. El fenómeno de la desigualdad se exacerba cuando las crisis económicas irrumpen y pone de manifiesto la mayor vulnerabilidad de algunos grupos sociales, como las mujeres (Horbath y Gracia, 2014). Más aún, esta desigualdad se evidencia también en lo tocante a la brecha salarial de género que en 2014 alcanzó un nivel de 26% (Ayala-Gaytán y Capa Cantú, 2019).
+Entre la última década del siglo XX y la primera del siglo XXI, la participación de las mujeres casadas en la generación del ingreso doméstico aumentó de 13% a 23% y
 
-Analizar el mercado laboral desde una perspectiva de género nos permite
-evidenciar una serie de fenómenos que de otro modo pasarían inadvertidos
-y revela la problemática específica que viven las mujeres. En nuestro
-estudio, buscamos centrar la atención en la brecha salarial de género
-que, según la [@OCDE2021] "se define como la diferencia entre la mediana
-de los ingresos de los hombres y de las mujeres en relación con la
-mediana de los ingresos de los hombres".
+ "el aumento del empleo femenino ha contribuido a una disminución de la desigualdad de ingresos familiares a través de una mayor participación laboral de mujeres casadas en familias pobres" (Campos-Vázquez, Hincapié, Rojas-Valdés, 2012:66);
+ Sin embargo, esto podría ser un signo de un deterioro de las condiciones de vida generales de las familias de menores ingresos en la medida en que más miembros de la unidad familiar deben sumarse al mercado laboral para mantener su nivel de ingresos.
+Dentro de los trabajos que han tratado los diferenciales salariales entre hombres y mujeres en México se encuentra el (Alarcón y McKinley ,1994) quienes apuntan que, en efecto, la brecha salarial existe y que ésta se ha incrementado entre los años de la década de los ochenta del siglo pasado y los primeros de la de los noventa como resultado del proceso de cambio estructural asociado a la apertura económica. En sintonía con el estudio anterior, (Brown,1999) reconoce la existencia de esta brecha salarial, pero dicha diferencia es más bien atribuida a los denominados logros laborales y no al género, al menos durante el citado periodo.
+(Mendoza-González et al.,2017) realizan un análisis a largo plazo, entre 1987 y 2015, de los diferenciales salariales del ingreso para hombres y mujeres a través del método Oaxaca-Blinder. Ellos analizan factores asociados al capital humano a través de datos de la ENEU y la ENOE. Como resultados se encuentra que el patrón de comportamiento de los diferenciales del ingreso laboral por hora y sexo no presentan una tendencia regular, sino que varían a lo largo del periodo de estudio. Destaca que, si bien dicha brecha es irregular, ha estado presente durante los años considerados. Los determinantes del capital humano empleados como factores del diferencial salarial tuvieron también comportamientos diferentes, mostrando cierta relevancia dependiendo del periodo y no presentando una tendencia en su efecto al ingreso por hora entre hombres y mujeres.
+Otros estudios hacen explícito incluso la existencia de discriminación salarial por género, misma que existe con independencia del grado de estudios, si bien es menor entre la población con estudios superiores (Cacciamali y Tatei, 2012). Desde una perspectiva más amplia, (Gámez-Arroyo y Rosas-Rojas ,2015) refieren la existencia de múltiples determinantes de los diferenciales salariales, entre los que, además del sexo y la educación formal, se cuenta la edad, el tamaño de la empresa, el sector de ocupación y la pertenencia a sindicados; ellos no encuentran que el sexo sea un elemento determinante en los diferenciales, pero sí hallan cierto componente regional dado por la ciudad.
+Para el caso de México, es importante tener en consideración que la brecha salarial presenta patrones espaciales diferenciados porque la estructura productiva del país es heterogénea, por lo que las características geográficas, sociales y culturales del territorio juegan un papel relevante y condicionan dichas diferencias. En este sentido, la distinción de los factores sectoriales y territoriales que inciden en la brecha salarial de género se vuelven un elemento clave para comprender la dinámica de este problema y avanzar hacia medidas de política y organización social tendientes a su eliminación.
+Entre los trabajos que asumen un enfoque espacial en la búsqueda de los determinantes de la brecha salarial de género se encuentra el de (Rodríguez-Pérez y Limas-Hernández,2017). En su investigación analizan la diferenciación salarial entre hombres y mujeres profesionistas clasificándolos en varios campos de ocupación en 2015. Esta investigación también considera la influencia de la región en el salario de las personas, utilizando el grado de apertura comercial como criterio para clasificar las regiones. La metodología empleada es de nueva cuenta la técnica Oaxaca-Blinder con corrección por sesgo de selección Heckman y el método DiNardo, Fortin, Lemieux para realizar el análisis. Se encontró que las mujeres han incrementado su participación en el mercado laboral y han tenido mayor acceso a estudios superiores, sin embargo, el salario que perciben es menor al de los hombres. Se identifica también la influencia de la región y patrones relacionados con el género determinan el nivel salarial de mujeres y hombres.
+Por su parte, (Andrés-Rosales et al.,2019) llevan a cabo un estudio entre las zonas metropolitanas de México entre 2005 y 2018 en busca de la brecha salarial de género, haciendo énfasis en el sector servicios. En su estudio, evidencian relevantes aspectos espaciales en la medida en que las regiones menos favorecidas son también aquellas en las que el diferencial salarial no sólo es mayor, sino que también ha crecido.
+Otros trabajos han explorado los efectos del crecimiento de los componentes del PIB por el lado de la demanda en la brecha salarial de género (Ayala-Gaytán y Capa Cantú, 2019) y se encuentra que el consumo privado incide positivamente en los ingresos laborales, afecta sólo marginalmente el ingreso laboral de las mujeres, por lo que tiene poco efecto en la disminución de la brecha salarial.
+ "La creación de ingresos laborales que produce el incremento de la inversión, aunque importante, aumenta notoriamente las brechas de ingresos a favor de los hombres." (Ayala-Gaytán y Capa Cantú, 2019:419).
 
-Entre los elementos teóricos que pueden contribuir a explicar la brecha
-salarial de género se cuenta la teoría del capital humano. En ella se
-plantea la importancia en la inversión en educación, formación y
-habilidades ya que éstas se relacionan positivamente con el salario a
-través de la productividad ([@Schultz1960; @Becker1964]). Diversos
-estudios han tratado de explicar la brecha salarial desde esta
-perspectiva, como los trabajos de [@Flores2004] en el cual se encontró
-que la productividad marginal de las mujeres en comparación con la de
-los hombres explica solamente el 15% de la diferencia salarial, el 85%
-restante se debe a otras causas que no están ligadas al nivel de
-productividad. Mientras que el trabajo de [@ANKER1997] analiza tres
-enfoques (capital humano, enfoque de parcelación y una aproximación
-desde una corriente del feminismo) que pueden dar explicación a la
-segregación y desigualdades entre hombres y mujeres que se dan en el
-mercado de trabajo. Como se mencionó, el enfoque de capital humano,
-explicaría que las mujeres están en puestos de trabajo menos calificados
-debido a que tienen menor formación y capacitación académica en
-comparación de los hombres y, por tanto, reciben salarios menores, en
-tanto, las teorías feministas explican por qué se presentan menos
-oportunidades educativas a las mujeres.
 
-Lo anterior lleva a cuestionar los postulados neoclásicos en los cuales
-se explica que la productividad de los factores determina su
-retribución: si no es la productividad, ¿cuáles son las razones por las
-que el salario de las mujeres es menor al de los hombres?
+#3. Metodología
 
-En economía, se han ido incorporando en los últimos años enfoques
-explicativos sobre la dinámica de los procesos económicos que
-explícitamente discuten la condición femenina en el sistema económico y,
-particularmente, en el mercado de trabajo. Así, desde la economía
-feminista se identifican las diferencias sustanciales que existen entre
-la mujer y el hombre en el ámbito público, es decir la incorporación de
-la mujer en el espacio laboral trae consigo la búsqueda de la equidad en
-los espacios de trabajo. Dentro de la economía feminista surge la
-identificación de las diferencias salariales entre mujeres y hombres,
-así como el denominado "techo de cristal", el cual se refiere a las
-limitantes u obstáculos que se presentan dentro de las organizaciones
-dificultando o impidiendo que las mujeres ocupen puestos de alta
-dirección y avancen en el ecalafón laboral [@Mujeres2019].
+Para los fines del avance de investigación presentado, se realizará un análisis exploratorio de datos, un enfoque basado en el uso de herramientas gráficas y el cálculo de estadísticos descriptivos que tiene por objeto conocer la estructura subyacente del conjunto de información utilizado, así como plantear y resolver preguntas con el objeto de delimitar con precisión un modelo explicativo parsimonioso (Croarkin, 2014). La exploración es llevada a cabo mediante el software libre R (R Core Team, 2022) y las populares paqueterías para el análisis de información y ciencia de datos Tidyverse (Wickham et al., 2019),
+Se sigue de cerca en esta sección, el trabajo de (Escoto,2021) en el cual presentan múltiples herramientas para el tratamiento y visualización de información sobre el mercado laboral en México con base en la ENOE. La estructura de esta sección seguirá la siguiente lógica: Se dividirá en tres secciones, la primera de ella presentará brevemente algunas características demográficas, como la edad y nivel de instrucción académica de la población muestra con la cual se trabajará. Se utilizarán tablas de frecuencia y gráficos
+ "Una característica de la distribución es que proporciona la totalidad de nuestro universo. Por ello, una tabla de frecuencias debe incluir todos los valores que se obtienen en la variable.” (Escoto,2021:62). 
 
-De la misma forma, dentro de este enfoque se identifica la segregación
-ocupacional por sexo, la cual esta ligada a las construcciones sociales
-en cuanto a lo que implica ser mujer u hombre, pues marca cuáles deben
-los roles en la sociedad que deberían ocupar hombres y mujeres y, por lo
-tanto, qué trabajos son mas adecuados según el género construido
-alrededor, ya sea femenino o masculino [@Kabeer1998]. Las causas que
-llevan a la disparidad entre los ingresos que reciben mujeres y hombres
-están ligadas a estructuras de pensamiento que han definido la forma en
-la que se reproduce la sociedad, siendo estas patriarcales, jerárquicas
-y opresivas.
+En la segunda parte nos adentraremos en las características laborales, se trabajará con las variables clase1 y 2 ya que recogen la información acerca de la clasificación laboral, pudiendo acceder a las proporciones de población ocupada a través de ellas. Una vez más se ocuparán gráficas y las tablas de frecuencias para obtener tasas de participación económica a diferentes niveles, incluyendo la participación por entidad y sector de la actividad económica. La última sección se destinará a el análisis de los ingresos mensuales, es importante mencionar que cada una de las secciones tendrá relación, la interpretación de los resultados que se obtenga en cada sección estará vinculado con la siguiente. En este apartado de trabajar con inferencia estadística, específicamente con una prueba de hipótesis 
+"El objetivo de ellas es valorar la evidencia proporcionada por los datos a favor de alguna hipótesis sobre la población. Escoto (2021:142).
+Los datos corresponden a la Encuesta Nacional de Ocupación y Empleo (ENOE) que elabora trimestralmente el INEGI. Se utiliza la información del primer trimestre 2013 y 2018; la selección de estos años obedece a que, uno de los pasos siguientes en la investigación corresponde al análisis de la estructura económica con base en los censos económicos de dichos años.
+En lo que sigue, se muestran un conjunto de gráficos y tablas que tienen por objeto indagar sobre las características sociodemográficas y económicas de la población ocupada a nivel entidad federativa, distinguiendo entre hombres y mujeres con el objeto de identificar: i) la magnitud de la brecha salarial por sector y entidad, además de mostrar el comportamiento de algunas variables presumiblemente vinculadas a ella.
+Además, como se dijo en la introducción, una de las características de este trabajo es que busca ser completamente reproducirle, es decir, que el lector pueda replicar uno a uno los resultados obtenidos en este trabajo utilizando la información original y el código que lo acompaña. Este esfuerzo se enmarca en la lógica de la denominada ciencia abierta (Sandve, Nekrutenko, Taylor, & Hovig, 2013; Alsheikh-Ali, Qureshi, Al-Mallah, & Ioannidis, 2011).
 
-En México, hay multiples factores que están relacionados con la
-desigualdad salarial entre mujeres y hombres; el Instituto Nacional de
-las Mujeres (INMUJERES) presentó en el año 2016 un informe en el cual
-analiza las brechas de genero y el ingreso según el tamaño de la
-localidad, la escolaridad, la actividad económica desempeñada y las
-horas laboradas. Se encontró que para las localidades de 100,000 o más
-habitantes la brecha se reducía y los ingresos aumentaban, situación muy
-diferente a aquellas localidades con menos de 2,500 habitantes en donde
-los ingresos son menores y la brecha salarial es mayor. En cuanto a la
-escolaridad se presenta un comportamiento contrario a lo que se
-esperaría desde la perspectiva de la teoría del capital humano, ya que
-si bien es cierto que entre mayor sea el grado de estudios, menor es la
-brecha salarial de género, ésta no disminuye de forma notable con la
-formación profesional: la diferencia salarial entre hombres y mujeres
-que son profesionistas ascendió a 35.1%, en tanto que la de las personas
-que no concluyeron la preparatoria fue de 37.8%, en ambos casos, en
-favor de los hombres. Más aún, la menor brecha salarial se presenta
-entre las personas que tienen una carrera técnica o normal (25.4%) con
-un diferencial negativo de \$2,200.00 de percepción salarial de las
-mujeres.
-
-Respecto a la actividad económica , la brecha es mayor en las
-actividades primarias llegando casi a 70%, es decir, las mujeres
-perciben un ingreso menor que los hombres hasta de casi tres cuartas
-partes en actividades relacionadas con la ganadería, agricultura, caza y
-pesca. En contraste, las actividades administrativas son las que
-presentan una menor brecha (10.5%), es decir, los hombres ganan \$700.00
-más que las mujeres [@INMUJERES2016].
-
-# 2. La brecha salarial de género en México: estudios recientes
-
-Sin duda, México es un país desigual en múltiples dimensiones, de lo que
-da cuenta el índice de Gini cuyo nivel es el más alto para nuestro país
-entre aquellos que integran la OCDE. El fenómeno de la desigualdad se
-exacerba cuando las crisis económicas irrumpen y pone de manifiesto la
-mayor vulnerabilidad de algunos grupos sociales, como las mujeres
-(**Horbath y Gracia, 2014**). Más aún, esta desigualdad se evidencia
-también en lo tocante a la brecha salarial de género que en 2014 alcanzó
-un nivel de 26% **(Ayala-Gaytán y Capa Cantú, 2019)**.
-
-Si bien entre la última década del siglo XX y la primera del siglo XXI,
-la participación de las mujeres casadas en la generación del ingreso
-doméstico aumentó de 13% a 23% y "el aumento del empleo femenino ha
-contribuido a una disminución de la desigualdad de ingresos familiares a
-través de una mayor participación laboral de mujeres casadas en familias
-pobres" (**Campos-Vázquez, Hincapié, Rojas-Valdés, 2012**, p. 66) esto
-podría ser un signo de un deterioro de las condiciones de vida generales
-de las familias de menores ingresos en la medida en que más miembros de
-la unidad familiar deben sumarse al mercado laboral para mantener su
-nivel de ingresos.
-
-Dentro de los trabajos que han tratado los diferenciales salariales
-entre hombres y mujeres en México se encuentra el **Alarcón y McKinley
-(1994)** quienes apuntan que, en efecto, la brecha salarial existe y que
-ésta se ha incrementado como resultado del proceso de cambio estructural
-asociado a la apertura económica, durante los últimos años de la década
-de los ochenta del siglo pasado y los primeros de la de los noventa, en
-el contexto del proceso de apertura que antecedió la firma del tratato
-de libre comercio de América del Norte. En sintonía con el estudio
-anterior, **Brown 1999** reconoce la existencia de esta brecha salarial,
-pero dicha diferencia es más bien atribuida a los denominados logros
-laborales y no al género, al menos durante el citado periodo.
-
-**Mendoza-González, Cardero-García y Ortiz-García (2017)** realizan un
-análisis a largo plazo, entre 1987 y 2015, de los diferenciales
-salariales del ingreso para hombres y mujeres a través del método
-Oaxaca-Blinder. Ellos analizan factores asociados al capital humano a
-través de datos d la ENEU y la ENOE. Como resultados se encuentra que el
-patrón de comportamiento de los diferenciales del ingreso laboral por
-hora y sexo no presentan una tendencia regular, sino que varían a lo
-largo del periodo de estudio. Destaca que, si bien dicha brecha es
-irregular, ha estado presente durante los años considerados. Los
-determinantes del capital humano empleados como factores del diferencial
-salarial tuvieron también comportamientos diferentes, mostrando de igual
-manera, relevancia por épocas concretas y no presentando una tendencia
-en su efecto al ingreso por hora entre hombres y mujeres.
-
-Otros estudios hacen explícito incluso la existencia de discriminación
-salarial por genero, misma que existe con idependencia del grado de
-estudios, si bien es menor entre la población con estudios superiores
-(Cacciamali y Tatei, 2012). Desde una perspectiva más amplia,
-Gámez-Arroyo y Rosas-Rojas (2015) refieren la existencia de múltiples
-determinantes de los diferenciales salariales, entre los que, además del
-sexo y la educación formal, se cuenta la edad, el tamaño de la empresa,
-el sector de ocupación y la pertenencia a sindicados; ellos no
-encuentran que el sexo sea un elemento determinante en los
-diferenciales, pero sí hallan cierto componente regional dado por la
-ciudad.
-
-Para el caso de México, es importante tener en consideración que la
-brecha salarial presenta patrones espaciales diferenciados porque la
-estructura productiva del país es heterogénea, por lo que las
-características geográficas, sociales y culturales del territorio juegan
-un papel relevante y condicionan dichas diferencias. En este sentido, la
-distinción de los factores sectoriales y territoriales que inciden en la
-brecha salarial de género se vuelven un elemento clave para comprender
-la dinámica de este problema y avanzar hacia medidas de política y
-organización social tendientes a su eliminación.
-
-Entre los trabajos que asumen un enfoque espacial en la búsqueda de los
-determinantes de la brecha salarial de género se encuentra el de
-**Rodríguez-Pérez y Limas-Hernández (2017)**. En su investigación
-analizan la diferenciación salarial entre hombres y mujeres
-dividiendolos n los diferentes campos profesionales, es decir, se toma
-como muestra a la población con estudios superiores en 2015. Esta
-investigación también considera la influencia de la región en el salario
-de las personas profesionistas, utilizando el grado de apertura
-comercial como criterio para clasificar las regiones. La metodología
-empleada es de nueva cuenta la técnica Oaxaca-Blinder con corrección por
-sesgo de selección Heckman y el método DiNardo ,Fortin , Lemieux para
-realizar el análisis. Como principales resultados obtenidos se encontró
-que las mujeres han incrementado su participación en el mercado laboral
-y han tenido mayor acceso a estudios superiores, sin embargo, el salario
-que perciben es menor al de los hombres. Se identifica también la
-influencia de la región y patrones relacionados con el género determinan
-el nivel salarial de mujeres y hombres.
-
-Por su parte, **Andrés-Rosales, Czarnecki y Mendoza-González (2019)**
-llevan a cabo un estudio entre las zonas metropolitanas de México entre
-2005 y 2018 en busca de la brecha salarial de género, haciendo énfasis
-en en el sector servicios. En su estudio, evidencian relevantes aspectos
-espaciales en la medida en que las regiones menos favorecidas son
-también aquellas en las que el diferencial salarial no sólo es mayor,
-sino que también ha crecido.
-
-Otros trabajos han explorado los efectos del crecimiento de los
-componentes del PIB por el lado de la demanda en la brecha salarial de
-género **(Ayala-Gaytán y Capa Cantú, 2019)** y se encuentra que el
-consumo privado incide positivamente en los ingresos laborales, afecta
-sólo marginalmente el ingreso laboral de las mujeres, por lo que tiene
-poco efecto en la disminución de la brecha salarial, en tanto "La
-creación de ingresos laborales que produce el incremento de la
-inversión, aunque importante, aumenta notoriamente las brechas de
-ingresos a favor de los hombres" (p. 419)
-
-# 3. Metodología
-
-Se realizara un análisis exploratorio de datos, un enfoque basado en el
-uso de herramientas gráficas y el cálculo de estadísticos descriptivos
-que tiene por objeto conocer la estructura subyacente del conjunto de
-información utilizado, así como plantear y resolver preguntas con el
-objeto de delimitar con precisión un modelo explicativo parsimonioso
-[@Croarkin2014]. La exploración es lelvada a cabo mediante el software
-libre R [@RSoftware] y las populares paqueterías para el análisis de
-información y ciencia de datos `Tidyverse` [@tidyverse2019], y un
-paquete especializado en herramientas para el análsis regional,
-*Regional economic analysis toolbox*, `REAT` [@REAT2019].
-
-Se sigue de cerca en esta sección, el trabajo de [@Escoto2021] , en el
-cual presentan múltiples herramientas para el tratamiento y
-visualización de información sobre el mercado laboral en México con base
-en la ENOE. La estructura de esta sección del trabajo sera la siguiente:
-se comenzara con el análisis de algunas características demográficas de
-la muestra , posteriormente con tablas de frecuencias se revisaran
-variables relacionadas con el mercado laboral, se inclura la taza de
-participación económica. Por ultimo nos introduciremos en la medición y
-comparación de los ingresos entre hombres y mujeres. Se utilizaran de
-tablas de frecuencias, medidas centrales y de dispersión, así como
-gráficos para conocer la estructura sociodemografica y laboral.
-Posteriormente se utilizara la inferencia estadística para elaborar la
-ultima parte de la sección, relacionada con salarios.
-
-Los datos corresponden a la la Encuesta Nacional de Ocupación y Empleo
-(ENOE) que elabora trimestralmente el INEGI. Se utiliza la información
-del primer trimestre 2013 y 2018. En lo que sigue, se muestran un
-conjunto de gráficos y tablas que tienen por objeto indagar sobre las
-características sociodemográficas y económicas de la población ocupada a
-nivel entidad federativa, distinguiendo entre hombres y mujeres con el
-objeto de identificar: i) la magnitud de la brecha salarial por sector y
-entidad, además de mostrar el comportamiento de algunas variables
-presumiblemente vinculadas a ella.
-
-Una de las características de este trabajo es que busca ser
-completamente reproducible, es decir, que el lector pueda replicar uno a
-uno los resultados obtenidos en este trabajo utilizando la información
-original y el código que lo acompaña. Este esfuerzo se enmarca en la
-lógica de la denominada *ciencia abierta* [@OpenScience2011;
-@OpenScience2013].
-
-*Creo que no será necesario dejar este listado de variables;o bien, lo
-conveniente será consignarlo en una tabla.*
-
-Debido al interes del presente trabajo no se utilizara la ENOE completa,
-se realizara una selección de variables representativa slas cuales se
-enlistan a continuación:
+Debido al interes del presente trabajo no se utilizara la ENOE completa, se realizara una selección de variables representativa slas cuales se enlistan a continuación:
 
 |  ^*Variable*^  |                                  ^*Descripción*^                                   |                   ^*Tipo*^                    |
-|:----------------:|:----------------------------:|:-----------------------:|
+|:----------------:|:---------------------------:|:-----------------------:|
 |    ^*sex*^     |                           ^*Sexo (1)Hombre , (2)Mujer,*^                           |                 ^*"numeric"*^                 |
 |    ^*eda*^     |                                      ^*edad*^                                      |                 ^*"numeric"*^                 |
 |    ^*cd_a*^    |                            ^*ciudad autorepresentada*^                             | ^*"haven_labelled", "vctrs_vctr" , "double"*^ |
@@ -360,21 +82,13 @@ enlistan a continuación:
 |   ^*est_d*^    |                               ^*estrato de diseño*^                                |                 ^*"numeric"*^                 |
 |    ^*upm*^     |                          ^*unidad primaria de muestreo*^                           |                 ^*"numeric"*^                 |
 
-# 4. Análisis Exploratorio: Resultados
+El conjunto de información utilizado en este documento es puesto a disposición del lector para que, siguiendo la propia estructura de este trabajo, pueda replicar por su propia cuenta cada uno de los cuadros y gráficas aquí presentados. La base de datos puede ser descargada de este enlace y guardarla en la carpeta del proyecto.
+La ENOE está compuesta por 5 módulos que recogen información relacionada con el hogar encuestado, las características de la vivienda, las características sociodemográficas de su población muestran y los cuestionarios de ocupación y empleo 1 y 2. El tamaño de las bases utilizadas es de 385,792 y 383,437 observaciones, respectivamente para 2013 y 2018, con 393 variables. Es importante aclarar que cada una de las observaciones representa a un individuo encuestado. Para comenzar el análisis, se generarán un par de bases de datos auxiliares, a partir de la base original. Estas bases contendrán sólo las variables de interés enlistadas en la sección anterior y que son relevantes para llevar a cabo la exploración en los términos propuestos. Estas bases de datos auxiliares tienen un tamaño de 385,792 y 383,437 observaciones, respectivamente para 2013 y 2018, pero únicamente con 25 variables.
 
-El conjunto de información utilizado en este documento es puesto a
-disposición del lector para que, siguiendo su propia estructura, pueda
-replicar por su propia cuenta cada uno de los cuadros y gráficas aquí
-presentados. La base de datos puede ser descargada de [este
-enlace](https://drive.google.com/file/d/1zrhl56VIlLGQKXgar08qDMghUAHl7gxC/view?usp=sharing)
-y guardarla en la carpeta del proyecto.
 
 ## Elementos preliminares: paquetes usados y carga de la base
 
-El conjunto de paquetes utilizados en esta exploración está compuesto
-por `tidyverse`, `haven`, `janitor`, `srvyr`, `RColorBrewer`,
-`wesanderson` y `sjlabelled`, todos ellos son cargados a través de
-\`pacman:
+El conjunto de paquetes utilizados en esta exploración está compuesto por `tidyverse`, `haven`, `janitor`, `srvyr`, `RColorBrewer`, `wesanderson` y `sjlabelled`, todos ellos son cargados a través de \`pacman:
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 if (!require("pacman")) install.packages("pacman") 
@@ -387,22 +101,9 @@ En tanto, la base de datos se carga con:
 load("ENOE.RData")
 ```
 
-*Breve descripción de la base de datos: cuántas variables la integran,
-su tamaño, etcétera* Las bases de datos con las que trabajaremos sera la
-Encuesta Nacional de Ocupación y Empleo, para el primer trimestre del
-2013 y 2018. La ENOE esta compuesta por 5 encuestas que recogen
-información relacionada con: Hogar, Vivienda, Sociodemografico,
-Ocupación y Empleo 1 y 2. El tamaño de nuestras bases sera de 385,792 y
-383,437 observaciones respectivamente para 2013 y 2018, con 393
-variables. Es importante aclarar que cada una de las observaciones
-representa a un individuo encuestado, lo cual indica que nuestra muestra
-es del tamaño de las observaciones.
+Las bases de datos con las que trabajaremos sera la Encuesta Nacional de Ocupación y Empleo, para el primer trimestre del 2013 y 2018. La ENOE esta compuesta por 5 encuestas que recogen información relacionada con: Hogar, Vivienda, Sociodemografico, Ocupación y Empleo 1 y 2. El tamaño de nuestras bases sera de 385,792 y 383,437 observaciones respectivamente para 2013 y 2018, con 393 variables. Es importante aclarar que cada una de las observaciones representa a un individuo encuestado, lo cual indica que nuestra muestra es del tamaño de las observaciones.
 
-Para comenzar el análisis, se generarán un par de bases de datos
-auxiliares, a partir de la base original. Estas bases contendrán sólo
-las variables de interés enlistadas en la sección anterior y que son
-relevantes para llevar a cabo la exploración en los términos propuestos.
-Para ello, se recurre al siguiente segmento de código:
+Para comenzar el análisis, se generarán un par de bases de datos auxiliares, a partir de la base original. Estas bases contendrán sólo las variables de interés enlistadas en la sección anterior y que son relevantes para llevar a cabo la exploración en los términos propuestos. Para ello, se recurre al siguiente segmento de código:
 
 ```{r echo=TRUE}
 
@@ -414,10 +115,7 @@ seleccion_ENOE_18<-ENOET118	%>% select(c(sex,eda,cd_a,ent,niv_ins,anios_esc, cla
 
 **4.1 Características sociodemográficas**
 
-A partir de dichas bases se podrá conocer algunas características de
-nuestra muestra, se construyen las Tablas 1 y 2, donde se presenta la
-proporción de hombres y mujeres encuestados para el primer trimestre del
-2013 y 2018.
+A partir de dichas bases se podrá conocer algunas características de nuestra muestra, se construyen las Tablas 1 y 2, donde se presenta la proporción de hombres y mujeres encuestados para el primer trimestre del 2013 y 2018.
 
 **T1. Proporción de hombres y mujeres encuestados , 2013**
 
@@ -433,9 +131,7 @@ kbl(seleccion_ENOE_13%>% mutate(sex=(as_label(sex))) %>% tabyl(sex) %>% adorn_to
 kbl(seleccion_ENOE_18%>% mutate(sex=(as_label(sex))) %>% tabyl(sex) %>% adorn_totals %>% adorn_pct_formatting()) %>%   kable_classic()
 ```
 
-Es posible identificar que para ambos años la proporción de mujeres y
-hombres que fueron encuestados es similar, encontrando en ambos años que
-el número de mujeres es mayor que el de hombres.
+Es posible identificar que para ambos años la proporción de mujeres y hombres que fueron encuestados es similar, encontrando en ambos años que el número de mujeres es mayor que el de hombres.
 
 Podemos observar la distribución por grupo quinquenal de edad:
 
@@ -446,7 +142,7 @@ seleccion_ENOE_18<-seleccion_ENOE_18%>% mutate(edaq=cut(eda,breaks=seq(0,100,by=
 
 ```
 
-*G1. Proporción de la muestra por grupo de edad, 2013*
+*Grafica 1. Proporción de la muestra por grupo de edad, 2013*
 
 ```{r echo=FALSE}
 
@@ -478,22 +174,20 @@ ggplot(seleccion_ENOE_18) +
 
 ```
 
-Para ambos años se puede observar el bono demográfico , el grueso de la
-población se encuentra en edad productiva.
+Para ambos años se puede observar el bono demográfico , el grueso de la población se encuentra en edad productiva.
 
-En este momento identificaremos las caracteristicas academicas de la
-población muestra para ambos años.
+En este momento identificaremos las caracteristicas academicas de la población muestra para ambos años.
 
 ```{r}
-seleccion_ENOE_13	%>%
+kbl(seleccion_ENOE_13	%>%
 		filter(eda>5 & niv_ins!=5)	%>%
-		mutate_at(vars(niv_ins,	sex),	as_label)	%>%	tabyl(niv_ins,	sex,	show_missing_levels=F	)	%>% adorn_totals(c("col",	"row"))	%>%	adorn_percentages("all")	%>%	adorn_pct_formatting()
+		mutate_at(vars(niv_ins,	sex),	as_label)	%>%	tabyl(niv_ins,	sex,	show_missing_levels=F	)	%>% adorn_totals(c("col",	"row"))	%>%	adorn_percentages("all")	%>%	adorn_pct_formatting()) %>% kable_classic()
 ```
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
-seleccion_ENOE_18	%>%
+kbl(seleccion_ENOE_18	%>%
 		filter(eda>5 & niv_ins!=5)	%>%
-		mutate_at(vars(niv_ins,	sex),	as_label)	%>%	tabyl(niv_ins,	sex,	show_missing_levels=F	)	%>% adorn_totals(c("col",	"row"))	%>%	adorn_percentages("all")	%>%	adorn_pct_formatting()
+		mutate_at(vars(niv_ins,	sex),	as_label)	%>%	tabyl(niv_ins,	sex,	show_missing_levels=F	)	%>% adorn_totals(c("col",	"row"))	%>%	adorn_percentages("all")	%>%	adorn_pct_formatting()) %>% kable_classic()
 ```
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
@@ -510,22 +204,9 @@ g_esc18 <- seleccion_ENOE_18	%>%
 g_esc18+geom_bar(	aes(fill	= niv_ins)) +	 facet_wrap(~ as_label(sex))
 ```
 
-Como es posible identificar no existe una variación importante en el
-porcentaje de hombres y mujeres en cada nivel de instrucción académica,
-lo cual indica que la preparación a nivel escolar es similar, e incluso
-el porcentaje de mujeres que han concluido grados académicos es mayor.
-La capacitación recibida por la educación formal tendría que poner en
-igualdad de condiciones a las personas, sin importar su sexo, para
-acceder a un empleo y recibir un salario digno.
+Como es posible identificar no existe una variación importante en el porcentaje de hombres y mujeres en cada nivel de instrucción académica, lo cual indica que la preparación a nivel escolar es similar, e incluso el porcentaje de mujeres que han concluido grados académicos es mayor. La capacitación recibida por la educación formal tendría que poner en igualdad de condiciones a las personas, sin importar su sexo, para acceder a un empleo y recibir un salario digno.
 
-Una característica relevante en el análisis con perspectiva de genero
-son las horas que son destinadas al trabajo en el hogar no remunerado,
-la importancia reside en que históricamente se ha relegado estas
-actividades a la mujer , aun teniendo un empleo fuera del hogar, lo cual
-se convierte en un discriminante hacía la mujer ya que no se encontraría
-en una igualdad de condiciones frente a los hombres para lograr acceder
-al mercado laboral y desarrollarse plenamente.Es importante destacar que
-en la siguiente gráfica se considera a la población ocupada.
+Una característica relevante en el análisis con perspectiva de genero son las horas que son destinadas al trabajo en el hogar no remunerado, la importancia reside en que históricamente se ha relegado estas actividades a la mujer , aun teniendo un empleo fuera del hogar, lo cual se convierte en un discriminante hacía la mujer ya que no se encontraría en una igualdad de condiciones frente a los hombres para lograr acceder al mercado laboral y desarrollarse plenamente.Es importante destacar que en la siguiente gráfica se considera a la población ocupada.
 
 **G5. Horas destinadas al trabajo en el hogar no remunerado**
 
@@ -538,18 +219,11 @@ seleccion_ENOE_13 %>%filter(eda >= 0L & eda <= 75L) %>%ggplot() +aes(x = domesti
 seleccion_ENOE_18 %>%filter(eda >= 0L & eda <= 75L) %>%ggplot() +aes(x = domestico) + geom_histogram(bins = 30L, fill = "#112446") +labs(x = "Horas", y = "Población", title = "Proporción horas que son dedicadas al trabajo en el hogar, 2018") + theme_minimal() +theme(plot.title = element_text(face = "bold.italic", hjust = 0.5)) + facet_wrap(~as_label(sex))
 ```
 
-En ambos años es posible identificar la gran cantidad de horas que
-dedican las mujeres al trabajo en el hogar, llegando a dedicar incluso
-mas horas que una jornada laboral de 8 horas, es importante volver a
-señalar que es trabajo que no recibe ningun tipo de pago ni prestación.
+En ambos años es posible identificar la gran cantidad de horas que dedican las mujeres al trabajo en el hogar, llegando a dedicar incluso mas horas que una jornada laboral de 8 horas, es importante volver a señalar que es trabajo que no recibe ningun tipo de pago ni prestación.
 
 **Mercado laboral**
 
-Podemos revisar esta misma proporción entre hombres y mujeres con las
-variables 'clase1'y 'clase2', las cuales nos arrojaran información
-acerca de las características de ocupación de la población . Observemos
-la proporción de Población Económicamente Activa (PEA) y la Población
-Económicamente No Activa (PENA).
+Podemos revisar esta misma proporción entre hombres y mujeres con las variables 'clase1'y 'clase2', las cuales nos arrojaran información acerca de las características de ocupación de la población . Observemos la proporción de Población Económicamente Activa (PEA) y la Población Económicamente No Activa (PENA).
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 etiq<-c("NA",	"PEA",	"PNEA")
@@ -571,14 +245,7 @@ kbl(seleccion_ENOE_13%>% filter(eda>14 & clase1!=0) %>% mutate_at(vars(clase1, s
 kbl(seleccion_ENOE_18%>% filter(eda>14 & clase1!=0) %>% mutate_at(vars(clase1, sex), as_label) %>% tabyl(clase1, sex, show_missing_levels=F)) %>% kable_classic()
 ```
 
-La proporción de hombres encuestados que pertenecen a la PEA es casi el
-doble del total de mujeres , situación contraria a la PENA en la cual la
-cantidad de mujeres encuestadas que pertenecen a la población no
-económicamente no activa es casi tres veces mayor a la de los hombres.No
-hay un cambio significativo al comparar los resultados de ambos años. Es
-interesante adentrarnos en cada una de las clasificaciones para lograr
-comprender mejor la información que nos ofrece la encuesta, para ello
-realizaremos la misma operación pero con la variables 'clase2'
+La proporción de hombres encuestados que pertenecen a la PEA es casi el doble del total de mujeres , situación contraria a la PENA en la cual la cantidad de mujeres encuestadas que pertenecen a la población no económicamente no activa es casi tres veces mayor a la de los hombres.No hay un cambio significativo al comparar los resultados de ambos años. Es interesante adentrarnos en cada una de las clasificaciones para lograr comprender mejor la información que nos ofrece la encuesta, para ello realizaremos la misma operación pero con la variables 'clase2'
 
 **Tabla 5**
 
@@ -593,25 +260,13 @@ kbl( seleccion_ENOE_13%>% filter(eda>14 & clase2!=0) %>% mutate_at(vars(clase2, 
 kbl( seleccion_ENOE_18%>% filter(eda>14 & clase2!=0) %>% mutate_at(vars(clase2, sex), as_label) %>% tabyl(clase2, sex, show_missing_levels=F )) %>% kable_classic()
 ```
 
-Es posible identificar que la proporción de mujeres encuestadas que se
-encuentran laborando es menor al de los hombres en una proporción muy
-alta. Situación que de misma manera que con "clase1" ocurre tanto para
-el año 2013 como 2018.
+Es posible identificar que la proporción de mujeres encuestadas que se encuentran laborando es menor al de los hombres en una proporción muy alta. Situación que de misma manera que con "clase1" ocurre tanto para el año 2013 como 2018.
 
-Del año 2013 al año 2018 existe un incremento de la población ocupada,
-disminuyendo la desocupación. En esta variable si bien es posible
-identificar que los hombres tienen mayores valores de desocupación, su
-proporción con respecto a las mujeres no difiere en grandes cantidades.
-Situación contraria entre la población ocupada, en donde el número de
-mujeres ocupadas es menor considerablemente con respecto de la población
-masculina.
+Del año 2013 al año 2018 existe un incremento de la población ocupada, disminuyendo la desocupación. En esta variable si bien es posible identificar que los hombres tienen mayores valores de desocupación, su proporción con respecto a las mujeres no difiere en grandes cantidades. Situación contraria entre la población ocupada, en donde el número de mujeres ocupadas es menor considerablemente con respecto de la población masculina.
 
-con esta información es posible encontrar las las tasas de participación
-economica.
+con esta información es posible encontrar las las tasas de participación economica.
 
-Ahora utilizaremos las variables 'rama' y 'scian' para lograr
-identificar los sectores en los que se emplean en mayor proporción las
-mujeres y en cuales los hombres, según los resultados de la encuesta.
+Ahora utilizaremos las variables 'rama' y 'scian' para lograr identificar los sectores en los que se emplean en mayor proporción las mujeres y en cuales los hombres, según los resultados de la encuesta.
 
 Primero lo haremos con 'rama'
 
@@ -632,19 +287,9 @@ kbl(seleccion_ENOE_18	%>% filter(clase2==1 & eda>14)	%>%	mutate_at(vars(rama,	se
 
 ```
 
-Al observar los resultados notable que las actividades del sector
-primario son realizadas mayoritariamente por los hombres, mientras que
-en el sector servicios se logra identificar que no solamente tienen un
-porcentaje elevado de población trabajadora, tanto hombres como mujeres,
-sin embargo es notable que hay una mayor presencia de mujeres. Como
-primer idea al realizar estas proporciones se puede plantear de idea que
-las mujeres están integradas a actividades que representan menor trabajo
-físico en comparación a las actividades en las cuales hay mas hombres
-empleados.
+Al observar los resultados notable que las actividades del sector primario son realizadas mayoritariamente por los hombres, mientras que en el sector servicios se logra identificar que no solamente tienen un porcentaje elevado de población trabajadora, tanto hombres como mujeres, sin embargo es notable que hay una mayor presencia de mujeres. Como primer idea al realizar estas proporciones se puede plantear de idea que las mujeres están integradas a actividades que representan menor trabajo físico en comparación a las actividades en las cuales hay mas hombres empleados.
 
-Desagregaremos un nivel mas y observaremos esta misma clasificación pero
-con la variable SCIAN , esta representa la clasificación de actividades
-según el sistema de clasificación de América del Norte.
+Desagregaremos un nivel mas y observaremos esta misma clasificación pero con la variable SCIAN , esta representa la clasificación de actividades según el sistema de clasificación de América del Norte.
 
 **Tabla 9**
 
@@ -660,20 +305,7 @@ kbl(seleccion_ENOE_18	%>% filter(clase2==1 & eda>14)	%>%	mutate_at(vars(scian,	s
 
 ```
 
-La información que obtenemos complementa la información por rama, la
-presencia de hombres esta en las actividades relacionadas a la
-agricultura, el transporte, la construcción y comercio al por mayor.
-Mientras las mujeres laboran principalmente en servicios, es importante
-identificar que las actividades que realizan los hombres según las
-tablas presentadas están relacionadas por la exigencia de un mayor
-esfuerzo físico, mientras que las realizadas por mujeres implican
-aptitudes relacionadas con el trato y cuidado de personas. Aun es pronto
-para realizar conclusiones, sin embargo podría ser un primer esbozo de
-la relación que presentan los estereotipos de género que son enseñados e
-inculcados generacionalmente. Podemos comenzar a plantear una pregunta
-que se podrá responder mas adelante: ¿Influirá la diferencia de
-actividades económicas que realizan los hombres y las mujeres con el
-incremento o disminución de la brecha salarial?.
+La información que obtenemos complementa la información por rama, la presencia de hombres esta en las actividades relacionadas a la agricultura, el transporte, la construcción y comercio al por mayor. Mientras las mujeres laboran principalmente en servicios, es importante identificar que las actividades que realizan los hombres según las tablas presentadas están relacionadas por la exigencia de un mayor esfuerzo físico, mientras que las realizadas por mujeres implican aptitudes relacionadas con el trato y cuidado de personas. Aun es pronto para realizar conclusiones, sin embargo podría ser un primer esbozo de la relación que presentan los estereotipos de género que son enseñados e inculcados generacionalmente. Podemos comenzar a plantear una pregunta que se podrá responder mas adelante: ¿Influirá la diferencia de actividades económicas que realizan los hombres y las mujeres con el incremento o disminución de la brecha salarial?.
 
 Analicemos esta información a nivel entidad.
 
@@ -688,10 +320,7 @@ kbl(seleccion_ENOE_18%>% filter(eda>14 & clase1!=0) %>% mutate_at(vars(ent,clase
 
 ```
 
-A simple vista podemos identificar que estas tablas son de una lectura
-poco amigable, sin embargo las retomaremos mas adelante cuando se
-realicen gráficos y análisis de localización. Por el momento solamente
-serán presentadas sin mayor profundización en su contenido.
+A simple vista podemos identificar que estas tablas son de una lectura poco amigable, sin embargo las retomaremos mas adelante cuando se realicen gráficos y análisis de localización. Por el momento solamente serán presentadas sin mayor profundización en su contenido.
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 kbl(seleccion_ENOE_13%>% filter(eda>14 ,rama!=0,rama!=5,rama!=7 & clase1!=0) %>% mutate_at(vars(ent,rama,sex), as_label) %>% tabyl(ent,rama, sex, show_missing_levels=F)	%>%adorn_totals(c("col"))	%>% adorn_percentages("row")	%>% adorn_pct_formatting()) %>%  kable_classic() %>% add_header_above(c("Hombre","Mujer"))
@@ -699,38 +328,20 @@ kbl(seleccion_ENOE_13%>% filter(eda>14 ,rama!=0,rama!=5,rama!=7 & clase1!=0) %>%
 ```
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
-kbl(seleccion_ENOE_18%>% filter(eda>5 & clase1!=0) %>% mutate_at(vars(niv_ins,ent, sex), as_label) %>% tabyl(ent,niv_ins, sex, show_missing_levels=F) 	%>%adorn_totals(c("col"))	%>% adorn_percentages("row")	%>% adorn_pct_formatting()) %>%  kable_classic() %>% add_header_above(c("Hombre","Mujer"))
+kbl(seleccion_ENOE_18%>% filter(eda>14 ,rama!=0,rama!=5,rama!=7 & clase1!=0) %>% mutate_at(vars(ent,rama,sex), as_label) %>% tabyl(ent,rama, sex, show_missing_levels=F)	%>%adorn_totals(c("col"))	%>% adorn_percentages("row")	%>% adorn_pct_formatting()) %>%  kable_classic() %>% add_header_above(c("Hombre","Mujer"))
+
 
 ```
 
-A simple vista podemos identificar que estas tablas son de una lectura
-poco amigable, sin embargo las retomaremos mas adelante cuando se
-realicen gráficos y análisis de localización. Por el momento solamente
-serán presentadas sin mayor profundización en su contenido.
+A simple vista podemos identificar que estas tablas son de una lectura poco amigable, sin embargo las retomaremos mas adelante cuando se realicen gráficos y análisis de localización. Por el momento solamente serán presentadas sin mayor profundización en su contenido.
 
-Como es posible identificar en las tablas anteriores, la presencia de
-mujeres en el mercado laboral es menor que la de los hombres, lo cual da
-evidencia de una primer discriminación la cual toca con temas de
-accesibilidad. Como refuerzo a lo planteado anteriormente, es evidente
-que se siguen presentando roles de genero relacionados con las
-actividades que socialmente están permitidas para las mujeres. El sector
-servicios , principalmente aquellos relacionados con la atención, el
-cuidado y preparación de alimentos, en compañía con el comercio al por
-menor, son las actividades donde se concentra la mayor cantidad de
-mujeres empleadas. Llama la atención que este patrón se replica en todas
-las entidades. Resultaría interesante analizar a profundidad cada una de
-estas actividades.
+Como es posible identificar en las tablas anteriores, la presencia de mujeres en el mercado laboral es menor que la de los hombres, lo cual da evidencia de una primer discriminación la cual toca con temas de accesibilidad. Como refuerzo a lo planteado anteriormente, es evidente que se siguen presentando roles de genero relacionados con las actividades que socialmente están permitidas para las mujeres. El sector servicios , principalmente aquellos relacionados con la atención, el cuidado y preparación de alimentos, en compañía con el comercio al por menor, son las actividades donde se concentra la mayor cantidad de mujeres empleadas. Llama la atención que este patrón se replica en todas las entidades. Resultaría interesante analizar a profundidad cada una de estas actividades.
 
-Esta sección sera interesante cerrarla analizando las tasas de
-participación económica para hombre y mujeres, como nos indica su
-nombre, mide el grado de participación de la población en la economía.
-Primeramente podemos observarlas en general.
+Esta sección sera interesante cerrarla analizando las tasas de participación económica para hombre y mujeres, como nos indica su nombre, mide el grado de participación de la población en la economía. Primeramente podemos observarlas en general.
 
 En el libro de \@[Escoto2021] se realiza de la siguiente forma:
 
-Se agrupan las edades en quinqueles, posteriormente se obtendrán las
-tasas de participación para la población que se considera dentro de la
-edad para laborar en México, la cual es de los 15 a los 75 años.
+Se agrupan las edades en quinqueles, posteriormente se obtendrán las tasas de participación para la población que se considera dentro de la edad para laborar en México, la cual es de los 15 a los 75 años.
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 seleccion_ENOE_13<-seleccion_ENOE_13%>% mutate(edaq=cut(eda,breaks=seq(0,100,by=5),include.lowest=T,right=F))
@@ -739,8 +350,7 @@ seleccion_ENOE_18<-seleccion_ENOE_18%>% mutate(edaq=cut(eda,breaks=seq(0,100,by=
 
 ```
 
-Veamos la tasa de participación en general entre mujeres y hombres,
-posteriormente por grupo de edad.
+Veamos la tasa de participación en general entre mujeres y hombres, posteriormente por grupo de edad.
 
 **Tasas de participación 2013**
 
@@ -814,16 +424,7 @@ g_tasa0+geom_line(aes(color=sex)) + ggtitle("Tasas de participació econmica por
 
 **Análisis salarial**
 
-En esta ultima sección de resultados se analizara la proporción del
-ingreso que es obtenido por las mujeres por trabajar en comparación con
-el de los hombres , intentando identificar sí existen variaciones entre
-ellos. Hasta el punto en donde nos encontramos retomamos nuestra
-hipótesis en la cual se comenta que el ingreso que perciben las mujeres
-si es menor , nuestro trabajo ha logrado identificar varios factores
-discriminatorios para las mujeres en cuando a la accesibilidad y
-desarrollo en el espacio laboral , una nota aclaratoria relevante de
-mencionar es que no se esta trabajando con el sector informal, y los
-ingresos en México se obtienen principalmente del trabajo remunerado.
+En esta ultima sección de resultados se analizara la proporción del ingreso que es obtenido por las mujeres por trabajar en comparación con el de los hombres , intentando identificar sí existen variaciones entre ellos. Hasta el punto en donde nos encontramos retomamos nuestra hipótesis en la cual se comenta que el ingreso que perciben las mujeres si es menor , nuestro trabajo ha logrado identificar varios factores discriminatorios para las mujeres en cuando a la accesibilidad y desarrollo en el espacio laboral , una nota aclaratoria relevante de mencionar es que no se esta trabajando con el sector informal, y los ingresos en México se obtienen principalmente del trabajo remunerado.
 
 Observemos la distribución del ingreso mensual
 
@@ -852,17 +453,9 @@ seleccion_ENOE_18 %>%
  theme_minimal()+facet_wrap(~as_label(sex))
 ```
 
-Comparando la distribución del ingreso es posible identificar que son
-menos las mujeres en percibir ingresos y son en proporción menores en
-comparación con los ingresos de los hombres. Podemos hacer un mayor
-tratamiento de nuestra información para corroborar esta idea, así como
-acercarnos al planteamiento de nuestra hipótesis en la cual se menciona
-que esta desigualdad esta presente y relacionada con el sector de
-actividad y la entidad.
+Comparando la distribución del ingreso es posible identificar que son menos las mujeres en percibir ingresos y son en proporción menores en comparación con los ingresos de los hombres. Podemos hacer un mayor tratamiento de nuestra información para corroborar esta idea, así como acercarnos al planteamiento de nuestra hipótesis en la cual se menciona que esta desigualdad esta presente y relacionada con el sector de actividad y la entidad.
 
-Con inferencia estadística probaremos nuestra hipótesis, tendremos como
-Ho que los ingresos de las mujeres y los hombres son iguales y como Ha
-que ambos ingresos son diferentes.
+Con inferencia estadística probaremos nuestra hipótesis, tendremos como Ho que los ingresos de las mujeres y los hombres son iguales y como Ha que ambos ingresos son diferentes.
 
 ![](images/paste-2A8DD47B.png)
 
@@ -875,15 +468,13 @@ seleccion_ENOE_13 %>% filter(clase2==1 & ingocup!=0) %>% 	with(t.test(ingocup~se
 seleccion_ENOE_18 %>% filter(clase2==1 & ingocup!=0) %>% 	with(t.test(ingocup~sex,	alternative="greater"))
 ```
 
-Nuestra prueba se encuentra en un intervalo del 95% de confianza, es decir que el p-value tendría que ser mayor a 0.05 para aceptar la hipótesis nula en la cual se plantea la igualdad de ingresos entre hombres y mujeres, sin embargo para el caso de ambas pruebas el p-value < 0.05, rechazamos la Ho. La media de los ingresos mensuales de hombres y mujeres es diferente.La prueba tambien arroja el ingreso medio, las mujeres en promedio presentan un 29.37% menos ingreso con respecto al ingreso medio mensual de los hombres, en el año 2018 incremento a un 29.74%.
+Nuestra prueba se encuentra en un intervalo del 95% de confianza, es decir que el p-value tendría que ser mayor a 0.05 para aceptar la hipótesis nula en la cual se plantea la igualdad de ingresos entre hombres y mujeres, sin embargo para el caso de ambas pruebas el p-value \< 0.05, rechazamos la Ho. La media de los ingresos mensuales de hombres y mujeres es diferente.La prueba tambien arroja el ingreso medio, las mujeres en promedio presentan un 29.37% menos ingreso con respecto al ingreso medio mensual de los hombres, en el año 2018 incremento a un 29.74%.
 
 Realizando una recapitulación de los resultados que se han obtenido a lo largo del trabajo se tiene que en las muestras trabajadas para el año 2013 y 2018 la presencia de mujeres es mayor, se cumplen características escolares similares, sin embargo hay una diferenciación en la empleabilidad del tiempo, siendo las mujeres quienes aun formando parte de la clase trabajadora destinan mayores horas al trabajo no remunerado en el hogar. Existen discriminantes en el mercado laboral debido a que no es menor la cantidad de mujeres que se encuentra en la PEA y en la población ocupada, una posible explicación puede ser la falta de oportunidades para emplear a las mujeres en sectores de la economía que no tengan que ver con la atención, el cuidado , la educación de grados básicos o la preparación de alimentos. Mismos sectores que no generan un valor agregado en la misma proporción que otros sectores productivos como la construcción, en donde la presencia de mujeres es escasa. Estos patrones se replican en cada una de las entidades, lo cual tiene relación con la poca productividad económica de las mujeres, aunado a las horas que dejan de poder dedicar al empleo formal por destinarlo al trabajo no remunerado del hogar. Entendiendo cada factor e hilandolo se puede entender porque el ingreso de las mujeres es menor, podemos observar a continuación como se comporta el ingreso por entidas y rama, asi como su relación con la diferencia de ingresos.
 
-
 Se probara la dependencia del ingreso con la entidad y rama, respectivamente con la prueba de Pearson´s.
 
-Ho= La condición de hombre o mujer y la entidad son independientes. 
-Ha= La condición de hombre o mujer y la entidad son dependientes. 
+Ho= La condición de hombre o mujer y la entidad son independientes. Ha= La condición de hombre o mujer y la entidad son dependientes.
 
 Esta prueba no nos dara la magnitud ni dirección de la relación, solamente nos dira sí existe relación de dependencia.
 
@@ -905,11 +496,9 @@ seleccion_ENOE_18	%>%
 
 ```
 
-Al tener la prueba un nivel de confianza del 95% el p-value al ser menor que 0.05 hace que tengamos que rechazar la hipotesis nula, lo cual  os indica que si hay una relación de dependencia para ambos años. Probemos con la variable "rama"
+Al tener la prueba un nivel de confianza del 95% el p-value al ser menor que 0.05 hace que tengamos que rechazar la hipotesis nula, lo cual os indica que si hay una relación de dependencia para ambos años. Probemos con la variable "rama"
 
-Ho= La condición de hombre o mujer y la rama son independientes. 
-Ha= La condición de hombre o mujer y la rama son dependientes. 
-
+Ho= La condición de hombre o mujer y la rama son independientes. Ha= La condición de hombre o mujer y la rama son dependientes.
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 seleccion_ENOE_13	%>%
@@ -940,14 +529,12 @@ seleccion_ENOE_13 %>% filter(clase2==1 & ingocup!=0) %>% mutate(ingreso_mensual=
 
 ```
 
-
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 
 seleccion_ENOE_18 %>% filter(clase2==1 & ingocup!=0) %>% mutate(ingreso_mensual= median(ingocup)) %>%mutate_at(vars(ent,rama,sex), as_label) %>%group_by(ent,sex) %>% summarise(ingreso_mensual=median(ingocup)) %>% 
     ggplot()+geom_col(aes(x=sex,y=ingreso_mensual,fill=as_factor(sex), position = "fill"))+facet_wrap(~as_factor(ent))+labs(x="Ingreso promedio mensual",y="Entidad")
 
 ```
-
 
 Por rama
 
@@ -956,13 +543,10 @@ seleccion_ENOE_13 %>% filter(clase2==1,rama!=5,rama!=7 & ingocup!=0) %>% mutate(
 
 ```
 
-
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 seleccion_ENOE_18 %>% filter(clase2==1,rama!=5,rama!=7 & ingocup!=0) %>% mutate(ingreso_mensual= median(ingocup)) %>%mutate_at(vars(rama,sex), as_label) %>%group_by(rama,sex) %>% summarise(ingreso_mensual=median(ingocup)) %>% ggplot()+geom_col(aes(x=sex,y=ingreso_mensual,fill=as_factor(sex), position = "fill"))+facet_wrap(~as_factor(rama))+labs(x="Ingreso promedio mensual",y="Rama")
 
 ```
-
-
 
 # Consideraciones finales
 
